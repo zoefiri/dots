@@ -1,0 +1,528 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#000000}
+;foreground = ${xrdb:color12:#222}
+;foreground-alt = ${xrdb:color10:#222}
+;primary = ${xrdb:color12:#222}
+;secondary = ${xrdb:color2:#222}
+
+background = #231e18
+foreground = #d35c5c
+foreground-alt = #e0ac16
+primary = #e0ac16
+secondary = #e0ac16
+
+
+[bar/custom]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 20%
+height = 25 
+offset-x = 40%
+offset-y = .0%
+radius = 1.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 5
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 =tewi:style=Regular:pixelsize=12;1
+font-1 =tewi:pixelsize=12;1
+font-2 =tewi:pixelsize=12;1
+
+modules-left =  
+modules-center = mpd  
+modules-right = 
+
+;tray-transparent = true
+;tray-background = #00630f
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/customr]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 15%
+height = 25 
+offset-x = 84.55%
+offset-y = .65%
+radius = 1.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 5
+border-color = ${colors.background}
+
+padding-left = 1
+padding-right = 0
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 =tewi:style=Regular:pixelsize=12;1
+font-1 =tewi:pixelsize=12;1
+font-2 =tewi:pixelsize=12;1
+
+modules-left = alsa
+modules-center = 
+modules-right = date
+
+;tray-transparent = true
+;tray-background = #00630f
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/customl]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 16.7%
+height = 25 
+offset-x = .4%
+offset-y = .65%
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 5
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 =tewi:style=Regular:pixelsize=12;1
+font-1 =tewi:pixelsize=12;1
+font-2 =tewi:pixelsize=12;1
+
+modules-left = ewmh
+modules-center = 
+modules-right = 
+
+;tray-transparent = true
+;tray-background = #00630f
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/customl2]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 18.7%
+height = 12.5 
+offset-x = .4%
+offset-y = 1.95%
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 5
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 =tewi:style=Regular:pixelsize=11;1
+font-1 =tewi:pixelsize=11;1
+font-2 =tewi:pixelsize=11;1
+
+modules-left = ewmh
+modules-center = 
+modules-right = 
+
+;tray-transparent = true
+;tray-background = #00630f
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <toggle> <icon-next>
+
+port = 6600
+
+icon-prev = <<
+icon-stop =
+icon-play = >
+icon-pause = /
+icon-next = >>
+format-background = ${colors.foreground-alt}
+
+label-song-maxlen = 42
+label-song-ellipsis = true
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = BL
+
+bar-width = 10
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%m-%d  "
+date-alt = " %Y-%m-%d"
+
+time = "  %H:%M:%S  "     
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.background}
+
+label = %time%%date%
+format-background = ${colors.foreground-alt}
+format-foreground = ${colors.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "  VOL %percentage%%"
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.primary}
+bar-volume-foreground-1 = ${colors.primary}
+bar-volume-foreground-2 = ${colors.primary}
+bar-volume-foreground-3 = ${colors.primary}
+bar-volume-foreground-4 = ${colors.primary}
+bar-volume-foreground-5 = ${colors.primary}
+bar-volume-foreground-6 = ${colors.primary}
+bar-volume-gradient = false
+bar-volume-indicator = X 
+bar-volume-indicator-font = 2
+bar-volume-fill = +
+bar-volume-fill-font = 2
+bar-volume-empty = ~
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.secondary}
+format-background = ${colors.foreground-alt}
+
+
+[module/ewmh]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = false
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = true
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+
+; Available tokens:
+;   %name%
+; Default: %name%
+label-monitor = %name%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active =" +%name%+ "   
+label-active-foreground = ${xrdb:color0:#222}
+label-active-background = ${xrdb:color6:#222} 
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;Default: "%icon%              %name%"
+;label-occupied = %icon% %name% %index%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+;label-urgent = %icon% %name%
+;label-urgent-foreground = #000000
+;label-urgent-background = #bd2c40
+;label-urgent-underline = #9b0a20
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-empty = " +%name%+ "  
+;label-empty-foreground = ${colors.foreground} 
+;format-background = ${colors.foreground-alt}
+
+
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.secondary}
+bar-volume-foreground-1 = ${colors.secondary}
+bar-volume-foreground-2 = ${colors.secondary}
+bar-volume-foreground-3 = ${colors.secondary}
+bar-volume-foreground-4 = ${colors.secondary}
+bar-volume-foreground-5 = ${colors.secondary}
+bar-volume-foreground-6 = ${colors.secondary}
+bar-volume-gradient = false
+bar-volume-indicator = x
+bar-volume-indicator-font = 2
+bar-volume-fill = +
+bar-volume-fill-font = 2
+bar-volume-empty = ~
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.secondary}
+format-background = ${colors.foreground-alt}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+;
+[module/i3]
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+; ws-icon-[0-9]+ = label;icon
+; NOTE: The label needs to match the name of the i3 workspace
+ws-icon-0 = 1;♚
+ws-icon-1 = 2;♛
+ws-icon-2 = 3;♜
+ws-icon-3 = 4;♝
+ws-icon-4 = 5;♞
+ws-icon-default = ♟
+; NOTE: You cannot skip icons, e.g. to get a ws-icon-6
+; you must also define a ws-icon-5.
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode =
+label-mode-padding = 1
+label-mode-background = #e60053
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = ${colors.two}
+label-focused-underline = ${colors.secondary}
+label-focused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = ${colors.secondary}
+label-visible-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator = +
+label-separator-padding = 1
+label-separator-foreground = ${colors.secondary}

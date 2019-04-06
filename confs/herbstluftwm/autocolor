@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+
+# this is a simple config for herbstluftwm
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+xsetroot -solid '#5A8E3A'
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# keybindings
+# if you have a super key you will be much happier with Mod set to Mod4
+Mod=Mod1    # Use alt as the main modifier
+#Mod=Mod4   # Use the super key as the main modifier
+
+hc keybind $Mod-Shift-q close
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-c close
+hc keybind $Mod-Return spawn alacritty 
+
+
+# autostartup
+if pgrep -x "Discord" > /dev/null
+then
+    echo "Running"
+else
+        hc spawn discord
+fi
+
+
+if pgrep -x "firefox" > /dev/null
+then
+    echo "Running"
+else
+    hc spawn firefox
+fi
+
+
+if pgrep -x "deluge" > /dev/null
+then
+    echo "Running"
+else
+    hc spawn deluge
+fi
+
+#Other stuff
+hc spawn wal -R -t &
+hc spawn clipmenud
+hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -font "kakwafont 9"
+hc keybind $Mod-c spawn rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -location 0 -lines 5 -bw 0 -font "kakwafont 9"
+hc keybind $Mod-l spawn /./home/zoe/PATHcustom/locker
+hc keybind $Mod-w spawn flameshot gui
+hc keybind $Mod-e spawn splatmoji emoticon
+hc keybind $Mod-q echo "haha no."
+hc keybind $Mod-i spawn scratchpad
+hc spawn polybar custom
+hc spawn polybar customl
+hc spawn polybar customr
+#Volume stuff
+hc keybind $Mod-Alt-F8 spawn amixer set Master,0 5%+
+hc keybind $Mod-Alt-F7 spawn amixer set Master,0 5%-
+
+
+# Set colours from X resources
+color00=$(xrdb -query | grep 'background' | cut -f2 | head -n 1)
+color01=$(xrdb -query | grep 'color1' | cut -f2 | head -n 1)
+color02=$(xrdb -query | grep 'color2' | cut -f2 | head -n 1)
+color03=$(xrdb -query | grep 'color3' | cut -f2 | head -n 1)
+color04=$(xrdb -query | grep 'color4' | cut -f2 | head -n 1)
+color05=$(xrdb -query | grep 'color5' | cut -f2 | head -n 1)
+color06=$(xrdb -query | grep 'color6' | cut -f2 | head -n 1)
+color07=$(xrdb -query | grep 'color7' | cut -f2 | head -n 1)
+color08=$(xrdb -query | grep 'color8' | cut -f2 | head -n 1)
+color09=$(xrdb -query | grep 'color9' | cut -f2 | head -n 1)
+color10=$(xrdb -query | grep 'color10' | cut -f2 | head -n 1)
+
+
+# basic movement
+# focusing clients
+hc keybind $Mod-Left  focus left
+hc keybind $Mod-Down  focus down
+hc keybind $Mod-Up    focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-h     focus left
+hc keybind $Mod-j     focus down
+hc keybind $Mod-k     focus up
+
+# moving clients
+hc keybind $Mod-Shift-Left  shift left
+hc keybind $Mod-Shift-Down  shift down
+hc keybind $Mod-Shift-Up    shift up
+hc keybind $Mod-Shift-Right shift right
+hc keybind $Mod-Shift-h     shift left
+hc keybind $Mod-Shift-j     shift down
+hc keybind $Mod-Shift-k     shift up
+hc keybind $Mod-Shift-l     shift right
+
+# splitting frames
+# create an empty frame at the specified direction
+hc keybind $Mod-u       split   bottom  0.5
+hc keybind $Mod-o       split   right   0.5
+# let the current frame explode into subframes
+hc keybind $Mod-Control-space split explode
+
+# resizing frames
+resizestep=0.01
+hc keybind $Mod-Control-h       resize left +$resizestep
+hc keybind $Mod-Control-j       resize down +$resizestep
+hc keybind $Mod-Control-k       resize up +$resizestep
+hc keybind $Mod-Control-l       resize right +$resizestep
+hc keybind $Mod-Control-Left    resize left +$resizestep
+hc keybind $Mod-Control-Down    resize down +$resizestep
+hc keybind $Mod-Control-Up      resize up +$resizestep
+hc keybind $Mod-Control-Right   resize right +$resizestep
+
+# tags
+tag_names=( {1..9} )
+tag_keys=( {1..9} 0 )
+
+hc rename default "${tag_names[0]}" || true
+for i in ${!tag_names[@]} ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+# cycle through tags
+hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-comma  use_index -1 --skip-visible
+
+# layouting
+hc keybind $Mod-r remove
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-p pseudotile toggle
+# The following cycles through the available layouts within a frame, but skips
+# layouts, if the layout change wouldn't affect the actual window positions.
+# I.e. if there are two windows within a frame, the grid layout is skipped.
+hc keybind $Mod-space                                                           \
+            or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-y cycle
+
+# theme
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+hc set frame_border_active_color $color02
+hc set frame_border_normal_color $color01
+hc set frame_bg_normal_color $color01
+hc set frame_bg_active_color $color02
+hc set frame_border_width 0
+hc set always_show_frame 0
+hc set frame_bg_transparent 1
+hc set frame_transparent_width 0
+hc set frame_gap 5
+hc pad 0 45 5 5 5
+
+hc attr theme.active.color $color06
+hc attr theme.normal.color $color01
+hc attr theme.urgent.color orange
+hc attr theme.inner_w5dth 0
+hc attr theme.inner_color black
+hc attr theme.border_width 0
+hc attr theme.floating.border_width 0
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_color black
+hc attr theme.active.inner_color '#3E4A00'
+hc attr theme.active.outer_color '#3E4A00'
+hc attr theme.background_color '#141414'
+
+hc set window_gap 5
+hc set frame_padding 0
+hc set smart_window_surroundings 0
+hc set smart_frame_surroundings 1
+hc set mouse_recenter_gap 0
+
+# rules
+hc unrule -F
+#hc rule class=XTerm tag=3 # move all xterms to tag 3
+hc rule focus=on # normally focus new clients
+#hc rule focus=off # normally do not focus new clients
+# give focus to most common terminals
+#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc set tree_style '╾│ ├└╼─┐'
+
+# unlock, just to be sure
+hc unlock
+
+# do multi monitor setup here, e.g.:
+# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+# or simply:
+# hc detect_monitors
+
+# find the panel
+panel=~/.config/herbstluftwm/panel.sh
+[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    # start it on each monitor
+    "$panel" $monitor &
+done

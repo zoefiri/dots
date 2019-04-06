@@ -1,0 +1,33 @@
+#!/bin/sh
+
+#A scipt that uses a lemonbar instance to remind me to plug my laptop in.
+
+
+stuff(){
+echo "%{c} Plug your laptop in, dumbass." 
+sleep 15
+}
+
+
+while true;
+do
+	#STATUS="Discharging"
+	#BATLVL=7
+	read STATUS < /sys/class/power_supply/BAT0/status
+	read BATLVL < /sys/class/power_supply/BAT0/capacity
+	if [ $BATLVL -lt 10 ] && [ $STATUS = "Discharging" ]
+	then
+		stuff | lemonbar -f hermit -g 800x100+540+500 -B#231e18 -F#e0ac16
+		sleep 20
+	fi
+
+
+	if [ $BATLVL -lt 4 ] && [ $STATUS = "Discharging" ]
+	then
+		/home/zoe/PATHcustom/locker && systemctl suspend
+		sleep 30
+	fi
+
+
+	sleep 20
+done

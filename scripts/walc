@@ -1,0 +1,27 @@
+#!/bin/sh
+
+#A small wallpaper settings script
+#All wallpapers must be set without paths, inside of "$walldir" for "walc r" to work.
+
+#wallpaper directory
+waldir="~/wallp/walls"
+
+if [ "$1" = "z" ]
+	#Wallpaper randomization
+	then
+		randomwall=$(ls "$walldir" |sort -R |tail -1)
+		feh --bg-fill "$walldir/$randomwall"
+		echo "$randomwall" > "$walldir/current"
+	
+	#Wallpaper Restore
+	elif [ $1 = "r" ]
+	then
+		read -r lastwall < "$walldir/current"
+		feh --bg-fill "/home/zoe/wallp/walls/$lastwall"
+	
+	#Set wallpaper
+	else
+		feh --bg-fill "$1"
+		echo "$1" > "$walldir/current"
+fi
+

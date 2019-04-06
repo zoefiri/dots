@@ -1,0 +1,333 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#000000}
+;foreground = ${xrdb:color12:#222}
+;foreground-alt = ${xrdb:color10:#222}
+;primary = ${xrdb:color12:#222}
+;secondary = ${xrdb:color2:#222}
+
+;dark brown
+background = #231e18
+
+;red
+foreground = #d35c5c
+red = #d35c5c
+
+;gold
+foreground-alt = #e0ac16
+primary = #e0ac16
+secondary = #e0ac16
+gold = #e0ac16
+
+;teal
+teall = #95cbbb
+
+;grassy green
+grassy =  #b7ba53
+
+;green
+green = #2eb968
+
+;blue
+blue = #88a4d3
+
+;light brown
+brown = #b49368
+
+[bar/custom]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 30
+offset-x = 0%
+offset-y = 0%
+radius = 1.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 9
+line-color = #ffffff
+
+border-bottom-size = 10
+border-color = ${colors.green}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 =curie:style=Regular:pixelsize=8;1
+;font-0 =GohuFont:style=Regular:pixelsize=14;1
+font-1 =Hurmit Medium Nerd Font Complete:style=Regular:pixelsize=8;1
+font-2 =Font Awesome 5 Free:style=Solid:pixelsize=9;1
+font-3 =FontAwesome:pixelsize=9;1
+font-4 =Powerline Extra Symbols:pixelsize=15;1
+
+modules-left =  ewmh pulseaudio
+modules-center = mpd  
+modules-right = wireless-network bat date
+
+;tray-transparent = true
+;tray-background = #00630f
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+
+
+[module/bat]
+type = custom/script
+exec = /home/zoe/proj/shell/bat/polybat
+tail = true
+interval = .5
+
+format-foreground = ${colors.gold}
+format-background = ${colors.green}
+format-padding = 4
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <toggle> <icon-next>
+
+port = 6600
+
+icon-prev = <<
+icon-stop =
+icon-play = >
+icon-pause = /
+icon-next = >>
+format-background = ${colors.foreground-alt}
+
+label-song-maxlen = 42
+label-song-ellipsis = true
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%m-%d  "
+date-alt = " %Y-%m-%d"
+
+time = "  %H:%M:%S  "     
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.background}
+
+label = %time%%date%
+format-background = ${colors.foreground-alt}
+format-foreground = ${colors.background}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = "  VOL %percentage%%"
+label-volume-foreground = ${root.foreground}
+
+label-muted = 🔇 muted
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.primary}
+bar-volume-foreground-1 = ${colors.primary}
+bar-volume-foreground-2 = ${colors.primary}
+bar-volume-foreground-3 = ${colors.primary}
+bar-volume-foreground-4 = ${colors.primary}
+bar-volume-foreground-5 = ${colors.primary}
+bar-volume-foreground-6 = ${colors.primary}
+bar-volume-gradient = false
+bar-volume-indicator = X 
+bar-volume-indicator-font = 2
+bar-volume-fill = >
+bar-volume-fill-font = 2
+bar-volume-empty = +
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.secondary}
+content-background = ${colors.gold}
+format-background = ${colors.red}
+
+
+[module/ewmh]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = false
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = true
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+
+; Available tokens:
+;   %name%
+; Default: %name%
+;label-monitor = %name%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; 
+label-active-foreground = ${colors.background}
+label-active-background = ${colors.gold} 
+icon-1 = x
+icon-3 = v
+icon-4 = b
+label-active =" +%icon%+ "   
+;icon-[0-9]+ = ;<icon>
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;Default: "%icon%              %name%"
+;label-occupied = %icon% %name% %index%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+;label-urgent = %icon% %name%
+;label-urgent-foreground = #000000
+;label-urgent-background = #bd2c40
+;label-urgent-underline = #9b0a20
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-empty = " +%icon%+ "  
+label-empty-foreground = ${colors.background}
+label-empty-background = ${colors.green} 
+;label-empty-foreground = ${colors.foreground} 
+;format-background = ${colors.foreground-alt}
+
+
+
+[module/alsa]
+type = internal/alsa
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL %percentage%%
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.secondary}
+bar-volume-foreground-1 = ${colors.secondary}
+bar-volume-foreground-2 = ${colors.secondary}
+bar-volume-foreground-3 = ${colors.secondary}
+bar-volume-foreground-4 = ${colors.secondary}
+bar-volume-foreground-5 = ${colors.secondary}
+bar-volume-foreground-6 = ${colors.secondary}
+bar-volume-gradient = false
+bar-volume-indicator = x
+bar-volume-indicator-font = 2
+bar-volume-fill = +
+bar-volume-fill-font = 2
+bar-volume-empty = ~
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.secondary}
+format-background = ${colors.foreground-alt}
+
+[module/wireless-network]
+type = internal/network
+interface = wlp5s0
+interval = 3.0
+format-connected = " <label-connected>"
+label-connected = "  %essid% %downspeed:9%.  "
+label-disconnected = "  DISCONNECTED  "
+label-connected-background = #dddddd
+label-disconnected-background = #eeeeee
+label-connected-foreground = ${colors.green}
+label-disconnected-foreground = ${colors.red}
+
+
+[module/a]
+type = custom/text
+content = ""
+content-foreground = ${colors.green}
+content-background = ${colors.gold}
+
+[module/b]
+type = custom/text
+content = ""
+content-foreground = ${colors.background}
+content-background = ${colors.green}
+
+
+[module/c]
+type = custom/text
+
+
+[module/d]
+type = custom/text
+
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
+;

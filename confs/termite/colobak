@@ -1,0 +1,22 @@
+[options]
+font =tewi Regular 11px
+geometry = 900x700
+scrollback_lines = 2000
+
+[colors]
+color0 = #231e18
+color1 = #302b25
+color2 = #48413a
+color3 = #9d8b70
+color4 = #b4a490
+color5 = #cabcb1
+color6 = #d7c8bc
+color7 = #e4d4c8
+color8 = #d35c5c
+color9 = #ca7f32
+color10 = #e0ac16
+color11 = #b7ba53
+color12 = #6eb958
+color13 = #88a4d3
+color14 = #bb90e2
+color15 = #b49368

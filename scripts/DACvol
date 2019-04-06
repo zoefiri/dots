@@ -1,0 +1,35 @@
+#!/bin/sh
+
+#A script for adjusting the volume of the current pulseaudio sink
+
+INDEX=$(pacmd list-sinks | grep "index" | tail -1 | grep -o "[0-999].*")
+VOL=$(pacmd list-sinks | grep "volume: front" | grep -o "[0-9]*%" | tail -1 | grep -o "[0-9]*")
+SETvol() 
+{
+	pactl set-sink-volume "$INDEX" "$1"%
+}
+if [ "$1" = "1" ]
+then
+{
+	if [ "$VOL" -lt "25" ] && [ "$VOL" -lt "99" ] 
+	then 
+		echo $VOL
+		SETvol +2
+	elif [ "$VOL" -lt "99" ]
+	then
+		echo $VOL
+		SETvol +5
+	else
+		echo fuck
+	fi
+}
+else
+{
+	if [ "$VOL" -lt "25" ]
+	then
+			SETvol -2
+	else 
+			SETvol -5
+	fi
+}
+fi

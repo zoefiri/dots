@@ -1,0 +1,51 @@
+#!/bin/sh
+
+sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 I0
+
+#pretty things
+	#colors
+	background="#231E18"
+	red="#FF5C57"
+	gold="#F3F99D"
+	grassy="#B7BA53"
+	green="#5AF78E"
+	blue="#9AEDFE"
+	teal="#57C7FF"
+	brown="#B49368"
+	#theming
+	bspc config normal_border_color		"$green"
+	bspc config active_border_color		"$teal"
+	bspc config focused_border_color	"$gold"
+	bspc config presel_feedback_color	"$background"
+
+	bspc config border_width        6
+	bspc config window_gap          20
+	bspc config top_padding 	35
+	bspc config right_padding	8
+	bspc config bottom_padding 	8
+	bspc config left_padding 	8
+	bspc config ignore_ewmh_struts true
+
+#tiling stuff
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Vivaldi desktop='^2'
+
+#kill previous instances of stuff
+pkill polybar
+pkill plugitinfucker
+pkill keebdisable
+pkill greenclip
+pkill lemons
+
+#startup stuff
+lemons &
+walc r &
+greenclip daemon &
+/home/zoe/PATHcustom/plugitinfucker &
+/home/zoe/PATHcustom/keebdisable &
+xset b off &
