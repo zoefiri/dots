@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+while true
+do
+	vols=$(pacmd list-sinks | grep volume)
+	vols=${vols: -100}
+	vols=${vols#*/}
+	vols=${vols%%/*}
+	echo "  $vols   "
+	sleep .1
+done

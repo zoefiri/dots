@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpc | head -1

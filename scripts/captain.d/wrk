@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+#colors
+#red="#FF5C57"
+#orange="#FFB536"
+#yellow="#F3F99D"
+#green="#5AF78E"
+#lblue="#9AEDFE"
+#blue="#57C7FF"
+#brown="#FF9742"
+#background="#231E18"
+
+#activebkg=y$green
+#activefore=$green
+#inactivebkg=y$yellow
+#inactivefore=$yellow
+
+bspc \subscribe | while read -r line; do
+	#line=${line//[of]/}
+	#line=${line//1/}
+	#line=${line//2/}
+	#line=${line//3/}
+	#line=${line//4/}
+	#line=${line//5/}
+	#line=${line//6/}
+	#line=${line//:/    }
+	#line=${line/WMeDP/}
+	#line=${line% *7*}
+	#line=${line//[FO]/%%{z$activefore\}%%{$activebkg\}}
+	#line=${line//[fo]/%%{z$inactivefore\}%%{$inactivebkg\}}
+	#line=${line//z/F}
+	#line=${line//y/B}
+
+	echo $line
+done
