@@ -1,4 +1,4 @@
-# zoe's dots · · · · · · · · · ·
+# zoe's dots · · · · · · · · · · ✖
 
 ![cover](/cover.gif)
 
