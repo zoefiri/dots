@@ -2,7 +2,7 @@
 battery()
 {	
 		read -r battery < /sys/class/power_supply/BAT0/capacity
-		echo "$battery "
+		echo "$battery "
 }
 
 while true

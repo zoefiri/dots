@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+WORKSPACES=7 # make this number the amount of workspaces you want to display
+
+#wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ')
+
+getinfo(){
+    wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
+}
+
+
+format(){
+    wspaces=${wspaces/0/}
+    wspaces=${wspaces/1/ﭮ}
+    wspaces=${wspaces/2/}
+    wspaces=${wspaces/3/}
+    wspaces=${wspaces/4/%\{T6\}}
+    wspaces=${wspaces/-  5/- %\{T6\}}
+    wspaces=${wspaces/-  6/- %\{T1\}}
+    wspaces=${wspaces/\*  5/\* %\{T6\}}
+    wspaces=${wspaces/\*  6/\* %\{T1\}}
+    wspaces=${wspaces//-/%\{F#5AF78E\}}
+    wspaces=${wspaces/\*/%\{F#FFB526\}}
+
+}
+
+change(){
+    cat < /tmp/herbchange
+}
+
+mkfifo /tmp/herbchange
+while true;
+do
+    getinfo
+    format
+    echo "$wspaces"
+    change
+done

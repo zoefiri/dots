@@ -13,8 +13,8 @@
 ; #   ###          '########'   #######,  ####             ###      ###    "##    ###  '##,   #
 ; #   #'                          ######  '##'                      '##           '##   '#'   #
 ; #                                                                                           #
-; #   __________________________________________________________                              #
-; #   |   4:20  69🗲  (ooo----) 40  1 2 3 4 5   🎶🎶🎶🎶 < x > |                              #
+; #   ,________________________________________________________,                              #
+; #   |   4:20  69🗲         1 [2] 3 4 5   🎶 mu - sic 🎶 < x > |                              #
 ; #   '--------------------------------------------------------'                              #
 ; #                                                                                           #
 ; #############################################################################################
@@ -25,32 +25,32 @@
 background = #181621
 
 ;red
-foreground = #FF5C57
-red = #FF5C57
+foreground = #ff5c57
+red = #ff5c57
 
 ;gold
-foreground-alt = #FFB536
-primary = #FFB536
-secondary = #FFB536
-gold = #FFB536
+foreground-alt = #ffb536
+primary = #ffb536
+secondary = #ffb536
+gold = #ffb536
 
 ;teal
-lblue = #9AEDFE
+lblue = #9aedfe
 
 ;grassy green
 grassy =  #b7ba53
 
 ;green
-green = #5AF78E
+green = #5af78e
 
 ;blue
-blue = #57C7FF
+blue = #57c7ff
 
 ;light brown
-brown = #FF9742
+brown = #ff9742
 
 ;yellow
-yellow = #F3F99D
+yellow = #f3f99d
 
 
 [bar/custom2]
@@ -81,11 +81,11 @@ padding-right = 10
 
 module-margin-left = 0
 module-margin-right = 0
-font-0 =mplus Nerd Font:style=Regular:pixelsize=9;
-font-1 =scientifica:style=Regular:pixelsize=9;1
+font-0 =mplus nerd font:style=regular:pixelsize=9;
+font-1 =scientifica:style=regular:pixelsize=9;1
 font-2 =zoecons666:pixelsize=3;4
 font-3 =siji:pixelsize=3;1
-font-4 =curie:style=Regular:pixelsize=9;0
+font-4 =curie:style=regular:pixelsize=9;0
 
 
 modules-left = vol b bat b date d 
@@ -95,6 +95,49 @@ modules-right =  mpd
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+
+[bar/cozy]
+monitor = eDP1
+width = 100%
+height = 60
+offset-x = 0%
+offset-y = 95%
+radius = 1.0
+fixed-center = true
+
+
+background = ${colors.background}
+foreground = ${colors.gold}
+
+line-size = 0
+line-color = #ffffff
+
+border-size = 0
+
+border-right-size = 0
+border-left-size = 0
+border-top-size = 0
+border-color = ${colors.green}
+
+padding-left = 0
+padding-right = 10
+
+module-margin-left = 0
+module-margin-right = 0
+font-0 =mplus nerd font:style=regular:size=18;3
+font-1 =Operator Mono:style=Italic:pixelsize=15;1
+font-2 =zoecons666:pixelsize=3;4
+font-3 =siji:pixelsize=3;1
+font-4 =curie:style=regular:pixelsize=9;0
+font-5 =Font Awesome 5 Free Solid:size=18;3
+
+
+modules-left = vol2  bat2  date2
+modules-center = mpd
+modules-right = herbspaces2
+
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 [bar/customwrk]
 monitor = eDP1
@@ -139,12 +182,26 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 
+[module/bat2]
+type = custom/script
+exec = /home/zoe/proj/shell/bat/polybat
+tail = true
+interval = .5
+format =  "%{T2}%{T4}<label>"
+format-suffix = ""
+
+format-background = ${colors.background}
+format-foreground = ${colors.gold}
+format-padding = 4
+format-prefix-foreground = ${colors.foreground-alt}
+
 [module/bat]
 type = custom/script
 exec = /home/zoe/proj/shell/bat/polybat
 tail = true
 interval = .5
 format =  "%{T2}%{T4}<label>"
+format-suffix = "%{T4}"
 
 format-background = ${colors.background}
 format-foreground = ${colors.gold}
@@ -164,19 +221,42 @@ format-prefix-foreground = ${colors.foreground-alt}
 
 [module/mpd]
 type = internal/mpd
-format-online = "%{T2}<label-song>  %{F#FF5C57}%{T2}<icon-prev> %{T2}%{F#FFB526}<toggle> %{T2}%{F#FF5C57}<icon-next>   "
+format-online = "%{T2}<label-song>  %{F#FF5C57}%{T1}<icon-prev> %{T1}%{F#FFB526}<toggle> %{T1}%{F#FF5C57}<icon-next>   "
 
 port = 6600
 
-icon-prev = <«
+format-background = ${colors.gold}
+;icon-prev = <«
+;icon-stop = »>	
+;icon-play = ✖
+;icon-pause = >
+;icon-next = »>	
+icon-prev = 
 icon-stop = »>	
 icon-play = ✖
-icon-pause = >
-icon-next = »>	
-format-background = ${colors.gold}
+icon-pause = 
+icon-next = 	
 
 label-song-maxlen = 43
 label-song-ellipsis = true
+
+[module/date2]
+type = internal/date
+interval = 1
+
+date = "%{T2}%m//%d%{T4}   "
+date-alt = " %Y-%m-%d"
+
+time = "%{T2}  %H//%M%{T4}  "     
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.background}
+
+label = %time% %date%
+format-background = ${colors.background}
+format-foreground = ${colors.red}
 
 [module/date]
 type = internal/date
@@ -185,7 +265,7 @@ interval = 1
 date = "%{T2}%m//%d%{T4}  "
 date-alt = " %Y-%m-%d"
 
-time = "%{T2}  %H\\%M\\%S%{T4} "     
+time = "%{T2}  %H//%M//%S%{T4} "     
 time-alt = %H:%M:%S
 
 format-prefix = 
@@ -205,7 +285,18 @@ format-foreground = ${colors.green}
 format-background = ${colors.background}
 format-padding = 0
 format =  "%{T2}<label>"
+format-suffix = "%{T4}  "
 
+[module/vol2]
+type = custom/script
+exec = /home/zoe/.config/captain/captain.d/volume
+tail = true
+
+format-foreground = ${colors.green}
+format-background = ${colors.background}
+format-padding = 0
+format =  "%{T2}<label>"
+format-suffix = "%{T4}  "
 
 [module/herbspaces]
 type = custom/script
@@ -214,6 +305,11 @@ format = %{T5}<label>
 tail = true
 interval = .1
 
+[module/herbspaces2]
+type = custom/script
+exec = /home/zoe/PATHcustom/herbspaces2
+format = %{T5}<label>
+tail = true
 
 [module/a]
 type = custom/text

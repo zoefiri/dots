@@ -2,14 +2,17 @@ mpd_host = "127.0.0.1"
 mpd_port = "6600"
 
 # Display ..
-song_list_format = "{{%t $R %a   }|{%f}}{$R%l}"
+#song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
+song_list_format = "$5{{%t $R %a   }|{%f}}{$R}"
 song_columns_list_format = "(3)[]{}(92)[white]{t} (4)[red]{l}"
-song_status_format = " $3%t $0 "
+song_status_format = " $2%t $0 "
 playlist_display_mode = "classic" (classic/columns)
 
 # Now Playing ..
-now_playing_prefix = "$b$5"
-now_playing_suffix = "$8$/b"
+now_playing_prefix = "$b$2"
+now_playing_suffix = "$/b"
+current_item_suffix = "$/r$(end)"
+current_item_prefix = "$(magenta)$r"
 
 # Playlist ..
 browser_playlist_prefix = "$2 ♥ $0 "
@@ -32,6 +35,7 @@ state_line_color = "black"
 state_flags_color = "green"
 main_window_color = "green" 
 header_window_color = "black"
+statusbar_time_color = "black"
 
 # Misc ..   
 display_bitrate = "no"
@@ -40,7 +44,6 @@ centered_cursor = "yes"
 titles_visibility = "no"
 statusbar_visibility = "yes"
 empty_tag_marker=" -- ‼ -- " 
-mouse_support = "no"
 header_visibility = "no"
 display_remaining_time = "no"
 ask_before_clearing_playlists = "no"

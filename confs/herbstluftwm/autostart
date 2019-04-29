@@ -35,7 +35,7 @@
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ startup |
-# 					   	 V
+#                                                V
 
 #herbstclient hc alias
 hc() {
@@ -59,14 +59,14 @@ hc spawn xset b off
 hc spawn walc r
 hc spawn /home/zoe/PATHcustom/plugitinfucker
 hc spawn /home/zoe/PATHcustom/keebdisable
-hc spawn polybar customwrk
+hc spawn polybar cozy
 hc spawn polybar custom2
 hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Typing Enabled" 0
 hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
 hc spawn greenclip daemon
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ binds etc.	|
-# 							V
+#                                                   V
 
 
 #set modlkey as super
@@ -106,12 +106,12 @@ Mod=Mod4
 	hc keybind $Mod-Shift-r reload
 
 	#spawn terminal
-	hc keybind $Mod-Return spawn xterm -b 15
-	hc keybind $Mod-Shift-Return spawn xterm -b 15
+	hc keybind $Mod-Return spawn kitty
+	hc keybind $Mod-Shift-Return spawn st
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ theming	|
-#							V
+#                                                   V
 
 
 #colors
@@ -139,8 +139,8 @@ Mod=Mod4
 	hc set frame_padding 0
 	hc set smart_window_surroundings 0
 	hc set smart_frame_surroundings 0
-	hc pad 0 5 5 45 5
-	hc pad 1 5 5 45 5
+	hc pad 0 5 5 50 5
+	hc pad 1 5 5 50 5
 
 #frame theming
 	hc attr theme.tiling.reset 1
@@ -158,22 +158,23 @@ Mod=Mod4
 
 #window theming
 	hc attr theme.active.color $color12
-	hc attr theme.normal.color $color10
-	hc attr theme.urgent.color orange
-	hc attr theme.inner_color black
-	hc attr theme.border_width 0
-	hc attr theme.floating.border_width 5
-	hc attr theme.floating.outer_width 5
-	hc attr theme.floating.outer_color $color10
+	hc attr theme.normal.color "#191727"
 	hc attr theme.active.inner_color $color07
 	hc attr theme.active.outer_color $color01
+	hc attr theme.normal.border_width 5
 	hc attr theme.active.border_width 5
-	hc attr theme.background_color '#141414'
 	hc attr theme.padding_top 0
+	hc attr theme.urgent.color orange
+	hc attr theme.normal.inner_color #191726
+	hc attr theme.normal.inner_width 0
+	hc attr theme.floating.outer_color $color10
+	hc attr theme.floating.border_width 5
+	hc attr theme.floating.outer_width 5
+	hc attr theme.background_color '#141414'
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window management binds	|
-#									V
+#                                                                   V
 
 
 # basic movement
@@ -223,7 +224,7 @@ Mod=Mod4
 	hc keybind $Mod-Alt-l spawn ~/PATHcustom/herbsize +x
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ workspaces	|
-#							V
+#                                                   V
 
 
 # tags
@@ -235,7 +236,8 @@ Mod=Mod4
 	    hc add "${tag_names[$i]}"
 	    key="${tag_keys[$i]}"
 	    if ! [ -z "$key" ] ; then
-	        hc keybind "$Mod-$key" use_index "$i"
+	        #hc keybind "$Mod-$key" use_index "$i"
+            hc keybind "$Mod-$key" spawn /home/zoe/PATHcustom/herbswitcher "$i"
 	        hc keybind "$Mod-Shift-$key" move_index "$i"
    	 fi
 	done
@@ -246,7 +248,7 @@ Mod=Mod4
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window states	|
-#							V
+#                                                       V
 
 
 # layouting
@@ -264,7 +266,7 @@ Mod=Mod4
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ floating	|
-#							V
+#                                                   V
 
 
 # mouse
@@ -281,7 +283,7 @@ hc keybind $Mod-y cycle
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ uhhhhhhhh	|
-#							V
+#                                                   V
 
 
 # rules
