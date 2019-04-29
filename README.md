@@ -10,7 +10,7 @@
 # `·· terms     · termite · st · kitty     ··`
 # `·· wms       · herbstluftwm · bspwm     ··`
 # `·· bar       · polybar                  ··`
-# `·· editor    · nvim                     ··`
+# `·· editor    · nvim \ \ \ \ \ \ \ \ \ \ \ \ \ \ \      ··`
 # `·· launcher  · rofi                     ··`
 # `·· music     · ncmpcpp+mpd              ··`
 # `··········································`
