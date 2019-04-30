@@ -4,7 +4,7 @@
 
 ## going to ask that you guys don't just copy these into your .config kthx but feel free to take snippets
 
-# ```
+```
  ··········································
  ··  zoe's programs               — ▭ ✖  ··
  ··········································
