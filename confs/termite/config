@@ -1,1 +1,22 @@
-../../../.config/termite/config
+[options]
+font = Input Mono Medium 13px
+geometry = 900x700
+scrollback_lines = 2000
+
+[colors]
+color0 = #191726
+color1 = #FF5C57
+color2 = #FFB536
+color3 = #F3F99D
+color4 = #5AF78E
+color5 = #9AEDFE
+color6 = #57C7FF
+color7 = #ffffff
+color8 = #FF9742
+color9 = #FF5C57
+color10 = #FFB536
+color11 = #F3F99D
+color12 = #5AF78E
+color13 = #9AEDFE
+color14 = #57C7FF
+color15 = #ffffff

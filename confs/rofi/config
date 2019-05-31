@@ -1,1 +1,3 @@
-/home/zoe/.config/rofi/config
+rofi.theme: ~/.config/rofi/custom.rasi
+
+
