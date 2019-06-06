@@ -1,0 +1,6 @@
+#!/bin/bash
+while true; do
+date +"%%{c}%H//%M   %m//%d " 
+sleep 3
+done
+

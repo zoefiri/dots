@@ -47,7 +47,7 @@ hc emit_hook reload
 
 #cleanup
 hc keyunbind --all
-hc spawn pkill lemonbar
+hc spawn pkill lemon
 hc spawn pkill plugitinfucker
 hc spawn pkill keebdisable
 hc spawn pkill greenclip
@@ -100,9 +100,10 @@ Mod=Mod4
 
 	#spawn scratchpad
 	hc keybind $Mod-i spawn scratchpad +
+	hc keybind $Mod-Shift-i move "+"
 
 	#screencap
-	hc keybind $Mod-w spawn ~/PATHcustom/scren c
+	hc keybind $Mod-w spawn flameshot gui
 
 	#lock up
 	hc keybind Ctrl-Alt-l spawn ~/PATHcustom/locker

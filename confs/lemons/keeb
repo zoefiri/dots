@@ -1,0 +1,10 @@
+#!/bin/bash
+    read keeb < /tmp/keeb2
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
+
+while true; do
+    read keeb < /tmp/keeb
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
+done
