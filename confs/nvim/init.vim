@@ -38,6 +38,7 @@ call plug#begin()
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'mbbill/undotree'
+    Plug 'https://github.com/lilydjwg/colorizer.git'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-eunuch'

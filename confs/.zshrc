@@ -67,7 +67,8 @@ bindkey -v
 echo -ne "\033]4;60;#202538\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
-    pal -r
+    #pal -r
+    pal ~/dots/confs/palcolors
 
 
 
