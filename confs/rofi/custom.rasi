@@ -1,7 +1,7 @@
 * {
-    font: "Input Mono Medium 12";
+    font: "BetecknaGS 14";
 
-    active-background: #231e18;
+    active-background: #534636;
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -15,23 +15,25 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: #57c7ff;
+    selected-active-background: #88B8D2;
     selected-active-foreground: @foreground;
-    selected-normal-background: #5aebbc;
+    selected-normal-background: #BDDF57;
     selected-normal-foreground: @background;
-    selected-urgent-background: #ffff36;
+    selected-urgent-background: #F6DE76;
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background: #1c1810;
-    foreground: #ffb536;
-    border-color: #5ceb5a;
+    background: #534636;
+    foreground: #E6953E;
+    border-color: #80DACB;
     spacing: 2;
+    lines: 10;
+    columns: 1;
 }
 
 #window {
     background-color: @background;
-    border: 10;
+    border: 0;
     padding: 2.5ch;
 }
 
@@ -56,7 +58,7 @@ inputbar {
 
 textbox-prompt-colon {
     expand: false;
-    str: ":";
+    str: " +";
     margin: 0px 0.3em 0em 0em;
     text-color: @normal-foreground;
 }

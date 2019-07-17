@@ -25,17 +25,17 @@
     set clipboard=unnamedplus
     set cpoptions-=C
     set nocompatible
-    set ts=4
-    set sw=4 et
+    set ts=3
+    set sw=3 et
 
 "plugins
 call plug#begin()
+    Plug 'Yggdroot/indentLine'
     Plug 'w0rp/ale'
     Plug 'junegunn/goyo.vim'
     Plug 'itchyny/lightline.vim'
     Plug 'dylanaraps/wal.vim'
     Plug 'sheerun/vim-polyglot'
-    Plug 'nathanaelkane/vim-indent-guides'
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'mbbill/undotree'
     Plug 'https://github.com/lilydjwg/colorizer.git'
@@ -48,11 +48,11 @@ call plug#begin()
         \ 'do': 'bash install.sh',
         \ }
     if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "else
+    "Plug 'Shougo/deoplete.nvim'
+    "Plug 'roxma/nvim-yarp'
+    "Plug 'roxma/vim-hug-neovim-rpc'
     endif
     let g:deoplete#enable_at_startup = 1
 call plug#end()
@@ -60,9 +60,10 @@ call plug#end()
 
 "theming
     "indent guides
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_guide_size = 2
-    hi IndentGuidesEven ctermbg=2
+      "let g:indentLine_setColors = 0
+      let g:indentLine_char = '│'
+      let g:indnetLine_color_term = 5
+      let g:indnetLine_bgcolor_term = 0
 
     "vanilla
     "scheme
@@ -93,7 +94,7 @@ call plug#end()
     hi todo ctermbg=2 ctermfg=0
     hi error ctermbg=1 ctermfg=0
 
-    let g:ale_linters = {'rust': ['cargo']}
+    let g:ale_linters = {'rust': ['rls']}
 
     "actually dunno but it fixes something(?)
     augroup my-colors

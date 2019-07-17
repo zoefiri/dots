@@ -22,8 +22,8 @@
 #  shell settings  #
 ####################
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=666666
+SAVEHIST=666666
 [ "$TERM" = "linux" ] && setterm -blength 0
 setopt autocd
 zstyle :compinstall filename '/home/zoe/.zshrc'
@@ -67,8 +67,7 @@ bindkey -v
 echo -ne "\033]4;60;#202538\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
-    #pal -r
-    pal ~/dots/confs/palcolors
+    pal -r
 
 
 
@@ -114,7 +113,7 @@ alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq
 setopt promptsubst
 
 # •✖• prompt #
-PS1=$'%{\e[1;44;30m%}·%{\e[1;30m%}✖%{\e[1;30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
+PS1=$'%{\e[1;44;30m%}·%{\e[1;30m%}✖%{\e[1;30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
 
 #  ✖  »»> prompt  #
 #PS1=$'%{\e[30;44m%} ✖ %{\e[0;34m%} »»%{\e[32m%}>%{\e[0m%} '
@@ -135,6 +134,15 @@ then
 f(){ fff "$@"; cd "$(< ~/.fff_d)"; }
 export FFF_CD_FILE=~/.fff_d
 
+# cdback #
+cd() {
+    realpath "$1" > ~/.lastdir
+    builtin cd "$1"
+}
+cdback() builtin cd $(cat ~/.lastdir)
+zle -N cdback
+bindkey '^A' cdback
+
 #  the fuck?  #
 eval $(thefuck --alias)
 
@@ -142,10 +150,6 @@ eval $(thefuck --alias)
 w3mimg () { w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay $1
 }
 
-# 0x0.st upload #
-up(){
-    curl -F"file=@$1" http://0x0.st | xsel -i -b
-}
 
 upn(){
     curl -X POST https://upload.nixne.st/image -H "Upload-Key: da52089b4eb6093bca7de39c1e7d0866" -F "uploadFile=@$1"
@@ -156,7 +160,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
 source ~/.zsh/z/z.sh
 source ~/.zsh/fz/fz.plugin.zsh
-source ~/.zsh/zsh-vimto/zsh-vimto.zsh
 source ~/.zsh/zsh-sudo/sudo.plugin.zsh
 
 
@@ -165,8 +168,8 @@ source ~/.zsh/zsh-sudo/sudo.plugin.zsh
 #  resize terminal  #
 #####################
 ID=$(xdotool getactivewindow)
-herbstclient pseudotile toggle
-xdotool windowsize $ID 600 400
+#herbstclient pseudotile toggle
+#xdotool windowsize $ID 600 400
 
 fi
 
@@ -179,6 +182,7 @@ fi
 clear
 cat ~/art/ASCII/colorized/daisysmooth
 printf "\n"
+unset zle_bracketed_paste
 RCINITED=1
 
 

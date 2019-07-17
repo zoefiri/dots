@@ -16,20 +16,20 @@
 #      ####  '###   #####,   ###  '##,   ###           ,#####   ###'          #######,   ########,      ####    ###'         #
 #      '##'    ##    #####   '##   '#'               #######'   ##'             ######    #####''#       '##    ##'          #
 #                                                                                                                            #
-#    ,##        ,##    ,####  ,##.   	                                                                        ,   ,        #
-#    ###   ,,   ###   ###### ######  	                                                          ,', ,', ,', ,' ',';        #
-#    ###  ,##   ###  ,##' #### '###  	                                                        ,'. ,'`,,', ,', ,'.,'        #
+#    ,##        ,##    ,####  ,##.   	                                                                        ,   ,         #
+#    ###   ,,   ###   ###### ######  	                                                          ,', ,', ,', ,' ',';         #
+#    ###  ,##   ###  ,##' #### '###  	                                                        ,'. ,'`,,', ,', ,'.,'         #
 #   ,###  ###   ###  ###  ###   ###	                                                          ,',','',,'  ,'. ,'`,'          #
 #   ###   ###  ###'  ##' ,###  ###                                                           ',`,,',,' `,' ,,'','   '        #
 #   ###   ####,###   ##  ###  ###                                                             ,'',,' ',' `,',,'|  ,          #
 #   #######'######   '#  ##'  '##  	                                                           ',', ,', ,',,'|'|             #
 #    '###'  '####                                                                              ', ,'' ,'','| '|| ,           #
-#                                                                          	                    ,' ,,'`.' ||\|||    '        #
-#           	                                                                               ', ,' ,'   || /||             #
-# 	                                                                                             ' '' ,   | /||| ,  '        #
+#                                                                          	                  ,' ,,'`.' ||\|||    '        #
+#           	                                                                                ', ,' ,'   || /||             #
+# 	                                                                                              ' '' ,   | /||| ,  '        #
 #                                                                                                '       ,''//,'             #
-#	                                                                                               ,   ,',//,'       '       #
-#                                                                         	                    .'__ ,',,,,'..,,'',, ,,._    #
+#	                                                                                                ,   ,',//,'       '       #
+#                                                                         	                     .'__ ,',,,,'..,,'',, ,,._    #
 #                                                                                                                            #
 ############################################################################################################################## 
 
@@ -54,6 +54,7 @@ hc spawn pkill greenclip
 hc spawn pkill keynav
 hc spawn pkill compton
 hc spawn pkill flashfocus
+hc spawn pkill chargeindicator
 
 
 
@@ -61,6 +62,7 @@ hc spawn pkill flashfocus
 hc spawn xset b off
 hc spawn walc r
 hc spawn /home/zoe/PATHcustom/plugitinfucker
+hc spawn /home/zoe/PATHcustom/chargeindicator
 hc spawn /home/zoe/PATHcustom/keebdisable
 #hc spawn polybar cozy
 #hc spawn polybar custom2
@@ -70,7 +72,7 @@ hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1
 hc spawn greenclip daemon
 hc spawn keynav
 hc spawn compton
-hc spawn flashfocus -o 0.45
+hc spawn flashfocus -o 0.75
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ binds etc.	|
 #                                                   V
@@ -90,7 +92,7 @@ Mod=Mod4
 	hc keybind $Mod-F10 spawn xbacklight -inc +10
 
 	#rofi
-	hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -columns 2
+	hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -columns 2 -width 10 -display-run ">>>"
 	hc keybind $Mod-c spawn rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -location 0 -lines 5 -bw 0 -font "kakwafont 9"
 	hc keybind $Mod-e spawn splatmoji emoticon
 
@@ -123,22 +125,22 @@ Mod=Mod4
 
 
 #colors
-	color00=#1c1810
-	color01=#e35142
-	color02=#fba11b
-	color03=#f2ff27
-	color04=#5ceb5a
-	color05=#5aebbc
-	color06=#489bf0
-	color07=#e35142
-	color08=#ffffff
-	color09=#e35142
-	color10=#fba11b
-	color11=#f2ff27
-	color12=#5ceb5a
-	color13=#5aebbc
-	color14=#489bf0
-	color15=#FFFFFF
+    read color00 < /home/zoe/.config/ricertemplates/colors/base0
+    read color01 < /home/zoe/.config/ricertemplates/colors/base1
+    read color02 < /home/zoe/.config/ricertemplates/colors/base2
+    read color03 < /home/zoe/.config/ricertemplates/colors/base3
+    read color04 < /home/zoe/.config/ricertemplates/colors/base4
+    read color05 < /home/zoe/.config/ricertemplates/colors/base5
+    read color06 < /home/zoe/.config/ricertemplates/colors/base6
+    read color07 < /home/zoe/.config/ricertemplates/colors/base7
+    read color08 < /home/zoe/.config/ricertemplates/colors/base8
+    read color09 < /home/zoe/.config/ricertemplates/colors/base9
+    read color10 < /home/zoe/.config/ricertemplates/colors/base10
+    read color11 < /home/zoe/.config/ricertemplates/colors/base11
+    read color12 < /home/zoe/.config/ricertemplates/colors/base12
+    read color13 < /home/zoe/.config/ricertemplates/colors/base13
+    read color14 < /home/zoe/.config/ricertemplates/colors/base14
+    read color15 < /home/zoe/.config/ricertemplates/colors/base15
 
 #gapssss
 	hc set window_gap 30
@@ -154,10 +156,10 @@ Mod=Mod4
 	hc attr theme.tiling.reset 1
 	hc attr theme.floating.reset 1
 	#frame colors
-	hc set frame_border_active_color $color13
-	hc set frame_border_normal_color $color01
-	hc set frame_bg_normal_color $color01
-	hc set frame_bg_active_color $color02
+	hc set frame_border_active_color "#$color13"
+	hc set frame_border_normal_color "#$color01"
+	hc set frame_bg_normal_color "#$color01"
+	hc set frame_bg_active_color "#$color02"
 	#frame borders
 	hc set frame_border_width 0
 	hc set always_show_frame 0
@@ -165,19 +167,19 @@ Mod=Mod4
 	hc set frame_transparent_width 0
 
 #window theming
-	hc attr theme.active.color $color12
-	hc attr theme.normal.color "#1c1810"
-	hc attr theme.active.inner_color $color07
-	hc attr theme.active.outer_color $color01
+	hc attr theme.active.color "#$color11"
+	hc attr theme.normal.color "#$color00"
+	hc attr theme.active.inner_color "#$color07"
+	hc attr theme.active.outer_color "#$color01"
 	hc attr theme.padding_top "25"
 	hc attr theme.urgent.color orange
-	hc attr theme.normal.inner_color #1c1810
+	hc attr theme.normal.inner_color "#$color00"
 	hc attr theme.normal.inner_width 0
-	hc attr theme.floating.outer_color "#1c1810"
-	hc attr theme.floating.active.outer_color $color12
+	hc attr theme.floating.outer_color "#$color00"
+	hc attr theme.floating.active.outer_color "#$color11"
 	hc attr theme.floating.border_width 0
 	hc attr theme.floating.outer_width 5
-	hc attr theme.background_color '#141414'
+	hc attr theme.background_color "#$color00"
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window management binds	|
@@ -321,3 +323,6 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
     "$panel" $monitor &
 done
+
+# load active style
+hc spawn /home/zoe/.config/herbstluftwm/style
