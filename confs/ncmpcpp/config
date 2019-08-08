@@ -35,7 +35,7 @@ state_line_color = "black"
 state_flags_color = "green"
 main_window_color = "green" 
 header_window_color = "black"
-statusbar_time_color = "black"
+statusbar_time_color = "green"
 
 # Misc ..   
 display_bitrate = "no"

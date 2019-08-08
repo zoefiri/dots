@@ -47,7 +47,7 @@ hc emit_hook reload
 
 #cleanup
 hc keyunbind --all
-hc spawn pkill lemon
+hc spawn pkill polybar
 hc spawn pkill plugitinfucker
 hc spawn pkill keebdisable
 hc spawn pkill greenclip
@@ -66,7 +66,7 @@ hc spawn /home/zoe/PATHcustom/chargeindicator
 hc spawn /home/zoe/PATHcustom/keebdisable
 #hc spawn polybar cozy
 #hc spawn polybar custom2
-hc spawn /home/zoe/.config/lemons/lemon
+hc spawn polybar round
 hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Typing Enabled" 0
 hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
 hc spawn greenclip daemon
@@ -116,7 +116,7 @@ Mod=Mod4
 	hc keybind $Mod-Shift-r reload
 
 	#spawn terminal
-	hc keybind $Mod-Return spawn st
+	hc keybind $Mod-Return spawn xfce4-terminal
 	hc keybind $Mod-Shift-Return spawn st
 
 
@@ -171,7 +171,7 @@ Mod=Mod4
 	hc attr theme.normal.color "#$color00"
 	hc attr theme.active.inner_color "#$color07"
 	hc attr theme.active.outer_color "#$color01"
-	hc attr theme.padding_top "25"
+	hc attr theme.padding_top "0"
 	hc attr theme.urgent.color orange
 	hc attr theme.normal.inner_color "#$color00"
 	hc attr theme.normal.inner_width 0
@@ -180,6 +180,7 @@ Mod=Mod4
 	hc attr theme.floating.border_width 0
 	hc attr theme.floating.outer_width 5
 	hc attr theme.background_color "#$color00"
+   hc attr settings.window_radius 15
 
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window management binds	|

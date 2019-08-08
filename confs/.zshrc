@@ -95,7 +95,7 @@ alias ~='cd /home/zoe'
 alias /='cd /'
 alias reload='clear && source ~/.zshrc'
 alias slepp='locker && systemctl suspend'
-alias ncm='ncmpcpp 2>/dev/null'
+alias ncm='ncmpcpp 2>/dev/null ; pal -r'
 alias nixnest='birch -u zoefiri -s irc.rizon.net -c #nixnest'
 alias shitdown='shutdown'
 alias fucking='sudo'
@@ -113,13 +113,16 @@ alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq
 setopt promptsubst
 
 # •✖• prompt #
-PS1=$'%{\e[1;44;30m%}·%{\e[1;30m%}✖%{\e[1;30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
+#PS1=$'%{\e[1;44;30m%}·%{\e[1;30m%}✖%{\e[1;30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
 
 #  ✖  »»> prompt  #
 #PS1=$'%{\e[30;44m%} ✖ %{\e[0;34m%} »»%{\e[32m%}>%{\e[0m%} '
 
 #  multiliner prompt  #
 #PS1=$'%{\e[32;1m%}%{\e[0m%}\n%{\e[30;44m%} %n%{\e[1m%}★ %{\e[0;30;44m%} @%M %{\e[42m%} %3~ %{\e[41m%} $(cat /sys/class/power_supply/BAT0/capacity)%{\e[1;32m%}🗲 \n%{\e[0;31m%}✖%{\e[32m%}✖%{\e[34m%}✖%{\e[36m%}✖%{\e[34m%}»» %{\e[0m%}'
+
+# ✖ #
+PS1=$'%{\e[31m%}✖%{\e[0m%}  '
 
 
 
