@@ -75,6 +75,9 @@ zstyle ':completion:*' menu select
 #     — ▭ ✖ #
 #  aliases  #
 #############
+alias schedule='feh ~/pics/junk/SCHED.png'
+alias clitype='node ~/.local/share/clitype/app.js'
+alias ranger='ranger ; pal -r'
 alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
 alias e='fzf --color info:4,prompt:3,spinner:3,pointer:2,marker:1 | xargs -r $EDITOR'
 alias record='ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0'
@@ -136,6 +139,12 @@ then
 #  fff  #
 f(){ fff "$@"; cd "$(< ~/.fff_d)"; }
 export FFF_CD_FILE=~/.fff_d
+
+#  mup  #
+mup() {
+   mupdf $1 & disown
+   exit
+}
 
 # cdback #
 cd() {

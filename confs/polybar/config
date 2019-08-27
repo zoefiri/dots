@@ -48,7 +48,7 @@ blue = ${file:/home/zoe/.config/ricertemplates/colors/base13}
 
 
 [bar/round]
-monitor = eDP1
+monitor = eDP-1
 width = 42%
 height = 55
 offset-x = 59%
@@ -73,9 +73,46 @@ border-color = ${colors.green}
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 7
+module-margin-left = 15
 module-margin-right = 0
-font-0 = Beteckna:style=bold:pixelsize=15;
+font-0 = Lexend Deca:style=bold:pixelsize=15;
+font-1 = Symbols Nerd Font:size=15;
+
+
+modules-left = date pulseaudio bat herbspaces
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/round2]
+monitor = HDMI-1
+width = 42%
+height = 55
+offset-x = 59%
+offset-y = 95.8%
+radius = 15.0
+fixed-center = true
+
+
+background = ${colors.background}
+foreground = ${colors.green}
+
+line-size = 0
+line-color = #ffffff
+
+border-size = 0
+
+border-right-size = 0
+border-left-size = 0
+border-top-size = 0
+border-color = ${colors.green}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 15
+module-margin-right = 0
+font-0 = Lexend Deca:style=bold:pixelsize=15;
 font-1 = Symbols Nerd Font:size=15;
 
 
@@ -101,7 +138,6 @@ format-prefix-foreground = ${colors.foreground-alt}
 label = %time% %date%
 format-background = ${colors.background}
 format-foreground = ${colors.red}
-
 [module/pulseaudio]
 type = internal/pulseaudio
 

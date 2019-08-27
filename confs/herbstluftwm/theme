@@ -1,0 +1,62 @@
+#!/bin/bash
+hc() {
+    herbstclient "$@"
+}
+
+#colors
+    read color00 < /home/zoe/.config/ricertemplates/colors/base0
+    read color01 < /home/zoe/.config/ricertemplates/colors/base1
+    read color02 < /home/zoe/.config/ricertemplates/colors/base2
+    read color03 < /home/zoe/.config/ricertemplates/colors/base3
+    read color04 < /home/zoe/.config/ricertemplates/colors/base4
+    read color05 < /home/zoe/.config/ricertemplates/colors/base5
+    read color06 < /home/zoe/.config/ricertemplates/colors/base6
+    read color07 < /home/zoe/.config/ricertemplates/colors/base7
+    read color08 < /home/zoe/.config/ricertemplates/colors/base8
+    read color09 < /home/zoe/.config/ricertemplates/colors/base9
+    read color10 < /home/zoe/.config/ricertemplates/colors/base10
+    read color11 < /home/zoe/.config/ricertemplates/colors/base11
+    read color12 < /home/zoe/.config/ricertemplates/colors/base12
+    read color13 < /home/zoe/.config/ricertemplates/colors/base13
+    read color14 < /home/zoe/.config/ricertemplates/colors/base14
+    read color15 < /home/zoe/.config/ricertemplates/colors/base15
+
+#gapssss
+	hc set window_gap 30
+	hc set frame_gap -30
+	hc set mouse_recenter_gap 0
+	hc set frame_padding 0
+	hc set smart_window_surroundings 0
+	hc set smart_frame_surroundings 0
+	hc pad 0 15 15 75 15
+	hc pad 1 15 15 75 15
+
+#frame theming
+	hc attr theme.tiling.reset 1
+	hc attr theme.floating.reset 1
+	#frame colors
+	hc set frame_border_active_color "#$color13"
+	hc set frame_border_normal_color "#$color01"
+	hc set frame_bg_normal_color "#$color01"
+	hc set frame_bg_active_color "#$color02"
+	#frame borders
+	hc set frame_border_width 0
+	hc set always_show_frame 0
+	hc set frame_bg_transparent 1
+	hc set frame_transparent_width 0
+
+#window theming
+	hc attr theme.active.color "#$color11"
+	hc attr theme.normal.color "#$color00"
+	hc attr theme.active.inner_color "#$color07"
+	hc attr theme.active.outer_color "#$color01"
+	hc attr theme.padding_top "0"
+	hc attr theme.urgent.color orange
+	hc attr theme.normal.inner_color "#$color00"
+	hc attr theme.normal.inner_width 0
+	hc attr theme.floating.outer_color "#$color00"
+	hc attr theme.floating.active.outer_color "#$color11"
+	hc attr theme.floating.border_width 0
+	hc attr theme.floating.outer_width 5
+	hc attr theme.background_color "#$color00"
+   hc attr settings.window_radius 15

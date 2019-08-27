@@ -31,6 +31,7 @@
 "plugins
 call plug#begin()
     Plug 'Yggdroot/indentLine'
+    Plug 'vim-scripts/Conque-Shell'
     Plug 'w0rp/ale'
     Plug 'junegunn/goyo.vim'
     Plug 'itchyny/lightline.vim'

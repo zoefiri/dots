@@ -1,7 +1,7 @@
 * {
-    font: "BetecknaGS 14";
+    font: "Iosevka Thicc 12";
 
-    active-background: #534636;
+    active-background: #233336;
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -15,17 +15,17 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: #5a89b8;
+    selected-active-background: #88b1f7;
     selected-active-foreground: @foreground;
-    selected-normal-background: #84e29e;
+    selected-normal-background: #3bf7be;
     selected-normal-foreground: @background;
-    selected-urgent-background: #fbfb9c;
+    selected-urgent-background: #ebfaa3;
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background: #534636;
-    foreground: #fdca74;
-    border-color: #9ed9d8;
+    background: #233336;
+    foreground: #ffc569;
+    border-color: #3ffffc;
     spacing: 2;
     lines: 10;
     columns: 1;
