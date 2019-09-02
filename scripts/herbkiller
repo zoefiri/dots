@@ -1,0 +1,2 @@
+#!/bin/sh
+kill $(herbstclient attr clients.focus.pid)

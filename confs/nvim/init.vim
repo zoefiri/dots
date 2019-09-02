@@ -31,10 +31,15 @@
 "plugins
 call plug#begin()
     Plug 'Yggdroot/indentLine'
+    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'vim-scripts/Conque-Shell'
+    Plug 'vim-scripts/Vimball'
     Plug 'w0rp/ale'
     Plug 'junegunn/goyo.vim'
     Plug 'itchyny/lightline.vim'
+    Plug 'huawenyu/neogdb.vim'
+    Plug 'LucHermitte/lh-vim-lib'
+    Plug 'LucHermitte/vim-build-tools-wrapper'   
     Plug 'dylanaraps/wal.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }

@@ -59,4 +59,4 @@ hc() {
 	hc attr theme.floating.border_width 0
 	hc attr theme.floating.outer_width 5
 	hc attr theme.background_color "#$color00"
-   hc attr settings.window_radius 15
+   #hc attr settings.window_radius 15

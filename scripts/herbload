@@ -1,0 +1,4 @@
+#!/bin/bash
+#loads herb layouts
+read stuff < ~/herbs/$1
+herbstclient load "$stuff"

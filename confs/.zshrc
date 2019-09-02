@@ -63,8 +63,7 @@ bindkey -v
 #     — ▭ ✖ #
 #  styling  #
 #############
-#echo -ne "\\ePtmux;\\e\\033]4;60;#202538\\007\\e\\\\"
-echo -ne "\033]4;60;#202538\007"
+echo -ne "\033]4;60;#303548\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
     pal -r
@@ -102,7 +101,6 @@ alias ncm='ncmpcpp 2>/dev/null ; pal -r'
 alias nixnest='birch -u zoefiri -s irc.rizon.net -c #nixnest'
 alias shitdown='shutdown'
 alias fucking='sudo'
-alias nv='nvim'
 alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
 alias perform='sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
 alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
@@ -144,6 +142,13 @@ export FFF_CD_FILE=~/.fff_d
 mup() {
    mupdf $1 & disown
    exit
+}
+
+# nvim tmux #
+nv() {
+   [ -z "$TMUX" ] && tmux new-session "nvim $1" 1>/dev/null
+   [ ! -z "$TMUX" ] && nvim "$1"
+   
 }
 
 # cdback #

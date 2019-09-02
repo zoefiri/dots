@@ -1,0 +1,3 @@
+#!/bin/sh
+herbstclient use_index $1
+echo >/tmp/herbchange

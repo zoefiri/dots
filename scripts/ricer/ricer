@@ -1,0 +1,62 @@
+#!/bin/bash
+
+###############
+# read colors #
+###############
+i=-1
+while read line; do
+    if [ "${line:0:4}" = "base" ]
+    then
+        i=$((i+1))
+        read base${i} <<< "${line:9:6}"
+    fi
+done < "$1" ; i=0
+
+
+######################
+# read & sub configs #
+#         &          #
+#  make colorfiles   #
+######################
+while read line; do
+    cp /home/zoe/.config/ricertemplates/${line##*/} $line
+    echo line is $line
+    #while [ $i -lt 16 ]; do
+    #CurrentColor="base$i"
+    #printf 'line is %s\ni is %s\ncurrent color is %s\nthe final sed line is '%s'\n\n' $line $i ${!CurrentColor} "sed -i $line -e "s/@@C$i/${!CurrentColor}/""
+    #sed -i $line -e "s/@@C$i/${!CurrentColor}/"
+    #i=$((i+1))
+    sed -i $line \
+        -e "s/@@C0/$base0/"\
+        -e "s/@@C1@@/$base1/g"\
+        -e "s/@@C2/$base2/g"\
+        -e "s/@@C3/$base3/g"\
+        -e "s/@@C4/$base4/g"\
+        -e "s/@@C5/$base5/g"\
+        -e "s/@@C6/$base6/g"\
+        -e "s/@@C7/$base7/g"\
+        -e "s/@@C8/$base8/g"\
+        -e "s/@@C9/$base9/g"\
+        -e "s/@@C10/$base10/g"\
+        -e "s/@@C11/$base11/g"\
+        -e "s/@@C12/$base12/g"\
+        -e "s/@@C13/$base13/g"\
+        -e "s/@@C14/$base14/g"\
+        -e "s/@@C15/$base15/g"
+    #done
+    done < "confs"; i=0
+
+    while [ $i -lt 16 ]; do
+        CurrentColor="base$i"
+        echo ${!CurrentColor} > /home/zoe/.config/ricertemplates/colors/base$i
+        i=$((i+1))
+    done; i=0
+
+
+#########################
+# reload stuff + finish #
+#########################
+cp "$1" ~/.config/ricertemplates/current
+pal /home/zoe/dots/confs/palcolors
+herbstclient reload
+

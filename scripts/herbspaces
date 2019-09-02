@@ -11,6 +11,6 @@ wspaces=${wspaces/4/Ђ}
 wspaces=${wspaces/5/Ѓ}
 wspaces=${wspaces/6/І}
 wspaces=${wspaces//-/%\{F#5AF78E\}}
-wspaces=${wspaces/\*/%\{F#9AEDFE\}}
+wspaces=${wspaces/\*/%\{F#FFB526\}}
 echo $wspaces
 

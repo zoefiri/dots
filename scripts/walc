@@ -1,27 +1,53 @@
 #!/bin/sh
 
-#A small wallpaper settings script
-#All wallpapers must be set without paths, inside of "$walldir" for "walc r" to work.
-
 #wallpaper directory
-waldir="~/wallp/walls"
+walldir="$HOME/wallp/walls"
 
-if [ "$1" = "z" ]
+getrand(){
 	#Wallpaper randomization
-	then
-		randomwall=$(ls "$walldir" |sort -R |tail -1)
-		feh --bg-fill "$walldir/$randomwall"
-		echo "$randomwall" > "$walldir/current"
-	
-	#Wallpaper Restore
-	elif [ $1 = "r" ]
-	then
-		read -r lastwall < "$walldir/current"
-		feh --bg-fill "/home/zoe/wallp/walls/$lastwall"
-	
-	#Set wallpaper
-	else
-		feh --bg-fill "$1"
-		echo "$1" > "$walldir/current"
-fi
+    wall=$(find "$walldir" -name "*.*g" | sort -R | tail -1)
+    echo "$wall" > "$walldir/current"
+}
 
+restore(){
+	#Wallpaper Restore
+    read -r wall < "$walldir/current"
+}
+
+manual(){
+    #set specified image
+    wall=$(readlink -f "$1")
+    echo "$wall" > "$walldir/current"
+}
+
+search(){
+    #search wallpaper dir, requires fzf
+    dir="$(pwd)"
+    cd "$walldir"
+    wall=$(fzf)
+    wall="$walldir/$wall"
+    echo "$wall" > "$walldir/current"
+
+}
+
+setwall(){
+    #set wallpaper to provided image
+    feh --bg-fill "$wall"
+}
+
+if [ "$1" = "z" ] #random wallpaper
+then
+    getrand "$2"
+    setwall
+elif [ "$1" = "r" ] #restore last wallpaper
+then
+    restore
+    setwall
+elif [ "$1" = "s" ]
+then
+    search
+    setwall
+else
+    manual "$1" #set $1 as wallpaper
+    setwall
+fi
