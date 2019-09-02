@@ -1,0 +1,323 @@
+#!/usr/bin/env bash 
+
+
+############################################################################################################################## 
+#                                                                                                                            # 
+#   modded autostart written by zoe firi                                                                            — ▭ ✖    # 
+#                                                                                                                            # 
+############################################################################################################################## 
+#                                                                                                                            #
+#   ,##,   ,##,     ####,  ,#####,     #####          ,##,     ,####,          ##,      ,#,  ,##       ####,   ,####,        #
+#   ####   ####    ####### ###  ##,  ###' '##      ,#######    ###########,   ,###      ###  ###    ########   ###########,  #
+#   #####  ####    ##,     ####  ##  ##' ,##'##   .####''##      '#########   ###'      ###  ###    #####'       '#########  #
+#    ###########   #####,  '######'   ##,##  ###  ###,            ###'       ,###       ###,  ###    ##, ,##,     ###'       #
+#    ###########   ##'##'   ######,    ##,  ,###  ##########,    ###'        ###'       '###  ###     #######    ###'        #
+#     #####  ####  ##       '##,'###,   ######     '#########    ###         ####,       ###,####      ####'     ###         #
+#      ####  '###   #####,   ###  '##,   ###           ,#####   ###'          #######,   ########,      ####    ###'         #
+#      '##'    ##    #####   '##   '#'               #######'   ##'             ######    #####''#       '##    ##'          #
+#                                                                                                                            #
+#    ,##        ,##    ,####  ,##.   	                                                                        ,   ,        #
+#    ###   ,,   ###   ###### ######  	                                                          ,', ,', ,', ,' ',';        #
+#    ###  ,##   ###  ,##' #### '###  	                                                        ,'. ,'`,,', ,', ,'.,'        #
+#   ,###  ###   ###  ###  ###   ###	                                                          ,',','',,'  ,'. ,'`,'          #
+#   ###   ###  ###'  ##' ,###  ###                                                           ',`,,',,' `,' ,,'','   '        #
+#   ###   ####,###   ##  ###  ###                                                             ,'',,' ',' `,',,'|  ,          #
+#   #######'######   '#  ##'  '##  	                                                           ',', ,', ,',,'|'|             #
+#    '###'  '####                                                                              ', ,'' ,'','| '|| ,           #
+#                                                                          	                    ,' ,,'`.' ||\|||    '        #
+#           	                                                                               ', ,' ,'   || /||             #
+# 	                                                                                             ' '' ,   | /||| ,  '        #
+#                                                                                                '       ,''//,'             #
+#	                                                                                               ,   ,',//,'       '       #
+#                                                                         	                    .'__ ,',,,,'..,,'',, ,,._    #
+#                                                                                                                            #
+############################################################################################################################## 
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ startup |
+#                                                V
+
+#herbstclient hc alias
+hc() {
+    herbstclient "$@"
+}
+
+#reload herb
+hc emit_hook reload
+
+#cleanup
+hc keyunbind --all
+hc spawn pkill lemon
+hc spawn pkill plugitinfucker
+hc spawn pkill keebdisable
+hc spawn pkill greenclip
+hc spawn pkill keynav
+hc spawn pkill compton
+hc spawn pkill flashfocus
+
+
+
+#autostart
+hc spawn xset b off
+hc spawn walc r
+hc spawn /home/zoe/PATHcustom/plugitinfucker
+hc spawn /home/zoe/PATHcustom/keebdisable
+#hc spawn polybar cozy
+#hc spawn polybar custom2
+hc spawn /home/zoe/.config/lemons/lemon
+hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Typing Enabled" 0
+hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
+hc spawn greenclip daemon
+hc spawn keynav
+hc spawn compton
+hc spawn flashfocus -o 0.45
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ binds etc.	|
+#                                                   V
+
+
+#set modlkey as super
+Mod=Mod4   
+
+#custom binds
+	
+	#volume
+	hc keybind $Mod-F8 spawn /home/zoe/PATHcustom/DACvol 1
+	hc keybind $Mod-F7 spawn /home/zoe/PATHcustom/DACvol 0
+	
+	#brightness
+	hc keybind $Mod-F9 spawn xbacklight -inc -10
+	hc keybind $Mod-F10 spawn xbacklight -inc +10
+
+	#rofi
+	hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -columns 2
+	hc keybind $Mod-c spawn rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -location 0 -lines 5 -bw 0 -font "kakwafont 9"
+	hc keybind $Mod-e spawn splatmoji emoticon
+
+	#bind catching
+	hc keybind $Mod-q echo "haha no."
+	hc keybind Ctrl-q spawn echo "reee no."
+
+	#spawn scratchpad
+	hc keybind $Mod-i spawn scratchpad +
+	hc keybind $Mod-Shift-i move "+"
+
+	#screencap
+	hc keybind $Mod-w spawn flameshot gui
+
+	#lock up
+	hc keybind Ctrl-Alt-l spawn ~/PATHcustom/locker
+
+	#close window
+	hc keybind $Mod-Shift-q close
+	hc keybind $Mod-q spawn /home/zoe/PATHcustom/herbkiller
+	hc keybind $Mod-Shift-r reload
+
+	#spawn terminal
+	hc keybind $Mod-Return spawn st
+	hc keybind $Mod-Shift-Return spawn st
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ theming	|
+#                                                   V
+
+
+#colors
+	color00=#1c1810
+	color01=#e35142
+	color02=#fba11b
+	color03=#f2ff27
+	color04=#5ceb5a
+	color05=#5aebbc
+	color06=#489bf0
+	color07=#e35142
+	color08=#ffffff
+	color09=#e35142
+	color10=#fba11b
+	color11=#f2ff27
+	color12=#5ceb5a
+	color13=#5aebbc
+	color14=#489bf0
+	color15=#FFFFFF
+
+#gapssss
+	hc set window_gap 30
+	hc set frame_gap -30
+	hc set mouse_recenter_gap 0
+	hc set frame_padding 0
+	hc set smart_window_surroundings 0
+	hc set smart_frame_surroundings 0
+	hc pad 0 15 15 75 15
+	hc pad 1 15 15 75 15
+
+#frame theming
+	hc attr theme.tiling.reset 1
+	hc attr theme.floating.reset 1
+	#frame colors
+	hc set frame_border_active_color $color13
+	hc set frame_border_normal_color $color01
+	hc set frame_bg_normal_color $color01
+	hc set frame_bg_active_color $color02
+	#frame borders
+	hc set frame_border_width 0
+	hc set always_show_frame 0
+	hc set frame_bg_transparent 1
+	hc set frame_transparent_width 0
+
+#window theming
+	hc attr theme.active.color $color12
+	hc attr theme.normal.color "#1c1810"
+	hc attr theme.active.inner_color $color07
+	hc attr theme.active.outer_color $color01
+	hc attr theme.padding_top "25"
+	hc attr theme.urgent.color orange
+	hc attr theme.normal.inner_color #1c1810
+	hc attr theme.normal.inner_width 0
+	hc attr theme.floating.outer_color "#1c1810"
+	hc attr theme.floating.active.outer_color $color12
+	hc attr theme.floating.border_width 0
+	hc attr theme.floating.outer_width 5
+	hc attr theme.background_color '#141414'
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window management binds	|
+#                                                                   V
+
+
+# basic movement
+	# focusing clients
+	hc keybind $Mod-Left  focus left
+	hc keybind $Mod-Down  focus down
+	hc keybind $Mod-Up    focus up
+	hc keybind $Mod-Right focus right
+	hc keybind $Mod-h     focus left
+	hc keybind $Mod-j     focus down
+	hc keybind $Mod-k     focus up
+	hc keybind $Mod-l     focus right
+
+# moving clients
+	hc keybind $Mod-Shift-Left  shift left
+	hc keybind $Mod-Shift-Down  shift down
+	hc keybind $Mod-Shift-Up    shift up
+	hc keybind $Mod-Shift-Right shift right
+	hc keybind $Mod-Shift-h     shift left
+	hc keybind $Mod-Shift-j     shift down
+	hc keybind $Mod-Shift-k     shift up
+	hc keybind $Mod-Shift-l     shift right
+
+# splitting frames
+# create an empty frame at the specified direction
+	hc keybind $Mod-u       split   bottom  0.5
+	hc keybind $Mod-o       split   right   0.5
+
+# let the current frame explode into subframes
+	hc keybind $Mod-Control-space split explode
+
+# resizing frames
+	resizestep=0.015
+	hc keybind $Mod-Control-h       resize left +$resizestep
+	hc keybind $Mod-Control-j       resize down +$resizestep
+	hc keybind $Mod-Control-k       resize up +$resizestep
+	hc keybind $Mod-Control-l       resize right +$resizestep
+	hc keybind $Mod-Control-Left    resize left +$resizestep
+	hc keybind $Mod-Control-Down    resize down +$resizestep
+	hc keybind $Mod-Control-Up      resize up +$resizestep
+	hc keybind $Mod-Control-Right   resize right +$resizestep
+
+# resizing windows
+	hc keybind $Mod-Alt-h spawn ~/PATHcustom/herbsize -x
+	hc keybind $Mod-Alt-j spawn ~/PATHcustom/herbsize -y
+	hc keybind $Mod-Alt-k spawn ~/PATHcustom/herbsize +y
+	hc keybind $Mod-Alt-l spawn ~/PATHcustom/herbsize +x
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ workspaces	|
+#                                                   V
+
+
+# tags
+	tag_names=( {1..9} )
+	tag_keys=( {1..9} 0 )
+
+	hc rename default "${tag_names[0]}" || true
+	for i in ${!tag_names[@]} ; do
+	    hc add "${tag_names[$i]}"
+	    key="${tag_keys[$i]}"
+	    if ! [ -z "$key" ] ; then
+	        #hc keybind "$Mod-$key" use_index "$i"
+            hc keybind "$Mod-$key" spawn /home/zoe/PATHcustom/herbswitcher "$i"
+	        hc keybind "$Mod-Shift-$key" move_index "$i"
+   	 fi
+	done
+
+# cycle through tags
+	hc keybind $Mod-period use_index +1 --skip-visible
+	hc keybind $Mod-comma  use_index -1 --skip-visible
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ window states	|
+#                                                       V
+
+
+# layouting
+	hc keybind $Mod-r remove
+	hc keybind $Mod-s floating toggle
+	hc keybind $Mod-f fullscreen toggle
+	hc keybind $Mod-p pseudotile toggle
+	# The following cycles through the available layouts within a frame, but skips
+	# layouts, if the layout change wouldn't affect the actual window positions.
+	# I.e. if there are two windows within a frame, the grid layout is skipped.
+		hc keybind $Mod-space                                                           \
+	            or , and . compare tags.focus.curframe_wcount = 2                   \
+	                     . cycle_layout +1 vertical horizontal max vertical grid    \
+	               , cycle_layout +1
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ floating	|
+#                                                   V
+
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle +1
+hc keybind $Mod-Shift-Tab   cycle -1
+hc keybind $Mod-y cycle
+
+
+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ uhhhhhhhh	|
+#                                                   V
+
+
+# rules
+	hc unrule -F
+	#hc rule class=XTerm tag=3 # move all xterms to tag 3
+	hc rule focus=on # normally focus new clients
+	#hc rule focus=off # normally do not focus new clients
+	# give focus to most common terminals
+	#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
+	hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' pseudotile=on
+	hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+	hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+	hc set tree_style '╾│ ├└╼─┐'
+
+# unlock, just to be sure
+hc unlock
+
+# do multi monitor setup here, e.g.:
+# hc set_monitors 1280x1024+0+0 1280x1024+1280+0
+# or simply:
+ hc detect_monitors
+
+# find the panel
+panel=~/.config/herbstluftwm/panel.sh
+[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
+    # start it on each monitor
+    "$panel" $monitor &
+done

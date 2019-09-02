@@ -1,0 +1,142 @@
+#!/bin/bash
+
+##########
+# volume #
+##########
+vol(){
+    while true; do
+        pamixer --get-volume | xargs printf "%%{cT1}%d %%{T2}"
+        cat /tmp/dacvol
+    done
+}
+
+
+###########
+# battery #
+###########
+bat(){
+    while true; do
+        read bat < "/sys/class/power_supply/BAT0/capacity"
+        printf "%%{c}%d " $bat
+        sleep 2
+    done
+}
+
+
+###############
+# date + time #
+###############
+datetime(){
+    while true; do
+        date +"%%{c}%H//%M   %m//%d " 
+        sleep 3
+    done
+}
+
+
+##############
+# workspaces #
+##############
+herbspaces2(){
+    WORKSPACES=7 # make this number the amount of workspaces you want to display
+
+    getinfo(){
+        wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
+    }
+
+
+format(){
+    echo "$wspaces" | sed\
+        -e 's/0//'\
+        -e 's/1/ﭮ/'\
+        -e 's/2//'\
+        -e 's/3//'\
+        -e 's/4//'\
+        -e 's/5//'\
+        -e 's/6//'\
+        -e 's/\-/%\{F\#5ceb5a\}/g'\
+        -e 's/\*/%\{F\#fba11b\}/g'
+    }
+
+change(){
+    cat < /tmp/herbchange
+}
+
+mkfifo /tmp/herbchange
+while true;
+do
+    getinfo
+    format
+    change
+done
+}
+
+
+############
+# keyboard #
+############
+keeb(){
+    read keeb < /tmp/keeb2
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
+    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
+
+    while true; do
+        read keeb < /tmp/keeb
+        [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
+        [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
+    done
+}
+
+
+################
+# bar settings #
+################
+#red="#e35142"
+#orange="#fba11b"
+#yellow="#f2ff27"
+#green="#5ceb5a"
+#lblue="#5aebbc"
+#blue="#489bf0"
+#brown="#FF9742"
+#background="#1c1810"
+#background2="#272538"
+read red
+read orange
+read yellow
+read green
+read lblue
+read blue
+read brown
+read background
+read background2
+font="Input Mono:size=14:style=Medium"
+icons1="Font Awesome 5 Free Solid:size=15"
+icons2="Symbols Nerd Font:size=14"
+
+
+
+################
+# DISPLAY BARS #
+################
+#workspaces
+herbspaces2 | lemonbar -o -4 -f "$icons1" -o 0 -f "$icons2" -g 325x41+1578+1032 -B"$background" &
+
+#volume
+vol | lemonbar -o 0 -f "$font" -f "$icons1" -g 86x41+17+1032 -B"$background" -F"$green" &
+
+#date
+datetime | lemonbar -o 0 -f "$font" -f "$icons1" -g 240x41+270+1032 -B"$background" -F"$red" &
+
+#battery
+bat | lemonbar -o 0 -f "$font" -f "$icons1" -g 84x41+145+1032 -B"$background" -F"$orange" &
+
+#keeb
+keeb | lemonbar -p -o 0 -f "$font" -f "$icons2" -g 50x41+1497+1032 -B"$background" -F"$lblue" &
+
+
+#echo | lemonbar -p -g 100x56+10+1014 -B"$background" &
+#echo | lemonbar -p -g 335x56+1570+1014 -B"$background" &
+#echo | lemonbar -p -g 254x56+263+1014 -B"$background" &
+#echo | lemonbar -p -g 100x56+137+1014 -B"$background" &
+#echo | lemonbar -p -g 66x56+1490+1014 -B"$background" &
+#    fi
