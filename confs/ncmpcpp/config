@@ -3,7 +3,7 @@ mpd_port = "6600"
 
 # Display ..
 #song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
-song_list_format = "$5{{%t $R %a   }|{%f}}{$R}"
+song_list_format = "$3{{%t $R %a   }|{%f}}{$R}"
 song_columns_list_format = "(3)[]{}(92)[white]{t} (4)[red]{l}"
 song_status_format = " $2%t $0 "
 playlist_display_mode = "classic" (classic/columns)
@@ -35,7 +35,7 @@ state_line_color = "black"
 state_flags_color = "green"
 main_window_color = "green" 
 header_window_color = "black"
-statusbar_time_color = "green"
+statusbar_time_color = "blue"
 
 # Misc ..   
 display_bitrate = "no"

@@ -1,6 +1,6 @@
 #!/bin/bash
 while true; do
     read bat < "/sys/class/power_supply/BAT0/capacity"
-    printf "%%{c}%d \n" $bat
+    printf "%%{c}%d " $bat
     sleep 2
 done

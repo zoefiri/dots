@@ -1,5 +1,5 @@
 [options]
-font = InputMono Nerd Font 14px
+font = scientifica 11px
 geometry = 900x700
 scrollback_lines = 2000
 

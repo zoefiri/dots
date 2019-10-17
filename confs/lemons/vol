@@ -1,5 +1,4 @@
 #!/bin/bash
 while true; do
-pamixer --get-volume | xargs printf "%%{cT1}%d %%{T2}"
-cat /tmp/dacvol
+   cat /tmp/dacvol | xargs printf "%%{cT1}%d %%{T2}\n"
 done

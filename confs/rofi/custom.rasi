@@ -1,7 +1,7 @@
 * {
-    font: "Iosevka Thicc 12";
+    font: "Lexend Deca 12";
 
-    active-background: #233336;
+    active-background: #00384d;
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -15,17 +15,17 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: #88b1f7;
+    selected-active-background: #14747e;
     selected-active-foreground: @foreground;
-    selected-normal-background: #3bf7be;
+    selected-normal-background: #7fc06e;
     selected-normal-foreground: @background;
-    selected-urgent-background: #ebfaa3;
+    selected-urgent-background: #ffcc1b;
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background: #233336;
-    foreground: #ffc569;
-    border-color: #3ffffc;
+    background: #00384d;
+    foreground: #f08e48;
+    border-color: #5dd7b9;
     spacing: 2;
     lines: 10;
     columns: 1;

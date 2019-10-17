@@ -1,5 +1,5 @@
 #!/bin/bash
-read orange < /home/zoe/.config/ricertemplates/colors/base9
+read orange < /home/zoe/.config/ricer/ricertemplates/colors/base9
 
 read bat < "/sys/class/power_supply/BAT0/capacity"
 printf "%%{F#$orange}%d%% " $bat

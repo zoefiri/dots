@@ -1,5 +1,5 @@
 * {
-    font: "Iosevka Thicc 12";
+    font: "Lexend Deca 12";
 
     active-background: #@@C1@@;
     active-foreground: @foreground;

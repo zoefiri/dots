@@ -74,36 +74,42 @@ zstyle ':completion:*' menu select
 #     — ▭ ✖ #
 #  aliases  #
 #############
-alias schedule='feh ~/pics/junk/SCHED.png'
-alias clitype='node ~/.local/share/clitype/app.js'
-alias ranger='ranger ; pal -r'
-alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
-alias e='fzf --color info:4,prompt:3,spinner:3,pointer:2,marker:1 | xargs -r $EDITOR'
-alias record='ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0'
-alias icat="kitty +kitten icat --align left"
-#alias tmux='TERM=xterm-256color tmux'
-alias wic='wicd-curses'
-alias hdmiout='xrandr --output HDMI1 --off ; herbstclient detect_monitors'
-alias maim='maim'
-alias cava='cava && pal -r'
-alias pee='yes pee'
-alias ls='exa'
-alias aj='autojump'
-alias rbook='rustup docs --book'
-alias concu='connman-ncurses ; stty sane'
-alias wal='wal -st -i'
-alias discss='mousepad ~/.cache/wal-discord/style.css'
-alias ~='cd /home/zoe'
-alias /='cd /'
-alias reload='clear && source ~/.zshrc'
-alias slepp='locker && systemctl suspend'
-alias ncm='ncmpcpp 2>/dev/null ; pal -r'
-alias nixnest='birch -u zoefiri -s irc.rizon.net -c #nixnest'
-alias shitdown='shutdown'
-alias fucking='sudo'
-alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
-alias perform='sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
-alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+#utils
+   alias aj='autojump'
+   alias perform='sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias psync='adb push ~/.password-store /storage/emulated/0/.pass'
+   alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
+#toys
+   alias clitype='node ~/.local/share/clitype/app.js'
+#fixes
+   alias ranger='ranger ; pal -r'
+   alias cava='cava && pal -r'
+#dumb stuff
+   alias fucking='sudo'
+   alias pee='yes pee'
+   alias shitdown='shutdown'
+#shortcuts
+   alias e='fzf --color info:4,prompt:3,spinner:3,pointer:2,marker:1 | xargs -r $EDITOR'
+   alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
+   alias wic='wicd-curses'
+   alias hdmiout='xrandr --output HDMI1 --off ; herbstclient detect_monitors'
+   alias rbook='rustup docs --book'
+   alias ~='cd /home/zoe'
+   alias /='cd /'
+   alias reload='clear && source ~/.zshrc'
+   alias slepp='locker && systemctl suspend'
+   alias ncm='[ -z "$TMUX" ] && tmux new-session "ncmpcpp 2>/dev/null" 1>/dev/null || ncmpcpp 2>/dev/null'
+#replacements
+   alias ls='exa'
+#xbps
+   alias vup="sudo xbps-install -Su"    # synchronize
+   alias vps="sudo xbps-query -Rs" # search
+   alias vpi="sudo xbps-install -S" # install a single package or list of packages
+   alias vpr="sudo xbps-remove" # remove a single package
+   alias vpra="sudo xbps-remove -R" # remove a single package and all of its dependencies that are not required by other packages:
+   alias vphan="sudo xbps-remove -o" # Remove dependencies that are no longer needed
+   alias vpc="sudo xbps-remove -O" # Clean up all local caches.
 
 
 
@@ -123,8 +129,12 @@ setopt promptsubst
 #PS1=$'%{\e[32;1m%}%{\e[0m%}\n%{\e[30;44m%} %n%{\e[1m%}★ %{\e[0;30;44m%} @%M %{\e[42m%} %3~ %{\e[41m%} $(cat /sys/class/power_supply/BAT0/capacity)%{\e[1;32m%}🗲 \n%{\e[0;31m%}✖%{\e[32m%}✖%{\e[34m%}✖%{\e[36m%}✖%{\e[34m%}»» %{\e[0m%}'
 
 # ✖ #
-PS1=$'%{\e[31m%}✖%{\e[0m%}  '
+#PS1=$'%{\e[31m%}✖%{\e[0m%}  '
 
+# rainbow #
+#PS1=$'%{\e[30;41m%} x%{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}  '
+#PS1=$'%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}  '
+PS1=$'\n%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}\n%{\e[46;36m%}█%{\e[45m%}%{\e[34m%} %{\e[43m%}%{\e[32m%} %{\e[44m%}%{\e[40m%}%{\e[0m%}  '
 
 
 ##############################
@@ -137,6 +147,12 @@ then
 #  fff  #
 f(){ fff "$@"; cd "$(< ~/.fff_d)"; }
 export FFF_CD_FILE=~/.fff_d
+
+# cht.sh #
+ch(){
+   read -r query
+   cht.sh "$query" | less -r
+}
 
 #  mup  #
 mup() {

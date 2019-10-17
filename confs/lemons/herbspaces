@@ -1,16 +1,35 @@
 #!/usr/bin/env bash
 
 WORKSPACES=7 # make this number the amount of workspaces you want to display
+read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base10
+read green < /home/zoe/.config/ricer/ricertemplates/colors/base11
 
-wspaces=$(wmctrl -d | head -$WORKSPACES | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ')
-wspaces=${wspaces/0/Ѐ}
-wspaces=${wspaces/1/Ѕ}
-wspaces=${wspaces/2/Є}
-wspaces=${wspaces/3/Ё}
-wspaces=${wspaces/4/Ђ}
-wspaces=${wspaces/5/Ѓ}
-wspaces=${wspaces/6/І}
-wspaces=${wspaces//-/%\{F#5AF78E\}}
-wspaces=${wspaces/\*/%\{F#FFB526\}}
-echo $wspaces
+getinfo(){
+    wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
+}
 
+
+format(){
+    echo "$wspaces" | sed\
+        -e 's/0//'\
+        -e 's/1//'\
+        -e 's/2//'\
+        -e 's/3//'\
+        -e 's/4//'\
+        -e 's/5//'\
+        -e 's/6//'\
+        -e "s/\-/%\{F#$green\}/g"\
+        -e "s/\*  /  %\{F#$yellow\}/g"
+    }
+
+change(){
+    cat < /tmp/herbchange
+}
+
+mkfifo /tmp/herbchange
+while true;
+do
+    getinfo
+    format
+    change
+done

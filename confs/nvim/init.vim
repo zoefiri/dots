@@ -30,6 +30,8 @@
 
 "plugins
 call plug#begin()
+    Plug 'vim-scripts/math'
+    Plug 'kovisoft/slimv'
     Plug 'Yggdroot/indentLine'
     Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     Plug 'vim-scripts/Conque-Shell'
@@ -87,6 +89,12 @@ call plug#end()
         hi Conditional cterm=italic
         set t_ZH=[3m
         set t_ZR=[23m
+    "cursor
+    if has("autocmd")
+       au InsertEnter * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_BLOCK/TERMINAL_CURSOR_SHAPE_UNDERLINE/' ~/.config/xfce4/terminal/terminalrc"
+       au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_UNDERLINE/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
+       au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_UNDERLINE/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"  
+    endif
 
     "lightline
         let g:lightline = {
@@ -118,6 +126,8 @@ call plug#end()
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 "remaps
+    "idk redos are broke lmao
+    nnoremap <silent> R :redo<CR>
     "window nav
     nnoremap H <C-w>h
     nnoremap J <C-w>j

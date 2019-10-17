@@ -1,0 +1,150 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+:root {
+   --bg: #@@C0;
+   --fg: #@@C10;
+/*********************************/
+/**** TAB BAR VARIABLES ****/
+/*********************************/
+    --bg-dark: var(--bg);
+    --bg-light: #@@C1@@; 
+    --fg-dark: var(--bg);
+    --fg-light: var(--fg); 
+    --tab-fonts: "Iosevka thicc"; 
+    --tab-font-size: 9pt;
+    --tab-text-align: center;
+    --tab-min-height: 25px !important;
+
+/*********************************/
+/**** URL BAR VARIABLES ****/
+/*********************************/
+    --url-background: var(--bg-light); 
+    --url-foreground: var(--fg-light);
+    --url-fonts: "Iosevka thicc"; 
+    --url-font-size: 9pt;
+    --url-text-align: center;
+}
+
+
+/*********************************/
+/**** MENU BAR CONFIG ****/
+/*********************************/
+#navigator-toolbox, #main-window[sizemode="normal"] #navigator-toolbox, #main-window[sizemode="maximized"] #navigator-toolbox {
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+}
+
+
+/*********************************/
+/**** TAB BAR CONFIG ****/
+/*********************************/
+tab, .tabbrowser-tabs *|tab {
+    background: var(--bg-dark) !important; 
+    color: var(--fg-light) !important;
+    font-family: var(--tab-fonts) !important;
+    font-size: var(--tab-font-size); 
+    text-shadow: none !important; 
+    text-align: var(--tab-text-align) !important;
+}
+
+/**** TAB LABEL (DEFAULT=CENTER) ****/
+.tab-label {
+    -moz-box-flex: 1 !important; 
+    text-align: var(--tab-text-align) !important;
+}
+
+/**** TAB WIDTH ****/
+.tabbrowser-tab[fadein]:not([pinned]) { 
+    min-width: 100px !important; 
+    max-width:  100% !important; 
+}
+
+/**** TAB SELECTED (DEFAULT=BG-LIGHT) ****/
+.tab-background-middle[selected="true"], .tabbrowser-tab[selected="true"], .tab-background-middle[selected="true"]:hover, .tabbrowser-tab[selected="true"]:hover {
+    background: var(--bg-light) !important;
+    color: var(--fg-light) !important;
+}
+
+/**** TAB HOVER (DEFAULT=BG-LIGHT) ****/
+.tabbrowser-tab[selected="true"][pinned="true"]:hover, .tabbrowser-tab:not([pinned]):hover, .tabs-newtab-button:hover {
+    background: var(--bg-light) !important;
+    color: var(--fg-light) !important;
+    border-top: 0px !important;
+}
+
+/**** NEW TAB UP LINE (DEFAULT=NONE) ****/
+.tabbrowser-tab *, .tabs-newtab-button * {
+    background: none !important; 
+    list-style-image: none !important;
+    margin: 0 0 0 0 !important; 
+    padding: 0 0 0 0 !important;
+    -moz-appearance: none !important;
+}
+
+/**** TAB SEPARATOR (DEFAULT=NONE)  ****/
+#TabsToolbar .tab-background {
+    background: transparent !important;
+    border-right: 0px !important;
+    border-left: 0px !important;
+}
+
+/**** TAB SEPARATOR (DEFAULT=NONE) ****/
+.tabbrowser-tab::before, .tabbrowser-tab::after {
+    display: none !important;
+}
+
+/**** TAB ICONS (DEFAULT=NONE)  ****/
+.tab-icon-image { 
+    display: none !important; 
+}
+
+
+/*********************************/
+/**** URL BAR CONFIG ****/
+/*********************************/
+#urlbar, .searchbar-textbox, urlbar-container {
+    background-color: var(--url-background) !important;
+    color: var(--url-foreground) !important;
+    font-family: var(--url-fonts) !important;
+    font-size: var(--url-font-size); 
+    text-shadow: none !important; 
+    text-align: var(--url-text-align) !important;
+    border: 0px !important;
+    box-shadow: none !important;
+}
+
+#nav-bar[id], #PersonalToolbar[id], #web-developer-toolbar[id], #navigator-toolbox[tabsontop="true"] > #nav-bar[id], #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="true"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id], #navigator-toolbox[tabsontop="false"] > #nav-bar[id], #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"][id] + toolbar, #navigator-toolbox[tabsontop="false"]:not([customizing]) > #nav-bar[collapsed="true"] + #customToolbars + #PersonalToolbar[id] {
+    background-image: none !important;
+    background: var(--url-background) !important;
+    background-color: var(--url-background) !important;
+    margin-top: 0px !important;
+    border-top: 0px !important;
+    border-bottom: 0px !important;
+}
+
+/**** URL BUTTONS (DEFAULT=NONE) ****/
+#forward-button, #back-button, #PanelUI-menu-button, #PanelUI-button, .restore-tabs-button {
+    display: none !important;
+}
+
+
+/*********************************/
+/**** OTHER CONFIGS ****/
+/*********************************/
+window:not([chromehidden~="toolbar"]) #urlbar-container > .toolbarbutton-1:-moz-any([disabled], :not([open]):not([disabled]):not(:active)) > .toolbarbutton-icon[class], #main-window:not([customizing]) #back-button[disabled] > .toolbarbutton-icon[class] {
+    background-image: none !important;
+    background-color: var(--url-background) !important;
+    box-shadow: 0px !important;
+    border: 0px !important;
+}
+
+browser[type="content-primary"], browser[type="content"] {
+    background: var(--bg-dark) !important;
+}
+
+browser, browser.display.background_color, tabbrowser tabpanels {
+    background-color: var(--bg-dark) !important;
+}

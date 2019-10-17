@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 WORKSPACES=7 # make this number the amount of workspaces you want to display
-read yellow < /home/zoe/.config/ricertemplates/colors/base10
-read green < /home/zoe/.config/ricertemplates/colors/base11
+read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base10
+read green < /home/zoe/.config/ricer/ricertemplates/colors/base11
 
 getinfo(){
     wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
