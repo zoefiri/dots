@@ -1,29 +1,41 @@
-#!/bin/sh
+#!/bin/bash
+
+trap "walc r && killall mpv" INT HUP TERM
+
+#get random wall
+getrand(){
+	wall=$(ls "$2" | sort -R |tail -1)
+    wall="$2"/"$wall"
+    echo "$wall" > ~/wallp/animcurrent
+}
+
+#read in last wall
+restore(){
+    read -r wall < ~/wallp/animcurrent
+}
+
+#manually select an image
+manual(){
+    wall=$(readlink -f "$1")
+    echo "$wall" > ~/wallp/animcurrent
+}
+
+#set wall
+setwall(){
+   pkill mpv &>/dev/null
+   sleep .1
+	xwinwrap -ov -fs -- mpv -vo x11 --wid WID --mute --loop=inf -hwdec=no --no-osc "$wall" 1>/dev/null &>/dev/null & disown
+}
 
 
-killall mpv
 if [ "$1" = "z" ]
-	#Wallpaper randomization
-	then
-		randomwall=$(ls ~/wallp/animwalls | sort -R |tail -1)
-		mpv --wid=0 --mute --loop=inf --video-unscaled=yes "/home/zoe/wallp/animwalls/$randomwall"
-		echo "$randomwall" > ~/wallp/animcurrent
-	
-	#Wallpaper Restore
-	elif [ $1 = "r" ]
-	then
-		read -r lastwall < ~/wallp/animcurrent
-			mpv --wid=0 --mute --loop=inf --video-unscaled=yes "/home/zoe/wallp/animwalls/$lastwall"
-	
-	#Set locker background
-	elif [ $1 = "l" ]
-	then
-		read -r lastwall < /home/zoe/wallp/current
-		cp /home/zoe/wallp/walls/$lastwall /locker.png
-		echo $lastwall
-	#Set wallpaper
-	else
-		mpv --wid=0 --mute --loop=inf --video-unscaled=yes "$1"
-		echo "$1" > ~/wallp/animcurrent
-fi
+then
+    getrand "$@" && setwall
 
+elif [ "$1" = "r" ] 
+then
+    restore && setwall
+
+else
+    manual "$@" && setwall
+fi

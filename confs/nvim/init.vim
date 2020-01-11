@@ -30,6 +30,7 @@
 
 "plugins
 call plug#begin()
+    Plug 'tpope/vim-fugitive'
     Plug 'vim-scripts/math'
     Plug 'kovisoft/slimv'
     Plug 'Yggdroot/indentLine'
@@ -48,6 +49,7 @@ call plug#begin()
     Plug 'mbbill/undotree'
     Plug 'https://github.com/lilydjwg/colorizer.git'
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'mattn/emmet-vim'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-eunuch'
     Plug 'brooth/far.vim'
@@ -81,7 +83,7 @@ call plug#end()
         hi LineNr ctermfg=60
     "split stuff
         hi VertSplit ctermfg=12 ctermbg=12
-        set fillchars+=vert:o
+        set fillchars+=vert:┃
     "hide end of buffer ~
         hi EndOfBuffer ctermfg=0
     "italics
@@ -124,10 +126,9 @@ call plug#end()
     "NERDTree
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+    let g:user_emmet_leader_key=','
 
 "remaps
-    "idk redos are broke lmao
-    nnoremap <silent> R :redo<CR>
     "window nav
     nnoremap H <C-w>h
     nnoremap J <C-w>j
@@ -137,7 +138,7 @@ call plug#end()
     nnoremap <silent> <C-e> :NERDTreeToggle<CR>
     nnoremap <silent> Q :Goyo<CR>
     nnoremap <silent> U :UndotreeToggle<CR>
-    nnoremap <silent> <C-i> :IndentGuidesToggle<CR>
+    nnoremap <silent> <C-i> :IndentLinesToggle<CR>
     nnoremap <silent> <C-a> :ALEToggle<CR>
     nmap <C-s> :call <SID>SynStack()<CR>
     function! <SID>SynStack()

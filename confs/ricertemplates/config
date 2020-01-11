@@ -1,181 +1,59 @@
-; #############################################################################################
-; #                                                                                           #
-; #  polybar conf by zoe firi                                                          — ▭ ✖  #
-; #                                                                                           #
-; #############################################################################################
-; #                                                                                           #
-; #    #######,    ,#######,     ##,         ##'         #####        ,####,    ,#####,       #
-; #    #########,  #########    ,###       ###'   ##,  ###' '##      ,##'###    ###  ##,      #
-; #   ,###    ###  #########,   ###'       ###, .####  ##' ,##'##    ##,  ##,   ####  ##      #
-; #   #####   ###  ##'  '####  ,###         #######     ##,##  ###  #########.  '######'      #
-; #   ##########'  ##,   '###  ###'        ,#####        ##,  ,###  ##########   ######,      #
-; #   ###''####'   ####, ,###  ####,      ,####           ######    ##'   '###   '##,'###,    #
-; #   ###          '########'   #######,  ####             ###      ###    "##    ###  '##,   #
-; #   #'                          ######  '##'                      '##           '##   '#'   #
-; #                                                                                           #
-; #   ,________________________________________________________,                              #
-; #   |   4:20  69🗲         1 [2] 3 4 5   🎶 mu - sic 🎶 < x > |                              #
-; #   '--------------------------------------------------------'                              #
-; #                                                                                           #
-; #############################################################################################
+mpd_host = "127.0.0.1"
+mpd_port = "6600"
 
+# Display ..
+#song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
+song_list_format = "$2{{%t $R %a   }|{%f}}{$R}"
+song_columns_list_format = "(3)[]{}(92)[white]{t} (4)[red]{l}"
+song_status_format = " $2%t $0 "
+playlist_display_mode = "classic" (classic/columns)
 
-[colors]
-;background
-background = @@C0
+# Now Playing ..
+now_playing_prefix = "$b$2"
+now_playing_suffix = "$/b"
+current_item_suffix = "$/r$(end)"
+current_item_prefix = "$(magenta)$r"
 
-;red
-foreground = @@C8
-red = @@C8
+# Playlist ..
+browser_playlist_prefix = "$2 ♥ $0 "
 
-;gold
-foreground-alt = @@C9
-primary = @@C9
-secondary = @@C9
-gold = @@C9
+# Delays .. 
+playlist_disable_highlight_delay = "1"
+message_delay_time= "1"
 
-;yellow
-yellow = @@C10
+# Progress Bar ..
+#progressbar_look = "━━━"
+progressbar_look = "─╼ "
+progressbar_color = "red"
+progressbar_elapsed_color = "magenta"
 
-;green
-green = @@C11
+# Colors ..
+colors_enabled = "yes"
+empty_tag_color = "red"
+statusbar_color = "cyan"
+state_line_color = "black"
+state_flags_color = "green"
+main_window_color = "green" 
+header_window_color = "black"
+statusbar_time_color = "blue"
 
-;teal
-lblue = @@C12
+# Misc ..   
+display_bitrate = "no"
+autocenter_mode = "yes"
+centered_cursor = "yes"
+titles_visibility = "no"
+statusbar_visibility = "yes"
+empty_tag_marker=" -- ‼ -- " 
+header_visibility = "no"
+display_remaining_time = "no"
+ask_before_clearing_playlists = "no"
+discard_colors_if_item_is_selected = "yes"
 
-;blue
-blue = @@C13
-
-
-[bar/round]
-monitor = eDP1
-width = 42%
-height = 55
-offset-x = 59%
-offset-y = 95.8%
-radius = 15.0
-fixed-center = true
-
-
-background = ${colors.background}
-foreground = ${colors.green}
-
-line-size = 0
-line-color = #ffffff
-
-border-size = 0
-
-border-right-size = 0
-border-left-size = 0
-border-top-size = 0
-border-color = ${colors.green}
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 15
-module-margin-right = 0
-font-0 = Lexend Deca:style=bold:pixelsize=15;
-font-1 = Symbols Nerd Font:size=15;
-
-
-modules-left = date pulseaudio bat herbspaces
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[bar/round2]
-monitor = HDMI-1
-width = 42%
-height = 55
-offset-x = 59%
-offset-y = 95.8%
-radius = 15.0
-fixed-center = true
-
-
-background = ${colors.background}
-foreground = ${colors.green}
-
-line-size = 0
-line-color = #ffffff
-
-border-size = 0
-
-border-right-size = 0
-border-left-size = 0
-border-top-size = 0
-border-color = ${colors.green}
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 15
-module-margin-right = 0
-font-0 = Lexend Deca:style=bold:pixelsize=15;
-font-1 = Symbols Nerd Font:size=15;
-
-
-modules-left = date pulseaudio bat herbspaces
-
-cursor-click = pointer
-cursor-scroll = ns-resize
-
-[module/date]
-type = internal/date
-interval = 1
-
-date = "%{T0}%m//%d%{T4}   "
-date-alt = " %Y-%m-%d"
-
-time = "%{T0}  %H//%M%{T4}  "     
-time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = ${colors.background}
-
-label = %time% %date%
-format-background = ${colors.background}
-format-foreground = ${colors.red}
-[module/pulseaudio]
-type = internal/pulseaudio
-
-; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
-; If not, uses default sink
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
-
-; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
-; Default: true
-use-ui-max = true
-
-; Interval for volume increase/decrease (in percent points)
-; Default: 5
-interval = 5
-format-volume =  <label-volume> 
-format-foreground = ${colors.green}
-
-[module/bat]
-type = custom/script
-exec = /home/zoe/.config/polybar/bat
-format = <label>
-tail = true
-interval = 1
-
-[module/herbspaces]
-type = custom/script
-exec = /home/zoe/.config/polybar/herbspaces
-format = <label>
-tail = true
-interval = .1
- 
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-
-[global/wm]
-margin-top = 0
-margin-bottom = 0
+# Visualizer ..
+visualizer_in_stereo = "yes"
+visualizer_sync_interval = "30"
+visualizer_output_name = "Pipe"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_type = "wave_filled" (spectrum/wave/wave_filled/ellipse)
+visualizer_color = "3"
+visualizer_look = "✖✖"

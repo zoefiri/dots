@@ -4,10 +4,9 @@
 # volume #
 ##########
 vol(){
-    while true; do
-        pamixer --get-volume | xargs printf "%%{cT1}%d %%{T2}"
-        cat /tmp/dacvol
-    done
+   while true; do
+      cat /tmp/dacvol | xargs printf "%%{cT1}%d %%{T2}\n"
+   done
 }
 
 
@@ -15,11 +14,11 @@ vol(){
 # battery #
 ###########
 bat(){
-    while true; do
-        read bat < "/sys/class/power_supply/BAT0/capacity"
-        printf "%%{c}%d " $bat
-        sleep 2
-    done
+   while true; do
+      read bat < "/sys/class/power_supply/BAT0/capacity"
+      printf "%%{c}%d \n" $bat
+      sleep 2
+   done
 }
 
 
@@ -27,10 +26,10 @@ bat(){
 # date + time #
 ###############
 datetime(){
-    while true; do
-        date +"%%{c}%H//%M   %m//%d " 
-        sleep 3
-    done
+   while true; do
+      date +"%%{c}%H//%M   %m//%d " 
+      sleep 3
+   done
 }
 
 
@@ -38,24 +37,26 @@ datetime(){
 # workspaces #
 ##############
 herbspaces2(){
-    WORKSPACES=7 # make this number the amount of workspaces you want to display
+WORKSPACES=7 # make this number the amount of workspaces you want to display
+read yellow < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base10
+read green < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base11
 
-    getinfo(){
-        wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
-    }
+getinfo(){
+    wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
+}
 
 
 format(){
     echo "$wspaces" | sed\
-        -e 's/0//'\
-        -e 's/1/ﭮ/'\
-        -e 's/2//'\
-        -e 's/3//'\
-        -e 's/4//'\
-        -e 's/5//'\
-        -e 's/6//'\
-        -e 's/\-/%\{F\#5ceb5a\}/g'\
-        -e 's/\*/%\{F\#fba11b\}/g'
+        -e 's/0//'\
+        -e 's/1//'\
+        -e 's/2//'\
+        -e 's/3//'\
+        -e 's/4//'\
+        -e 's/5//'\
+        -e 's/6//'\
+        -e "s/\-/%\{F#$red\}/g"\
+        -e "s/\*  /  %\{F#$lblue\}/g"
     }
 
 change(){
@@ -71,72 +72,43 @@ do
 done
 }
 
-
-############
-# keyboard #
-############
-keeb(){
-    read keeb < /tmp/keeb2
-    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
-    [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
-
-    while true; do
-        read keeb < /tmp/keeb
-        [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable d:}%%{A}"
-        [ "$keeb" = "" ] && printf "%%{cT2}%%{A:keebdisable e:}%%{A}"
-    done
-}
-
-
 ################
 # bar settings #
 ################
-#red="#e35142"
-#orange="#fba11b"
-#yellow="#f2ff27"
-#green="#5ceb5a"
-#lblue="#5aebbc"
-#blue="#489bf0"
-#brown="#FF9742"
-#background="#1c1810"
-#background2="#272538"
-read red
-read orange
-read yellow
-read green
-read lblue
-read blue
-read brown
-read background
-read background2
-font="Input Mono:size=14:style=Medium"
-icons1="Font Awesome 5 Free Solid:size=15"
-icons2="Symbols Nerd Font:size=14"
-
+read red < /home/zoe/.config/ricer/ricertemplates/colors/base8
+read orange < /home/zoe/.config/ricer/ricertemplates/colors/base9
+read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base10
+read green < /home/zoe/.config/ricer/ricertemplates/colors/base11
+read lblue < /home/zoe/.config/ricer/ricertemplates/colors/base12
+read blue < /home/zoe/.config/ricer/ricertemplates/colors/base13
+read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
+read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
+read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base1
+font="curie:size=10:style=Medium"
+icons1="Font Awesome 5 Free Solid:size=9"
+icons2="Symbols Nerd Font:size=9"
+echo $background IS TEST COLOR
+trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 
 
 ################
 # DISPLAY BARS #
 ################
+#bkg
+echo | lemonbar -B "#$background2" -g 308x58+0+1022 -p &
+sleep .1
+echo | lemonbar -B "#$background" -g 300x50+0+1030 -p &
+
+
 #workspaces
-herbspaces2 | lemonbar -o -4 -f "$icons1" -o 0 -f "$icons2" -g 325x41+1578+1032 -B"$background" &
+herbspaces2 | lemonbar -o 1 -f "$icons1" -o 2 -f "$icons2" -g 155x20+15+1030 -B"#$background" &
 
 #volume
-vol | lemonbar -o 0 -f "$font" -f "$icons1" -g 86x41+17+1032 -B"$background" -F"$green" &
+vol | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$background" -F"#$red" &
 
 #date
-datetime | lemonbar -o 0 -f "$font" -f "$icons1" -g 240x41+270+1032 -B"$background" -F"$red" &
+datetime | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$red" &
 
 #battery
-bat | lemonbar -o 0 -f "$font" -f "$icons1" -g 84x41+145+1032 -B"$background" -F"$orange" &
+bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$red" 
 
-#keeb
-keeb | lemonbar -p -o 0 -f "$font" -f "$icons2" -g 50x41+1497+1032 -B"$background" -F"$lblue" &
-
-
-#echo | lemonbar -p -g 100x56+10+1014 -B"$background" &
-#echo | lemonbar -p -g 335x56+1570+1014 -B"$background" &
-#echo | lemonbar -p -g 254x56+263+1014 -B"$background" &
-#echo | lemonbar -p -g 100x56+137+1014 -B"$background" &
-#echo | lemonbar -p -g 66x56+1490+1014 -B"$background" &
-#    fi

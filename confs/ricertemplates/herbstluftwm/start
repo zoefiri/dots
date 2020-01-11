@@ -13,7 +13,7 @@ hc spawn pkill keynav
 hc spawn pkill compton
 hc spawn pkill flashfocus
 hc spawn pkill chargeindicator
-
+hc spawn pkill wallserver
 
 
 #autostart
@@ -29,3 +29,4 @@ hc spawn greenclip daemon
 hc spawn keynav
 hc spawn compton
 hc spawn flashfocus -o 0.75
+hc spawn wallserver

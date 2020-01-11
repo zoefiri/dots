@@ -42,7 +42,7 @@ export FPATH=/usr/share/zsh/site-functions:/usr/share/zsh/functions/Completion:/
 export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
 export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/PATHcustom:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin
 export GNUPGHOME=/home/zoe/.gnupg
-export WINEARCH=win64
+export WINEARCH=win32
 export WINEPREFIX=/home/zoe/.wine
 export CLASSPATH="$CLASSPATH:/usr/share/java/*"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
@@ -63,7 +63,9 @@ bindkey -v
 #     — ▭ ✖ #
 #  styling  #
 #############
-echo -ne "\033]4;60;#303548\007"
+read vimbar < /home/zoe/.config/ricer/ricertemplates/colors/base1
+read vimbar2 < /home/zoe/.config/ricer/ricertemplates/colors/base5
+echo -ne "\033]4;60;#$vimbar\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
     pal -r
@@ -76,6 +78,7 @@ zstyle ':completion:*' menu select
 #############
 #utils
    alias aj='autojump'
+   alias nd='nv /dev/null'
    alias perform='sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
    alias psync='adb push ~/.password-store /storage/emulated/0/.pass'
    alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
@@ -100,16 +103,22 @@ zstyle ':completion:*' menu select
    alias reload='clear && source ~/.zshrc'
    alias slepp='locker && systemctl suspend'
    alias ncm='[ -z "$TMUX" ] && tmux new-session "ncmpcpp 2>/dev/null" 1>/dev/null || ncmpcpp 2>/dev/null'
+   alias ranger='[ -z "$TMUX" ] && tmux new-session "ranger 2>/dev/null" 1>/dev/null || ranger 2>/dev/null'
 #replacements
    alias ls='exa'
 #xbps
    alias vup="sudo xbps-install -Su"    # synchronize
-   alias vps="sudo xbps-query -Rs" # search
+   alias vps="xbps-query -Rs" # search
    alias vpi="sudo xbps-install -S" # install a single package or list of packages
    alias vpr="sudo xbps-remove" # remove a single package
    alias vpra="sudo xbps-remove -R" # remove a single package and all of its dependencies that are not required by other packages:
    alias vphan="sudo xbps-remove -o" # Remove dependencies that are no longer needed
    alias vpc="sudo xbps-remove -O" # Clean up all local caches.
+##..
+   alias -g ...='../..'
+   alias -g ....='../../..'
+   alias -g .....='../../../..'
+   alias -g ......='../../../../..'
 
 
 
@@ -134,7 +143,10 @@ setopt promptsubst
 # rainbow #
 #PS1=$'%{\e[30;41m%} x%{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}  '
 #PS1=$'%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}  '
-PS1=$'\n%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}\n%{\e[46;36m%}█%{\e[45m%}%{\e[34m%} %{\e[43m%}%{\e[32m%} %{\e[44m%}%{\e[40m%}%{\e[0m%}  '
+#PS1=$'\n%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}\n%{\e[46;36m%}█%{\e[45m%}%{\e[34m%} %{\e[43m%}%{\e[32m%} %{\e[44m%}%{\e[40m%}%{\e[0m%}  '
+
+# >_
+PS1=$'%{\e[35m%}>%{\e[1m%}%{\e[31m%}_ %{\e[0m%}'
 
 
 ##############################
@@ -163,8 +175,8 @@ mup() {
 # nvim tmux #
 nv() {
    [ -z "$TMUX" ] && tmux new-session "nvim $1" 1>/dev/null
+   [ ! -z "$TMUX" ] && [ -z $1 ] && nvim
    [ ! -z "$TMUX" ] && nvim "$1"
-   
 }
 
 # cdback #
@@ -183,6 +195,12 @@ eval $(thefuck --alias)
 w3mimg () { w3m -o imgdisplay=/usr/lib/w3m/w3mimgdisplay $1
 }
 
+#  fetchy  #
+fetchy() {
+   mimfetch
+}
+zle -N fetchy
+bindkey '^H' fetchy
 
 upn(){
     curl -X POST https://upload.nixne.st/image -H "Upload-Key: da52089b4eb6093bca7de39c1e7d0866" -F "uploadFile=@$1"
@@ -213,7 +231,7 @@ fi
 #  Greeter  #
 #############
 clear
-cat ~/art/ASCII/colorized/daisysmooth
+cat ~/.zsh/art
 printf "\n"
 unset zle_bracketed_paste
 RCINITED=1

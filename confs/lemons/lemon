@@ -55,8 +55,8 @@ format(){
         -e 's/4//'\
         -e 's/5//'\
         -e 's/6//'\
-        -e "s/\-/%\{F#$green\}/g"\
-        -e "s/\*  /  %\{F#$yellow\}/g"
+        -e "s/\-/%\{F#$red\}/g"\
+        -e "s/\*  /  %\{F#$lblue\}/g"
     }
 
 change(){
@@ -75,15 +75,6 @@ done
 ################
 # bar settings #
 ################
-#red="#e35142"
-#orange="#fba11b"
-#yellow="#f2ff27"
-#green="#5ceb5a"
-#lblue="#5aebbc"
-#blue="#489bf0"
-#brown="#FF9742"
-#background="#1c1810"
-#background2="#272538"
 read red < /home/zoe/.config/ricer/ricertemplates/colors/base8
 read orange < /home/zoe/.config/ricer/ricertemplates/colors/base9
 read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base10
@@ -93,9 +84,9 @@ read blue < /home/zoe/.config/ricer/ricertemplates/colors/base13
 read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
 read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
 read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base1
-font="Lexend Deca:size=14:style=Medium"
-icons1="Font Awesome 5 Free Solid:size=15"
-icons2="Symbols Nerd Font:size=12"
+font="curie:size=10:style=Medium"
+icons1="Font Awesome 5 Free Solid:size=9"
+icons2="Symbols Nerd Font:size=9"
 echo $background IS TEST COLOR
 trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 
@@ -104,19 +95,20 @@ trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 # DISPLAY BARS #
 ################
 #bkg
-echo | lemonbar -B "#$background2" -g 808x53+556+1018 -p &
+echo | lemonbar -B "#$background2" -g 308x58+0+1022 -p &
 sleep .1
-echo | lemonbar -B "#$background" -g 800x45+560+1022 -p &
+echo | lemonbar -B "#$background" -g 300x50+0+1030 -p &
+
 
 #workspaces
-herbspaces2 | lemonbar -o 1 -f "$icons1" -o -2 -f "$icons2" -g 225x31+848+1028 -B"#$background" &
+herbspaces2 | lemonbar -o 1 -f "$icons1" -o 2 -f "$icons2" -g 155x20+15+1030 -B"#$background" &
 
 #volume
-vol | lemonbar -o 0 -f "$font" -o -2 -f "$icons2" -g 86x31+615+1028 -B"#$background" -F"#$green" &
+vol | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$background" -F"#$red" &
 
 #date
-datetime | lemonbar -o 0 -f "$font" -o -2 -f "$icons2" -g 200x31+1100+1028 -B"#$background" -F"#$red" &
+datetime | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$red" &
 
 #battery
-bat | lemonbar -p -o 0 -f "$font" -o -2 -f "$icons2" -g 84x31+725+1028 -B"#$background" -F"#$orange" 
+bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$red" 
 

@@ -3,7 +3,7 @@ mpd_port = "6600"
 
 # Display ..
 #song_status_format = "$7%a $6$b> $5%t $6$b> $2%b$6"
-song_list_format = "$3{{%t $R %a   }|{%f}}{$R}"
+song_list_format = "$2{{%t $R %a   }|{%f}}{$R}"
 song_columns_list_format = "(3)[]{}(92)[white]{t} (4)[red]{l}"
 song_status_format = " $2%t $0 "
 playlist_display_mode = "classic" (classic/columns)
@@ -24,8 +24,8 @@ message_delay_time= "1"
 # Progress Bar ..
 #progressbar_look = "━━━"
 progressbar_look = "─╼ "
-progressbar_color = "white"
-progressbar_elapsed_color = "blue"
+progressbar_color = "red"
+progressbar_elapsed_color = "magenta"
 
 # Colors ..
 colors_enabled = "yes"

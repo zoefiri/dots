@@ -22,29 +22,29 @@
 
 [colors]
 ;background
-background = 002635
+background = 000000
 
 ;red
-foreground = ff5a67
-red = ff5a67
+foreground = ff4b4e
+red = ff4b4e
 
 ;gold
-foreground-alt = f08e48
-primary = f08e48
-secondary = f08e48
-gold = f08e48
+foreground-alt = ff9141
+primary = ff9141
+secondary = ff9141
+gold = ff9141
 
 ;yellow
-yellow = ffcc1b
+yellow = fffa52
 
 ;green
-green = 7fc06e
+green = 80ff85
 
 ;teal
-lblue = 5dd7b9
+lblue = 8afdd9
 
 ;blue
-blue = 14747e
+blue = 8290fa
 
 
 [bar/round]
