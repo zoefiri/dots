@@ -1,0 +1,181 @@
+; #############################################################################################
+; #                                                                                           #
+; #  polybar conf by zoe firi                                                          — ▭ ✖  #
+; #                                                                                           #
+; #############################################################################################
+; #                                                                                           #
+; #    #######,    ,#######,     ##,         ##'         #####        ,####,    ,#####,       #
+; #    #########,  #########    ,###       ###'   ##,  ###' '##      ,##'###    ###  ##,      #
+; #   ,###    ###  #########,   ###'       ###, .####  ##' ,##'##    ##,  ##,   ####  ##      #
+; #   #####   ###  ##'  '####  ,###         #######     ##,##  ###  #########.  '######'      #
+; #   ##########'  ##,   '###  ###'        ,#####        ##,  ,###  ##########   ######,      #
+; #   ###''####'   ####, ,###  ####,      ,####           ######    ##'   '###   '##,'###,    #
+; #   ###          '########'   #######,  ####             ###      ###    "##    ###  '##,   #
+; #   #'                          ######  '##'                      '##           '##   '#'   #
+; #                                                                                           #
+; #   ,________________________________________________________,                              #
+; #   |   4:20  69🗲         1 [2] 3 4 5   🎶 mu - sic 🎶 < x > |                              #
+; #   '--------------------------------------------------------'                              #
+; #                                                                                           #
+; #############################################################################################
+
+
+[colors]
+;background
+background = @@C0
+
+;red
+foreground = @@C8
+red = @@C8
+
+;gold
+foreground-alt = @@C9
+primary = @@C9
+secondary = @@C9
+gold = @@C9
+
+;yellow
+yellow = @@C10
+
+;green
+green = @@C11
+
+;teal
+lblue = @@C12
+
+;blue
+blue = @@C13
+
+
+[bar/round]
+monitor = eDP1
+width = 42%
+height = 55
+offset-x = 59%
+offset-y = 95.8%
+radius = 15.0
+fixed-center = true
+
+
+background = ${colors.background}
+foreground = ${colors.green}
+
+line-size = 0
+line-color = #ffffff
+
+border-size = 0
+
+border-right-size = 0
+border-left-size = 0
+border-top-size = 0
+border-color = ${colors.green}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 15
+module-margin-right = 0
+font-0 = Lexend Deca:style=bold:pixelsize=15;
+font-1 = Symbols Nerd Font:size=15;
+
+
+modules-left = date pulseaudio bat herbspaces
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/round2]
+monitor = HDMI-1
+width = 42%
+height = 55
+offset-x = 59%
+offset-y = 95.8%
+radius = 15.0
+fixed-center = true
+
+
+background = ${colors.background}
+foreground = ${colors.green}
+
+line-size = 0
+line-color = #ffffff
+
+border-size = 0
+
+border-right-size = 0
+border-left-size = 0
+border-top-size = 0
+border-color = ${colors.green}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 15
+module-margin-right = 0
+font-0 = Lexend Deca:style=bold:pixelsize=15;
+font-1 = Symbols Nerd Font:size=15;
+
+
+modules-left = date pulseaudio bat herbspaces
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%{T0}%m//%d%{T4}   "
+date-alt = " %Y-%m-%d"
+
+time = "%{T0}  %H//%M%{T4}  "     
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.background}
+
+label = %time% %date%
+format-background = ${colors.background}
+format-foreground = ${colors.red}
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+format-volume =  <label-volume> 
+format-foreground = ${colors.green}
+
+[module/bat]
+type = custom/script
+exec = /home/zoe/.config/polybar/bat
+format = <label>
+tail = true
+interval = 1
+
+[module/herbspaces]
+type = custom/script
+exec = /home/zoe/.config/polybar/herbspaces
+format = <label>
+tail = true
+interval = .1
+ 
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0

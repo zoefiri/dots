@@ -1,0 +1,33 @@
+#!/bin/bash
+hc() {
+    herbstclient "$@"
+}
+
+#cleanup
+hc keyunbind --all
+hc spawn pkill lemon
+hc spawn pkill plugitinfucker
+hc spawn pkill keebdisable
+hc spawn pkill greenclip
+hc spawn pkill keynav
+hc spawn pkill compton
+hc spawn pkill flashfocus
+hc spawn pkill chargeindicator
+hc spawn pkill wallserver
+
+
+
+#autostart
+hc spawn xset b off
+hc spawn walc r
+hc spawn /home/zoe/PATHcustom/plugitinfucker
+hc spawn /home/zoe/PATHcustom/chargeindicator
+hc spawn /home/zoe/PATHcustom/keebdisable
+hc spawn /home/zoe/.config/lemons/lemon
+hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Typing Enabled" 0
+hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
+hc spawn greenclip daemon
+hc spawn keynav
+hc spawn compton
+hc spawn flashfocus -o 0.75
+hc spawn wallserver

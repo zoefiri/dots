@@ -31,6 +31,7 @@
 "plugins
 call plug#begin()
     Plug 'tpope/vim-fugitive'
+    Plug 'vim-scripts/json-formatter.vim'
     Plug 'vim-scripts/math'
     Plug 'kovisoft/slimv'
     Plug 'Yggdroot/indentLine'

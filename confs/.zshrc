@@ -88,6 +88,7 @@ zstyle ':completion:*' menu select
 #fixes
    alias ranger='ranger ; pal -r'
    alias cava='cava && pal -r'
+   alias tmux='TERM=screen-256color tmux'
 #dumb stuff
    alias fucking='sudo'
    alias pee='yes pee'
@@ -146,7 +147,10 @@ setopt promptsubst
 #PS1=$'\n%{\e[30;41m%} uwu %{\e[32m%} %{\e[43m%}%{\e[34m%} %{\e[45m%}%{\e[45;36m%} %{\e[40m%}%{\e[0m%}\n%{\e[46;36m%}█%{\e[45m%}%{\e[34m%} %{\e[43m%}%{\e[32m%} %{\e[44m%}%{\e[40m%}%{\e[0m%}  '
 
 # >_
-PS1=$'%{\e[35m%}>%{\e[1m%}%{\e[31m%}_ %{\e[0m%}'
+# PS1=$'%{\e[32m%}>%{\e[1m%}%{\e[34m%}_ %{\e[0m%}'
+
+# r o u n d  >
+PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%}>%{\e[0;32m%}%{\e[0m%} '
 
 
 ##############################
@@ -174,9 +178,9 @@ mup() {
 
 # nvim tmux #
 nv() {
-   [ -z "$TMUX" ] && tmux new-session "nvim $1" 1>/dev/null
-   [ ! -z "$TMUX" ] && [ -z $1 ] && nvim
-   [ ! -z "$TMUX" ] && nvim "$1"
+   [ -z "$TMUX" ] && TERM=screen-256color tmux new-session "TERM=screen-256color nvim $1" 1>/dev/null
+   [ ! -z "$TMUX" ] && [ -z $1 ] && TERM=screen-256color nvim
+   [ ! -z "$TMUX" ] && TERM=screen-256color nvim "$1"
 }
 
 # cdback #
@@ -218,7 +222,7 @@ source ~/.zsh/zsh-sudo/sudo.plugin.zsh
 #             — ▭ ✖ #
 #  resize terminal  #
 #####################
-ID=$(xdotool getactivewindow)
+#ID=$(xdotool getactivewindow)
 #herbstclient pseudotile toggle
 #xdotool windowsize $ID 600 400
 

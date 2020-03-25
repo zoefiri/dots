@@ -14,6 +14,7 @@ hc spawn pkill compton
 hc spawn pkill flashfocus
 hc spawn pkill chargeindicator
 hc spawn pkill wallserver
+hc spawn pkill compton
 
 
 #autostart

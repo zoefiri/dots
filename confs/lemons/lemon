@@ -48,15 +48,15 @@ getinfo(){
 
 format(){
     echo "$wspaces" | sed\
-        -e 's/0//'\
-        -e 's/1//'\
-        -e 's/2//'\
-        -e 's/3//'\
-        -e 's/4//'\
-        -e 's/5//'\
-        -e 's/6//'\
-        -e "s/\-/%\{F#$red\}/g"\
-        -e "s/\*  /  %\{F#$lblue\}/g"
+        -e 's/0//'\
+        -e 's/1//'\
+        -e 's/2//'\
+        -e 's/3//'\
+        -e 's/4//'\
+        -e 's/5//'\
+        -e 's/6//'\
+        -e "s/\-/%\{F#$orange\}/g"\
+        -e "s/\*  /  %\{F#$green\}/g"
     }
 
 change(){
@@ -84,9 +84,10 @@ read blue < /home/zoe/.config/ricer/ricertemplates/colors/base13
 read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
 read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
 read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base1
-font="curie:size=10:style=Medium"
+font="Aerolite Bold:size=14:style=Medium"
 icons1="Font Awesome 5 Free Solid:size=9"
-icons2="Symbols Nerd Font:size=9"
+icons2="Symbols Nerd Font:size=12"
+icons3="Symbols Nerd Font:size=10"
 echo $background IS TEST COLOR
 trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 
@@ -95,20 +96,28 @@ trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 # DISPLAY BARS #
 ################
 #bkg
-echo | lemonbar -B "#$background2" -g 308x58+0+1022 -p &
+echo | lemonbar -B "#$background2" -g 170x58+0+1022 -p &
+echo | lemonbar -B "#$background2" -g 308x38+0+1042 -p &
 sleep .1
-echo | lemonbar -B "#$background" -g 300x50+0+1030 -p &
+echo | lemonbar -B "#$background" -g 100x20+0+1030 -p &
+sleep .3
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1022 -F "#$background2" &
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=25" -g 155x40+308+1040 -F "#$background2" &
+sleep .3
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1031 -F "#$background" &
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=18" -g 155x30+300+1050 -F "#$background" &
+sleep .1
+echo | lemonbar -B "#$background" -g 300x30+0+1050 -p &
 
 
 #workspaces
-herbspaces2 | lemonbar -o 1 -f "$icons1" -o 2 -f "$icons2" -g 155x20+15+1030 -B"#$background" &
+herbspaces2 | lemonbar -o 1 -f "$icons1" -o 2 -f "$icons3" -g 165x20+5+1030 -B"#$background" &
 
 #volume
-vol | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$background" -F"#$red" &
+vol | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$background" -F"#$orange" &
 
 #date
-datetime | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$red" &
+datetime | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$orange" &
 
 #battery
-bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$red" 
-
+bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$orange" 

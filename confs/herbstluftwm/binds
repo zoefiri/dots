@@ -32,6 +32,7 @@ hc keybind Ctrl-q spawn echo "reee no."
 #spawn scratchpad
 hc keybind $Mod-i spawn scratchpad 2
 hc keybind $Mod-Shift-i spawn scratchpad +2
+hc keybind $Mod-Shift-a spawn scratchpad art
 
 #screencap
 hc keybind $Mod-w spawn flameshot gui
