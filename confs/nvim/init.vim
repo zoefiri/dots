@@ -1,7 +1,7 @@
 "   ###########################################################################
-"   #                                                                         #
-"   #  nvim init.vim by zoefiri                            — ▭ ✖              #
-"   #                                                                         #
+"   #                                                             ,,,,,,,,,,, #
+"   #  nvim init.vim by zoefiri                                   ; —  ▭  ✖ ; #
+"   #                                                             ''''''''''' #
 "   ###########################################################################
 "   #                                                                         #
 "   #       ,####,      ###,                                                  #
@@ -21,55 +21,54 @@
 "   ###########################################################################
 
 
-"options
+"{{{ options
     set clipboard=unnamedplus
     set cpoptions-=C
     set nocompatible
     set ts=3
-    set sw=3 et
+    set sw=3 et "}}}
 
-"plugins
+"{{{ plugins
 call plug#begin()
-    Plug 'tpope/vim-fugitive'
-    Plug 'vim-scripts/json-formatter.vim'
-    Plug 'vim-scripts/math'
-    Plug 'kovisoft/slimv'
-    Plug 'Yggdroot/indentLine'
-    Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-    Plug 'vim-scripts/Conque-Shell'
-    Plug 'vim-scripts/Vimball'
-    Plug 'w0rp/ale'
-    Plug 'junegunn/goyo.vim'
-    Plug 'itchyny/lightline.vim'
-    Plug 'huawenyu/neogdb.vim'
-    Plug 'LucHermitte/lh-vim-lib'
-    Plug 'LucHermitte/vim-build-tools-wrapper'   
-    Plug 'dylanaraps/wal.vim'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-    Plug 'mbbill/undotree'
-    Plug 'https://github.com/lilydjwg/colorizer.git'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'mattn/emmet-vim'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-eunuch'
-    Plug 'brooth/far.vim'
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-    if has('nvim')
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "else
-    "Plug 'Shougo/deoplete.nvim'
-    "Plug 'roxma/nvim-yarp'
-    "Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-    let g:deoplete#enable_at_startup = 1
-call plug#end()
+   "auxillary
+      Plug 'brooth/far.vim'
+      Plug 'mbbill/undotree'
+      Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+      Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+      Plug 'terryma/vim-multiple-cursors'
+      Plug 'tpope/vim-eunuch'
+      Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-surround'
+      Plug 'vim-scripts/Conque-Shell'
+      Plug 'vim-scripts/math'
+      Plug 'Yggdroot/indentLine'
+   "aesthetic
+      Plug 'dylanaraps/wal.vim'
+      Plug 'https://github.com/lilydjwg/colorizer.git'
+      Plug 'junegunn/goyo.vim'
+      Plug 'vim-airline/vim-airline'
+   "programming
+      Plug 'autozimu/LanguageClient-neovim', {
+          \ 'branch': 'next',
+          \ 'do': 'bash install.sh',
+          \ }
+      Plug 'junegunn/rainbow_parentheses.vim'
+      Plug 'neoclide/coc.nvim'
+      Plug 'sheerun/vim-polyglot'
+      Plug 'w0rp/ale'
+   "lang specific
+      Plug 'kovisoft/slimv'
+      Plug 'mattn/emmet-vim'
+      Plug 'vim-scripts/json-formatter.vim'
+   "deps
+      Plug 'huawenyu/new.vim'
+      Plug 'LucHermitte/lh-vim-lib'
+      Plug 'LucHermitte/vim-build-tools-wrapper'   
+      Plug 'vim-scripts/Vimball'
 
+call plug#end() "}}}
 
-"theming
+"theming {{{
     "indent guides
       "let g:indentLine_setColors = 0
       let g:indentLine_char = '│'
@@ -98,6 +97,7 @@ call plug#end()
        au InsertLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_UNDERLINE/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"
        au VimLeave * silent execute "!sed -i.bak -e 's/TERMINAL_CURSOR_SHAPE_UNDERLINE/TERMINAL_CURSOR_SHAPE_BLOCK/' ~/.config/xfce4/terminal/terminalrc"  
     endif
+    set foldmethod=marker
 
     "lightline
         let g:lightline = {
@@ -120,16 +120,21 @@ call plug#end()
         autocmd ColorScheme * hi LineNr ctermfg=60
         autocmd ColorScheme * hi VertSplit ctermfg=12 ctermbg=12
         autocmd ColorScheme * hi EndOfBuffer ctermfg=0
-    augroup END
+    augroup END "}}}
 
-
-"plugin settings
+"plugin settings {{{
     "NERDTree
     autocmd StdinReadPre * let s:std_in=1
     autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
     let g:user_emmet_leader_key=','
+    let g:airline_left_sep = "\uE0B8 "
+    let g:airline_right_sep = "\uE0BA "
+    let g:airline_section_warning = ''
+    let g:airline_section_error = ''
+    let g:airline_section_z = airline#section#create_right(['%l/%L ☰ %c'])
+    let g:airline#extensions#coc#enabled = 0 "}}}
 
-"remaps
+"remaps {{{
     "window nav
     nnoremap H <C-w>h
     nnoremap J <C-w>j
@@ -147,5 +152,5 @@ call plug#end()
             return
         endif
         echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-    endfunc
+    endfunc "}}
 

@@ -42,7 +42,6 @@ export FPATH=/usr/share/zsh/site-functions:/usr/share/zsh/functions/Completion:/
 export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
 export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/PATHcustom:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin
 export GNUPGHOME=/home/zoe/.gnupg
-export WINEARCH=win32
 export WINEPREFIX=/home/zoe/.wine
 export CLASSPATH="$CLASSPATH:/usr/share/java/*"
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
@@ -64,8 +63,11 @@ bindkey -v
 #  styling  #
 #############
 read vimbar < /home/zoe/.config/ricer/ricertemplates/colors/base1
-read vimbar2 < /home/zoe/.config/ricer/ricertemplates/colors/base5
+read vimbar2 < /home/zoe/.config/ricer/ricertemplates/colors/base2
+read vimbar3 < /home/zoe/.config/ricer/ricertemplates/colors/base3
 echo -ne "\033]4;60;#$vimbar\007"
+echo -ne "\033]4;61;#$vimbar2\007"
+echo -ne "\033]4;242;#$vimbar2\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
     pal -r
@@ -83,6 +85,7 @@ zstyle ':completion:*' menu select
    alias psync='adb push ~/.password-store /storage/emulated/0/.pass'
    alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
    alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
+   alias xephdisp='Xephyr -br -ac -noreset -screen 1920x1080 :9'
 #toys
    alias clitype='node ~/.local/share/clitype/app.js'
 #fixes
@@ -106,7 +109,7 @@ zstyle ':completion:*' menu select
    alias ncm='[ -z "$TMUX" ] && tmux new-session "ncmpcpp 2>/dev/null" 1>/dev/null || ncmpcpp 2>/dev/null'
    alias ranger='[ -z "$TMUX" ] && tmux new-session "ranger 2>/dev/null" 1>/dev/null || ranger 2>/dev/null'
 #replacements
-   alias ls='exa'
+   alias ls='exa --icons'
 #xbps
    alias vup="sudo xbps-install -Su"    # synchronize
    alias vps="xbps-query -Rs" # search

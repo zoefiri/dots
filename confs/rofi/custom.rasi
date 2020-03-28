@@ -1,7 +1,7 @@
 * {
     font: "Lexend Deca 12";
 
-    active-background: #00384d;
+    active-background: #202024;
     active-foreground: @foreground;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -15,17 +15,17 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: #14747e;
+    selected-active-background: #57c7ff;
     selected-active-foreground: @foreground;
-    selected-normal-background: #7fc06e;
+    selected-normal-background: #5af78e;
     selected-normal-foreground: @background;
-    selected-urgent-background: #ffcc1b;
+    selected-urgent-background: #f2ff27;
     selected-urgent-foreground: @foreground;
 
     background-color: @background;
-    background: #00384d;
-    foreground: #f08e48;
-    border-color: #5dd7b9;
+    background: #202024;
+    foreground: #ffb536;
+    border-color: #9aedfe;
     spacing: 2;
     lines: 10;
     columns: 1;

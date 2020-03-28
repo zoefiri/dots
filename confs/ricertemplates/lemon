@@ -1,5 +1,7 @@
 #!/bin/bash
 
+memtotal=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 2)
+
 ##########
 # volume #
 ##########
@@ -32,6 +34,13 @@ datetime(){
    done
 }
 
+mem(){
+   while true; do
+      memuse=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 3)
+      printf "%%{c}%.0f \n" $(bc -l <<< "$memuse*((100.0)/$memtotal)")
+      sleep 2
+   done
+}
 
 ##############
 # workspaces #
@@ -88,6 +97,7 @@ font="Aerolite Bold:size=14:style=Medium"
 icons1="Font Awesome 5 Free Solid:size=9"
 icons2="Symbols Nerd Font:size=12"
 icons3="Symbols Nerd Font:size=10"
+icons4="Font Awesome 5 Free:size=11"
 echo $background IS TEST COLOR
 trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 
@@ -98,14 +108,17 @@ trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
 #bkg
 echo | lemonbar -B "#$background2" -g 170x58+0+1022 -p &
 echo | lemonbar -B "#$background2" -g 308x38+0+1042 -p &
+echo | lemonbar -B "#$background2" -g 100x38+1820+1042 -p &
 sleep .1
 echo | lemonbar -B "#$background" -g 100x20+0+1030 -p &
 sleep .3
 echo  | lemonbar -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1022 -F "#$background2" &
 echo  | lemonbar -p -f "Powerline Extra Symbols:size=25" -g 155x40+308+1040 -F "#$background2" &
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=25" -g 55x40+1784+1040 -F "#$background2" &
 sleep .3
 echo  | lemonbar -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1031 -F "#$background" &
 echo  | lemonbar -p -f "Powerline Extra Symbols:size=18" -g 155x30+300+1050 -F "#$background" &
+echo  | lemonbar -p -f "Powerline Extra Symbols:size=18" -g 55x30+1804+1050 -F "#$background" &
 sleep .1
 echo | lemonbar -B "#$background" -g 300x30+0+1050 -p &
 
@@ -120,4 +133,7 @@ vol | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$backgroun
 datetime | lemonbar -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$orange" &
 
 #battery
-bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$orange" 
+bat | lemonbar -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$orange" &
+
+#mem
+mem | lemonbar -p -o 0 -f "$font" -o -2 -f "$icons4" -g 90x30+1830+1050 -B"#$background" -F"#$orange" 
