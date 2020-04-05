@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$1" = "mpvrun" ]
+then
+   mpv -vo x11 --wid="$2" --mute --loop=inf -hwdec=no --no-osc "$3" &> /dev/null
+   exit
+fi
+
 trap "walc r && killall mpv" INT HUP TERM
 
 #get random wall
@@ -24,7 +30,7 @@ manual(){
 setwall(){
    pkill mpv &>/dev/null
    sleep .1
-	xwinwrap -ov -fs -- mpv -vo x11 --wid WID --mute --loop=inf -hwdec=no --no-osc "$wall" 1>/dev/null &>/dev/null & disown
+	xwinwrap -ov -fs -- $0 "mpvrun" WID "$wall" &>/dev/null
 }
 
 
@@ -36,6 +42,10 @@ elif [ "$1" = "r" ]
 then
     restore && setwall
 
+elif [ "$1" = "s" ] 
+then
+    pkill mpv && walc r
+
 else
-    manual "$@" && setwall
+    manual "$@" && setwall &
 fi
