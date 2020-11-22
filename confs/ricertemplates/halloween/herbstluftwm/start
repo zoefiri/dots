@@ -16,7 +16,6 @@ hc spawn pkill chargeindicator
 hc spawn pkill wallserver
 
 
-
 #autostart
 hc spawn xset b off
 hc spawn walc r

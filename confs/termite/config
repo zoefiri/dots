@@ -1,10 +1,10 @@
 [options]
-font = scientifica 11px
+font = azukifontBI 58px
 geometry = 900x700
 scrollback_lines = 2000
 
 [colors]
-color0 = #191726
+color0 = #310020
 color1 = #FF5C57
 color2 = #FFB536
 color3 = #F3F99D

@@ -37,7 +37,7 @@ datetime(){
 mem(){
    while true; do
       memuse=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 3)
-      printf "%%{c}%.0f \n" $(bc -l <<< "$memuse*((100.0)/$memtotal)")
+      printf "%%{c}%.0f\n" $(bc -l <<< "$memuse*((100.0)/$memtotal)")
       sleep 2
    done
 }

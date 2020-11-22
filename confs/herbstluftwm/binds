@@ -48,6 +48,13 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Return spawn alacritty
 hc keybind $Mod-Shift-Return spawn st
 
+#fix mouse
+hc keybind $Mod-t spawn mousefix
+
+#alacritty transparency
+hc keybind $Mod-semicolon spawn alactrans d
+hc keybind $Mod-apostrophe spawn alactrans i
+
 ############
 # wm binds #
 ############

@@ -65,3 +65,5 @@ hc set tree_style '╾│ ├└╼─┐'
 hc unlock
 hc detect_monitors
 
+sleep 3
+hc pad 0 15 15 75 15

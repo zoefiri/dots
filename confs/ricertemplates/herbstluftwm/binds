@@ -23,7 +23,7 @@ hc keybind $Mod-F10 spawn xbacklight -inc +10
 #rofi
 hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -columns 2 -width 10 -display-run ">"
 hc keybind $Mod-c spawn rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -location 0 -lines 5 -bw 0 -font "kakwafont 9"
-hc keybind $Mod-e spawn splatmoji emoticon
+hc keybind $Mod-e spawn /home/zoe/building/splatmoji/splatmoji copy
 
 #bind catching
 hc keybind $Mod-q echo "haha no."
@@ -47,6 +47,13 @@ hc keybind $Mod-Shift-r reload
 #spawn terminal
 hc keybind $Mod-Return spawn alacritty
 hc keybind $Mod-Shift-Return spawn st
+
+#fix mouse
+hc keybind $Mod-t spawn mousefix
+
+#alacritty transparency
+hc keybind $Mod-semicolon spawn alactrans d
+hc keybind $Mod-apostrophe spawn alactrans i
 
 ############
 # wm binds #

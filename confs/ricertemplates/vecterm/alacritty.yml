@@ -86,7 +86,6 @@ scrolling:
   # Specifying `0` will disable faux scrolling.
 
   # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -95,16 +94,15 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 8
 font:
-  size: 11
+  size: 7.5
   normal:
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Brass Mono
+    family: Hermit
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -115,7 +113,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Brass Mono
+    family: Hermit
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -126,7 +124,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Brass Mono
+    family: Hermit
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -136,15 +134,15 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 1
-    y: 5
+    x: -1
+    y: -4
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
   glyph_offset:
-    x: 1
-    y: 3
+    x: 0
+    y: -3
 
   # Thin stroke font rendering (macOS only)
   #
@@ -273,7 +271,7 @@ visual_bell:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 01.0
 
 # Mouse bindings
 #

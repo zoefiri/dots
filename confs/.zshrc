@@ -1,6 +1,6 @@
 ########################################################
 #                                                      #
-#  .zshrc by zoe firi                           — ▭ ✖  #
+#  .zshrc                                       — ▭ ✖  #
 #                                                      #
 ########################################################
 #                                                      #
@@ -16,7 +16,6 @@
 ########################################################
 
 
-
 ####################
 #            — ▭ ✖ #
 #  shell settings  #
@@ -28,6 +27,7 @@ SAVEHIST=666666
 setopt autocd
 zstyle :compinstall filename '/home/zoe/.zshrc'
 autoload -Uz compinit
+autoload -U deer
 compinit
 xset b off
 xset b 0 0 0
@@ -38,7 +38,7 @@ xset b 0 0 0
 #             — ▭ ✖ #
 #  enviroment vars  #
 #####################
-export FPATH=/usr/share/zsh/site-functions:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/home/zoe/.zplug/base/core:$FPATH
+export FPATH=/usr/share/zsh/site-functions:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/home/zoe/.zplug/base/core:/home/zoe/.fpath:$FPATH
 export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
 export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/PATHcustom:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin
 export GNUPGHOME=/home/zoe/.gnupg
@@ -56,18 +56,17 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^ ' autosuggest-toggle
 bindkey -v
+bindkey -M viins 'jj' vi-cmd-mode
 
 
 #############
 #     — ▭ ✖ #
 #  styling  #
 #############
-read vimbar < /home/zoe/.config/ricer/ricertemplates/colors/base1
-read vimbar2 < /home/zoe/.config/ricer/ricertemplates/colors/base2
-read vimbar3 < /home/zoe/.config/ricer/ricertemplates/colors/base3
-echo -ne "\033]4;60;#$vimbar\007"
-echo -ne "\033]4;61;#$vimbar2\007"
-echo -ne "\033]4;242;#$vimbar2\007"
+for i in {1..7}; do
+   echo -ne "\033]4;$((59+i));#$(<~/.config/ricer/ricertemplates/colors/base$i)\007"
+done
+echo -ne "\033]4;242;#$(<~/.config/ricer/ricertemplates/colors/base2)\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
     pal -r
@@ -81,17 +80,19 @@ zstyle ':completion:*' menu select
 #utils
    alias aj='autojump'
    alias nd='nv /dev/null'
-   alias perform='sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
    alias psync='adb push ~/.password-store /storage/emulated/0/.pass'
-   alias psave='sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias perform='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias psave='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
    alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
    alias xephdisp='Xephyr -br -ac -noreset -screen 1920x1080 :9'
+   alias fze='nvim $(fzf)'
+   alias fzn='cd $(fzf)'
 #toys
    alias clitype='node ~/.local/share/clitype/app.js'
 #fixes
    alias ranger='ranger ; pal -r'
    alias cava='cava && pal -r'
-   alias tmux='TERM=screen-256color tmux'
+   alias tmux='TERM=screen-256color-bce tmux'
 #dumb stuff
    alias fucking='sudo'
    alias pee='yes pee'
@@ -133,7 +134,7 @@ zstyle ':completion:*' menu select
 setopt promptsubst
 
 # •✖• prompt #
-#PS1=$'%{\e[1;44;30m%}·%{\e[1;30m%}✖%{\e[1;30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
+#PS1=$'%{\e[44;30m%}·%{\e[30m%}✖%{\e[30m%}.%{\e[34;42m%}▓▒░%{\e[40;32m%} %{\e[0m%} '
 
 #  ✖  »»> prompt  #
 #PS1=$'%{\e[30;44m%} ✖ %{\e[0;34m%} »»%{\e[32m%}>%{\e[0m%} '
@@ -153,7 +154,7 @@ setopt promptsubst
 # PS1=$'%{\e[32m%}>%{\e[1m%}%{\e[34m%}_ %{\e[0m%}'
 
 # r o u n d  >
-PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%}>%{\e[0;32m%}%{\e[0m%} '
+PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%} %{\e[0;32m%}%{\e[0m%} '
 
 
 ##############################
@@ -162,6 +163,14 @@ PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%}>%{\e[0;32m%}%{\e[0m%} '
 ##############################
 if [ -z $RCINITED ]
 then
+
+#  plugins  #
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
+source ~/.zsh/z/z.sh
+source ~/.zsh/fz/fz.plugin.zsh
+source ~/.zsh/zsh-sudo/sudo.plugin.zsh
+source ~/.zsh/file_icons
 
 #  fff  #
 f(){ fff "$@"; cd "$(< ~/.fff_d)"; }
@@ -180,20 +189,16 @@ mup() {
 }
 
 # nvim tmux #
-nv() {
-   [ -z "$TMUX" ] && TERM=screen-256color tmux new-session "TERM=screen-256color nvim $1" 1>/dev/null
-   [ ! -z "$TMUX" ] && [ -z $1 ] && TERM=screen-256color nvim
-   [ ! -z "$TMUX" ] && TERM=screen-256color nvim "$1"
-}
-
-# cdback #
-cd() {
-    realpath "$1" > ~/.lastdir
-    builtin cd "$1"
-}
-cdback() builtin cd $(cat ~/.lastdir)
-zle -N cdback
-bindkey '^A' cdback
+#nv() {
+#   extension=${1##*.}
+#   if [[ -z "$TMUX" ]]; then
+#      TERM=screen-256color tmux new-session "TERM=screen-256color nvim $1;" 1>/dev/null
+#   elif [[ ! -z "$TMUX"  &&  -z $1 ]]; then
+#      TERM=screen-256color nvim
+#   elif [[ ! -z "$TMUX" ]]; then
+#      TERM=screen-256color nvim "$1"
+#   fi
+#}
 
 #  the fuck?  #
 eval $(thefuck --alias)
@@ -213,12 +218,9 @@ upn(){
     curl -X POST https://upload.nixne.st/image -H "Upload-Key: da52089b4eb6093bca7de39c1e7d0866" -F "uploadFile=@$1"
 }
 
-#  plugins  #
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-system-clipboard/zsh-system-clipboard.zsh
-source ~/.zsh/z/z.sh
-source ~/.zsh/fz/fz.plugin.zsh
-source ~/.zsh/zsh-sudo/sudo.plugin.zsh
+#  deer  #
+zle -N deer
+bindkey '^N' deer
 
 
 #####################
@@ -250,6 +252,4 @@ RCINITED=1
 #  start tmux  #
 ################
 #[ -z $TMUX ] && [ ! -z $DISPLAY ] && tmux
-
-
 
