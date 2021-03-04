@@ -23,7 +23,7 @@ hc keybind $Mod-F10 spawn xbacklight -inc +10
 #rofi
 hc keybind $Mod-d spawn rofi -show run -location 0 -lines 5 -bw 0 -columns 2 -width 10 -display-run ">"
 hc keybind $Mod-c spawn rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' -location 0 -lines 5 -bw 0 -font "kakwafont 9"
-hc keybind $Mod-e spawn /home/zoe/building/splatmoji/splatmoji copy
+hc keybind $Mod-e spawn /home/zoe/PATHcustom/emote
 
 #bind catching
 hc keybind $Mod-q echo "haha no."
@@ -133,6 +133,7 @@ hc keybind $Mod-a use settings
 # window states #
 #################
 hc keybind $Mod-s floating toggle
+hc keybind $Mod-Shift-s attr clients.focus.floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-p pseudotile toggle
 # The following cycles through the available layouts within a frame, but skips

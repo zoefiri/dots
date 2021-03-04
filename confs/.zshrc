@@ -13,6 +13,8 @@
 #   ###########       ,#####     ####  '###   '        #
 #    #####          #######'     '##'    ##  ######### #
 #                                                      #
+#                                         t. zoefiri   #
+#                                                      #
 ########################################################
 
 
@@ -21,8 +23,8 @@
 #  shell settings  #
 ####################
 HISTFILE=~/.histfile
-HISTSIZE=666666
-SAVEHIST=666666
+HISTSIZE=666
+SAVEHIST=666
 [ "$TERM" = "linux" ] && setterm -blength 0
 setopt autocd
 zstyle :compinstall filename '/home/zoe/.zshrc'
@@ -69,7 +71,7 @@ done
 echo -ne "\033]4;242;#$(<~/.config/ricer/ricertemplates/colors/base2)\007"
 zstyle ':completion:*' menu select
     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
-    pal -r
+    cat ~/dots/confs/palout
 
 
 
@@ -87,6 +89,7 @@ zstyle ':completion:*' menu select
    alias xephdisp='Xephyr -br -ac -noreset -screen 1920x1080 :9'
    alias fze='nvim $(fzf)'
    alias fzn='cd $(fzf)'
+   alias wcam='mpv --profile=low-latency -vf-add=hflip  av://v4l2:/dev/video0 '
 #toys
    alias clitype='node ~/.local/share/clitype/app.js'
 #fixes
@@ -186,6 +189,13 @@ ch(){
 mup() {
    mupdf $1 & disown
    exit
+}
+
+#  xeph  #
+xeph(){
+   Xephyr -br -ac -noreset -screen 1920x1080 :4 &
+   sleep 2 
+   DISPLAY=:4 dwm
 }
 
 # nvim tmux #

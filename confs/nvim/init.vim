@@ -54,6 +54,8 @@ call plug#begin()
       Plug 'Shougo/deol.nvim'
       Plug 'arecarn/vim-crunch'
       Plug 'metakirby5/codi.vim'
+      Plug 'svermeulen/vim-macrobatics'
+      Plug 'tpope/vim-repeat'
    "aesthetic
       Plug 'dylanaraps/wal.vim'
       Plug 'https://github.com/lilydjwg/colorizer.git'
@@ -182,6 +184,7 @@ call plug#end() "}}}
     let g:mapleader = " "
     "plugin toggles
        nnoremap <silent> <C-e> :NERDTreeToggle<CR>
+       vmap <silent> <C-e> :NERDTreeToggle<CR>
        nnoremap <silent> Q :Goyo<CR>
        nnoremap <silent> U :MundoToggle<CR>
        nnoremap <silent> <C-i> :IndentLinesToggle<CR>
@@ -211,6 +214,17 @@ call plug#end() "}}}
       imap jj <Esc>
    "fzf
       nnoremap <leader>f :Files<CR>
+   "macrobatics
+      nmap <nowait> q <plug>(Mac_Play)
+      nmap <nowait> gq <plug>(Mac_RecordNew)
+      nmap <leader>mn <plug>(Mac_NameCurrentMacro)
+      nmap <leader>me <plug>(Mac_SearchForNamedMacroAndPlay)
+      nmap <leader>ms <plug>(Mac_SearchForNamedMacroAndSelect)
+      vmap <nowait> q <plug>(Mac_Play)
+      vmap <nowait> gq <plug>(Mac_RecordNew)
+      vmap <leader>mn <plug>(Mac_NameCurrentMacro)
+      vmap <leader>me <plug>(Mac_SearchForNamedMacroAndPlay)
+      vmap <leader>ms <plug>(Mac_SearchForNamedMacroAndSelect)
     "}}}
 
 "langservers {{{
@@ -222,6 +236,16 @@ call plug#end() "}}}
            \ 'allowlist': ['java'],
            \ })
    endif
+   let g:lsp_settings = {
+            \   'pyls': {
+            \     'workspace_config': {
+            \       'pyls': {
+            \         'configurationSources': ['pycodestyle'],
+            \         'plugins': {'pydocstyle': {'enabled': v:false, 'ignore':['E22']}}
+            \       }
+            \     }
+            \   },
+            \}
 "}}}
 
 

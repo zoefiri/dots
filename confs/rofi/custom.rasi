@@ -28,7 +28,10 @@
     border-color: #9aedfe;
     spacing: 2;
     lines: 10;
-    columns: 1;
+}
+
+#element-icon {
+   size: 4.65ch;
 }
 
 #window {
