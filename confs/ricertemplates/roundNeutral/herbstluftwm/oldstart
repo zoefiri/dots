@@ -61,9 +61,9 @@ hc spawn pkill chargeindicator
 #autostart
 hc spawn xset b off
 hc spawn walc r
-hc spawn /home/zoe/PATHcustom/plugitinfucker
-hc spawn /home/zoe/PATHcustom/chargeindicator
-hc spawn /home/zoe/PATHcustom/keebdisable
+hc spawn /home/zoe/bin/plugitinfucker
+hc spawn /home/zoe/bin/chargeindicator
+hc spawn /home/zoe/bin/keebdisable
 #hc spawn polybar cozy
 #hc spawn polybar custom2
 hc spawn polybar round
@@ -84,8 +84,8 @@ Mod=Mod4
 #custom binds
 	
 	#volume
-	hc keybind $Mod-F8 spawn /home/zoe/PATHcustom/DACvol 1
-	hc keybind $Mod-F7 spawn /home/zoe/PATHcustom/DACvol 0
+	hc keybind $Mod-F8 spawn /home/zoe/bin/DACvol 1
+	hc keybind $Mod-F7 spawn /home/zoe/bin/DACvol 0
 	
 	#brightness
 	hc keybind $Mod-F9 spawn xbacklight -inc -10
@@ -108,11 +108,11 @@ Mod=Mod4
 	hc keybind $Mod-w spawn flameshot gui
 
 	#lock up
-	hc keybind Ctrl-Alt-l spawn ~/PATHcustom/locker
+	hc keybind Ctrl-Alt-l spawn ~/bin/locker
 
 	#close window
 	hc keybind $Mod-Shift-q close
-	hc keybind $Mod-q spawn /home/zoe/PATHcustom/herbkiller
+	hc keybind $Mod-q spawn /home/zoe/bin/herbkiller
 	hc keybind $Mod-Shift-r reload
 
 	#spawn terminal
@@ -228,10 +228,10 @@ Mod=Mod4
 	hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # resizing windows
-	hc keybind $Mod-Alt-h spawn ~/PATHcustom/herbsize -x
-	hc keybind $Mod-Alt-j spawn ~/PATHcustom/herbsize -y
-	hc keybind $Mod-Alt-k spawn ~/PATHcustom/herbsize +y
-	hc keybind $Mod-Alt-l spawn ~/PATHcustom/herbsize +x
+	hc keybind $Mod-Alt-h spawn ~/bin/herbsize -x
+	hc keybind $Mod-Alt-j spawn ~/bin/herbsize -y
+	hc keybind $Mod-Alt-k spawn ~/bin/herbsize +y
+	hc keybind $Mod-Alt-l spawn ~/bin/herbsize +x
 
 #+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+#+ workspaces	|
 #                                                   V
@@ -247,7 +247,7 @@ Mod=Mod4
 	    key="${tag_keys[$i]}"
 	    if ! [ -z "$key" ] ; then
 	        #hc keybind "$Mod-$key" use_index "$i"
-            hc keybind "$Mod-$key" spawn /home/zoe/PATHcustom/herbswitcher "$i"
+            hc keybind "$Mod-$key" spawn /home/zoe/bin/herbswitcher "$i"
 	        hc keybind "$Mod-Shift-$key" move_index "$i"
    	 fi
 	done

@@ -49,6 +49,6 @@ pkill greenclip
 polybar custom &
 walc r &
 greenclip daemon &
-/home/zoe/PATHcustom/plugitinfucker &
-/home/zoe/PATHcustom/keebdisable &
+/home/zoe/bin/plugitinfucker &
+/home/zoe/bin/keebdisable &
 xset b off &

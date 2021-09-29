@@ -24,7 +24,7 @@ do
 
 	if [ $BATLVL -lt 4 ] && [ $STATUS = "Discharging" ]
 	then
-		/home/zoe/PATHcustom/locker && systemctl suspend
+		/home/zoe/bin/locker && systemctl suspend
 		sleep 30
 	fi
 

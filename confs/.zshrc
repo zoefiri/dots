@@ -42,10 +42,11 @@ xset b 0 0 0
 #####################
 export FPATH=/usr/share/zsh/site-functions:/usr/share/zsh/functions/Completion:/usr/share/zsh/functions/Calendar:/usr/share/zsh/functions/Chpwd:/usr/share/zsh/functions/Exceptions:/usr/share/zsh/functions/Math:/usr/share/zsh/functions/MIME:/usr/share/zsh/functions/Misc:/usr/share/zsh/functions/Newuser:/usr/share/zsh/functions/Prompts:/usr/share/zsh/functions/TCP:/usr/share/zsh/functions/VCS_Info:/usr/share/zsh/functions/Zftp:/usr/share/zsh/functions/Zle:/usr/share/zsh/functions/Completion/Base:/usr/share/zsh/functions/Completion/Linux:/usr/share/zsh/functions/Completion/Unix:/usr/share/zsh/functions/Completion/X:/usr/share/zsh/functions/Completion/Zsh:/home/zoe/.zplug/base/core:/home/zoe/.fpath:$FPATH
 export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
-export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/PATHcustom:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin
+export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/bin:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin:/home/zoe/.cargo/bin:/home/zoe/bin
 export GNUPGHOME=/home/zoe/.gnupg
 export WINEPREFIX=/home/zoe/.wine
 export CLASSPATH="$CLASSPATH:/usr/share/java/*"
+#export PULSE_SERVER=/home/zoe/pulse/native
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
 
@@ -65,13 +66,16 @@ bindkey -M viins 'jj' vi-cmd-mode
 #     — ▭ ✖ #
 #  styling  #
 #############
-for i in {1..7}; do
-   echo -ne "\033]4;$((59+i));#$(<~/.config/ricer/ricertemplates/colors/base$i)\007"
-done
-echo -ne "\033]4;242;#$(<~/.config/ricer/ricertemplates/colors/base2)\007"
+if [ -z "$TMUX" ]
+then
+   for i in {1..7}; do
+      echo -ne "\033]4;$((59+i));#$(<~/.config/ricer/ricertemplates/colors/base$i)\007"
+   done
+   echo -ne "\033]4;242;#$(<~/.config/ricer/ricertemplates/colors/base2)\007"
+   #cat ~/dots/confs/palout
+fi
 zstyle ':completion:*' menu select
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
-    cat ~/dots/confs/palout
+ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
 
 
 
@@ -90,6 +94,7 @@ zstyle ':completion:*' menu select
    alias fze='nvim $(fzf)'
    alias fzn='cd $(fzf)'
    alias wcam='mpv --profile=low-latency -vf-add=hflip  av://v4l2:/dev/video0 '
+   alias wiki='nvim /tmp/vimwiki -c ":VimwikiIndex"'
 #toys
    alias clitype='node ~/.local/share/clitype/app.js'
 #fixes
@@ -104,7 +109,7 @@ zstyle ':completion:*' menu select
    alias e='fzf --color info:4,prompt:3,spinner:3,pointer:2,marker:1 | xargs -r $EDITOR'
    alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
    alias wic='wicd-curses'
-   alias hdmiout='xrandr --output HDMI1 --off ; herbstclient detect_monitors'
+   alias hdmiout='xrandr --output HDMI-A-0 --off ; herbstclient detect_monitors'
    alias rbook='rustup docs --book'
    alias ~='cd /home/zoe'
    alias /='cd /'
@@ -112,6 +117,10 @@ zstyle ':completion:*' menu select
    alias slepp='locker && systemctl suspend'
    alias ncm='[ -z "$TMUX" ] && tmux new-session "ncmpcpp 2>/dev/null" 1>/dev/null || ncmpcpp 2>/dev/null'
    alias ranger='[ -z "$TMUX" ] && tmux new-session "ranger 2>/dev/null" 1>/dev/null || ranger 2>/dev/null'
+   alias gitgraph='git log --all --decorate --graph --oneline'
+   alias gitlog='git log --all --decorate --graph'
+   alias spotfix='pkill -9 spotify; rm -r ~/.cache/spotify'
+   alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 #replacements
    alias ls='exa --icons'
 #xbps
@@ -231,6 +240,12 @@ upn(){
 #  deer  #
 zle -N deer
 bindkey '^N' deer
+
+#  micloop  #
+micloop () { 
+   [ "$1" = 1 ] && pactl load-module module-loopback latency_msec=150
+   [ "$1" = 0 ] && pactl unload-module module-loopback
+}
 
 
 #####################

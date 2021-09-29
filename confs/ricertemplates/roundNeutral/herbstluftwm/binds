@@ -41,7 +41,7 @@ hc keybind Ctrl-Alt-l spawn bash /bin/glock
 
 #close window
 hc keybind $Mod-Shift-q close
-hc keybind $Mod-q spawn /home/zoe/PATHcustom/herbkiller
+hc keybind $Mod-q spawn /home/zoe/bin/herbkiller
 hc keybind $Mod-Shift-r reload
 
 #spawn terminal
@@ -103,10 +103,10 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # resizing windows
-hc keybind $Mod-Alt-h spawn ~/PATHcustom/herbsize -x
-hc keybind $Mod-Alt-j spawn ~/PATHcustom/herbsize -y
-hc keybind $Mod-Alt-k spawn ~/PATHcustom/herbsize +y
-hc keybind $Mod-Alt-l spawn ~/PATHcustom/herbsize +x
+hc keybind $Mod-Alt-h spawn ~/bin/herbsize -x
+hc keybind $Mod-Alt-j spawn ~/bin/herbsize -y
+hc keybind $Mod-Alt-k spawn ~/bin/herbsize +y
+hc keybind $Mod-Alt-l spawn ~/bin/herbsize +x
 
 ##############
 # workspaces #

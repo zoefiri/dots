@@ -19,9 +19,9 @@ hc spawn pkill wallserver
 #autostart
 hc spawn xset b off
 hc spawn walc r
-hc spawn /home/zoe/PATHcustom/plugitinfucker
-hc spawn /home/zoe/PATHcustom/chargeindicator
-hc spawn /home/zoe/PATHcustom/keebdisable
+hc spawn /home/zoe/bin/plugitinfucker
+hc spawn /home/zoe/bin/chargeindicator
+#hc spawn /home/zoe/bin/keebdisable
 hc spawn /home/zoe/.config/lemons/lemon
 hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Typing Enabled" 0
 hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
