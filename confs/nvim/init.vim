@@ -103,6 +103,7 @@ Plug 'vim-scripts/json-formatter.vim'                                 "#
 Plug 'neovim/nvim-lspconfig'                                          "#
 Plug 'kabouzeid/nvim-lspinstall'                                      "#
 Plug 'glepnir/lspsaga.nvim'                                           "#
+Plug 'nvim-lua/completion-nvim'                                       "#
 "              /#######################################################\
 ",###############/                                                    '# 
 "#                deps                                                "#
@@ -153,6 +154,18 @@ call plug#end() "}}}
 "codi
    let g:codi#width = 100
    let g:code#aliases = {'.wiki':'python'}
+
+"nvim builtin LSP autocomplete
+   " Use <Tab> and <S-Tab> to navigate through popup menu
+   inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+   " Set completeopt to have a better completion experience
+   set completeopt=menuone,noinsert,noselect
+
+   " Avoid showing message extra message when using completion
+   set shortmess+=c
+
 "}}}
 
 " ,##############,
@@ -187,22 +200,11 @@ local on_attach = function(client, bufnr)
       -- buf_set_keymap('n', 'zN', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
       -- buf_set_keymap('n', 'zq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
       buf_set_keymap('n', 'zF', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
-      nnoremap <silent> zf :Lspsaga lsp_finder<CR>
-      nnoremap <silent> za :Lspsaga code_action<CR>
-      nnoremap <silent> zl :Lspsaga hover_doc<CR>
-      nnoremap <silent> zL :Lspsaga signature_help<CR>
-      nnoremap <silent> zr :Lspsaga rename<CR>
-      nnoremap <silent> zi :Lspsaga show_line_diagnostics<CR>
-      nnoremap <silent> zt :Lspsaga open_floatterm<CR>
-      nnoremap <silent> zT :Lspsaga close_floatterm<CR>
-      nnoremap <silent> zd :Lspsaga preivew_definition<CR>
    end
 
 -- setup non-lspinstall servs
 local nvim_lsp = require('lspconfig')
 local servers = { 'clangd' }
-require'lspconfig'.clangd.setup{}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -216,7 +218,7 @@ end
 local servers = require'lspinstall'.installed_servers()
 for k, server in pairs(servers) do
    require'lspconfig'[server].setup{
-      on_attach = on_attach,
+      on_attach = require'completion'.on_attach,
       flags = {
          debounce_text_changes = 150,
       }

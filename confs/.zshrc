@@ -45,6 +45,7 @@ export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
 export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/bin:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin:/home/zoe/.cargo/bin:/home/zoe/bin
 export GNUPGHOME=/home/zoe/.gnupg
 export WINEPREFIX=/home/zoe/.wine
+export WINEARCH=win32
 export CLASSPATH="$CLASSPATH:/usr/share/java/*"
 #export PULSE_SERVER=/home/zoe/pulse/native
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
@@ -95,6 +96,7 @@ zstyle ':completion:*' menu select
    alias fzn='cd $(fzf)'
    alias wcam='mpv --profile=low-latency -vf-add=hflip  av://v4l2:/dev/video0 '
    alias wiki='nvim /tmp/vimwiki -c ":VimwikiIndex"'
+   alias sudo='doas'
 #toys
    alias clitype='node ~/.local/share/clitype/app.js'
 #fixes
