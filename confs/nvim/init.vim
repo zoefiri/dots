@@ -28,6 +28,7 @@
    set nocompatible
    set ts=3
    set sw=3 et 
+   set completeopt=menu,menuone,noselect
    filetype plugin on
    syntax on
 "}}}
@@ -89,7 +90,8 @@ Plug 'autozimu/LanguageClient-neovim', {
          \ }                                                          "#
 Plug 'frazrepo/vim-rainbow'                                           "#
 Plug 'neoclide/coc.nvim'                                              "#
-Plug 'sheerun/vim-polyglot'                                           "#
+Plug 'nvim-treesitter/nvim-treesitter'                                "#
+"Plug 'sheerun/vim-polyglot'                                          "#
 "Plug 'w0rp/ale'                                                      "#
 "Plug 'prabirshrestha/vim-lsp'                                        "#
 "              /#######################################################\
@@ -102,12 +104,17 @@ Plug 'vim-scripts/json-formatter.vim'                                 "#
 "LSPs                                                                 "# 
 Plug 'neovim/nvim-lspconfig'                                          "#
 Plug 'kabouzeid/nvim-lspinstall'                                      "#
+Plug 'williamboman/nvim-lsp-installer'                                "#
 Plug 'glepnir/lspsaga.nvim'                                           "#
-Plug 'nvim-lua/completion-nvim'                                       "#
+Plug 'hrsh7th/cmp-nvim-lsp'                                           "#
+Plug 'hrsh7th/cmp-buffer'                                             "#
+Plug 'hrsh7th/cmp-path'                                               "#
+Plug 'hrsh7th/cmp-cmdline'                                            "#
+Plug 'hrsh7th/nvim-cmp'                                               "#
 "              /#######################################################\
 ",###############/                                                    '# 
 "#                deps                                                "#
-"#                                                                    ,#   
+"#                                                                    ,##   
 "'#####################################################################/
 Plug 'huawenyu/new.vim'                                               "#
 Plug 'LucHermitte/lh-vim-lib'                                         "#
@@ -172,7 +179,34 @@ call plug#end() "}}}
 " # langservers '#  {{{
 " '##############'
 lua << EOF
-require'lspinstall'.setup{}
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+local lsp_installer = require("nvim-lsp-installer")
+
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
+end)
 
 local on_attach = function(client, bufnr)
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -214,17 +248,6 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- setup lspinstall servers
-local servers = require'lspinstall'.installed_servers()
-for k, server in pairs(servers) do
-   require'lspconfig'[server].setup{
-      on_attach = require'completion'.on_attach,
-      flags = {
-         debounce_text_changes = 150,
-      }
-   }
-end
-
 local saga = require 'lspsaga'
 saga.init_lsp_saga {
    error_sign = '',
@@ -234,6 +257,63 @@ saga.init_lsp_saga {
 }
 
 saga.init_lsp_saga()
+
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    mapping = {
+      ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- If you want to remove the default `<C-y>` mapping, You can specify `cmp.config.disable` value.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/`.
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':'.
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- require('lspconfig')[%YOUR_LSP_SERVER%].setup {
+  --  capabilities = capabilities
+  --}
+
 EOF
 "}}}
 
