@@ -112,6 +112,7 @@ zstyle ':completion:*' menu select
    alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
    alias wic='wicd-curses'
    alias hdmiout='xrandr --output HDMI-A-0 --off ; herbstclient detect_monitors'
+   alias hdmi_in='xrandr --output HDMI-A-0 --right-of eDP --mode 1920x1080'
    alias rbook='rustup docs --book'
    alias ~='cd /home/zoe'
    alias /='cd /'
@@ -168,8 +169,10 @@ setopt promptsubst
 # PS1=$'%{\e[32m%}>%{\e[1m%}%{\e[34m%}_ %{\e[0m%}'
 
 # r o u n d  >
-PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%} %{\e[0;32m%}%{\e[0m%} '
+# PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%} %{\e[0;32m%}%{\e[0m%} '
 
+# angley
+PS1=$'\n%{\e[31m%}%{\e[40m%}%{\e[1m%} %{\e[30m%}%{\e[41m%}$USER >> %{\e[40m%}%{\e[31m%} %{\e[32m%} %{\e[31m%}%{\e[40m%} %{\e[30m%}%{\e[41m%}   %{\e[40m%}%{\e[31m%}%{\e[0m%} '
 
 ##############################
 #                      — ▭ ✖ #

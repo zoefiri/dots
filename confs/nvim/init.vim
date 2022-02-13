@@ -28,7 +28,7 @@
    set nocompatible
    set ts=3
    set sw=3 et 
-   set completeopt=menu,menuone,noselect
+   "set completeopt=menu,menuone,noselect
    filetype plugin on
    syntax on
 "}}}
@@ -45,12 +45,13 @@ call plug#begin()
 "'#####################################################################/
       Plug 'brooth/far.vim'                                  "   | |  "#  
       Plug 'simnalamburt/vim-mundo'                          "   | |  "#
-      Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }"   | |  "#
+      Plug 'ms-jpq/chadtree'                                 "   | |  "#
       Plug 'Shougo/vimproc.vim', {'do' : 'make'}             "   ⚡|  "#
       Plug 'terryma/vim-multiple-cursors'                    " ⚡  |  "#
       Plug 'tpope/vim-eunuch'                                "   ⚡ ⚡"#
       Plug 'tpope/vim-fugitive'                              "    ⚡  "#
       Plug 'tpope/vim-surround'                              "        "#
+      Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }         "#
       Plug 'vim-scripts/math'                                         "#
       Plug 'junegunn/gv.vim'                                          "#
       Plug 'Yggdroot/indentLine'                                      "#
@@ -67,6 +68,7 @@ call plug#begin()
       Plug 'svermeulen/vim-macrobatics'                               "#
       Plug 'tpope/vim-repeat'                                         "#
       Plug 'zsugabubus/vim-paperplane'                                "#
+      Plug 'Shougo/deorise.nvim', { 'do': ':UpdateRemotePlugins' }    "#
 "#             /#######################################################\
 ",###############/                                                    '# 
 "#                aesthetic 🎨                                        "#
@@ -78,7 +80,7 @@ call plug#begin()
    Plug 'vim-airline/vim-airline'                                     "#
    Plug 'mhinz/vim-startify'                                          "#
    Plug 'gerw/vim-HiLinkTrace'                                        "#
-
+   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'                     "#
 "              /#######################################################\
 ",###############/                                                    '# 
 "#                programming ⌨️                                       "#
@@ -130,6 +132,47 @@ call plug#end() "}}}
 " ,#######################,
 " # plugin settings 🔌⚙️  '#  {{{
 " '#######################'
+" wilder
+"  call wilder#setup({
+"        \ 'modes': [':', '/', '?'],
+"        \ 'next_key': '<Tab>',
+"        \ 'previous_key': '<S-Tab>',
+"        \ 'accept_key': '<Down>',
+"        \ 'reject_key': '<Up>',
+"        \ })
+
+"  call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+"        \ 'highlighter': wilder#basic_highlighter(),
+"        \ 'left': [
+"        \   ' ', wilder#popupmenu_devicons(),
+"        \ ],
+"        \ 'right': [
+"        \   ' ', wilder#popupmenu_scrollbar(),
+"        \ ],
+"        \ 'border': 'rounded'
+"        \ })))
+"  " For Neovim or Vim with yarp
+"  " For wild#cmdline_pipeline():
+"  "   'language'   : set to 'python' to use python
+"  "   'fuzzy'      : set fuzzy searching
+"  " For wild#python_search_pipeline():
+"  "   'pattern'    : can be set to wilder#python_fuzzy_delimiter_pattern() for stricter fuzzy matching
+"  "   'sorter'     : omit to get results in the order they appear in the buffer
+"  "   'engine'     : can be set to 're2' for performance, requires pyre2 to be installed
+"  call wilder#set_option('pipeline', [
+"        \   wilder#branch(
+"        \     wilder#cmdline_pipeline({
+"        \       'language': 'python',
+"        \       'fuzzy': 1,
+"        \     }),
+"        \     wilder#python_search_pipeline({
+"        \       'pattern': wilder#python_fuzzy_pattern(),
+"        \       'sorter': wilder#python_difflib_sorter(),
+"        \       'engine': 're',
+"        \     }),
+"        \   ),
+"        \ ])
+
 "NERDTree
    autocmd StdinReadPre * let s:std_in=1
    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
@@ -168,7 +211,7 @@ call plug#end() "}}}
    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
    " Set completeopt to have a better completion experience
-   set completeopt=menuone,noinsert,noselect
+   "set completeopt=menuone,noinsert,noselect
 
    " Avoid showing message extra message when using completion
    set shortmess+=c
@@ -323,8 +366,8 @@ EOF
 let g:mapleader = " "
 
 "plugin toggles
-   nnoremap <silent> <C-e> :NERDTreeToggle<CR>
-   vmap <silent> <C-e> :NERDTreeToggle<CR>
+   nnoremap <silent> <C-e> :CHADopen<CR>
+   vmap <silent> <C-e> :CHADopen<CR>
    nnoremap <silent> Q :Goyo<CR>
    nnoremap <silent> U :MundoToggle<CR>
    nnoremap <silent> <C-i> :IndentLinesToggle<CR>
@@ -399,6 +442,39 @@ let g:mapleader = " "
 " ,##############,
 " #' theming 🎨 '#{{{
 " '##############'
+"NERDTree
+augroup nerdtree
+  autocmd!
+  autocmd FileType nerdtree syntax clear NERDTreeFlags
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+  autocmd FileType nerdtree setlocal conceallevel=3
+  autocmd FileType nerdtree setlocal concealcursor=nvic
+  autocmd ColorScheme * hi NERDTreeDir ctermbg=0 ctermfg=61 cterm=nocombine
+  autocmd ColorScheme * hi NERDTreeDirSlash ctermfg=0 cterm=nocombine
+augroup END
+let NERDTreeQuitOnOpen = 0
+let NERDTreeShowHidden=1
+let NERDChristmasTree=1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize = 25
+let g:NERDTreeDirArrowExpandable = '▷'
+let g:NERDTreeDirArrowCollapsible = '▼'
+let NERDTreeAutoCenter=1
+let g:NERDTreeIndicatorMapCustom = {
+        \ "modified"  : "✹",
+        \ "staged"    : "✚",
+        \ "untracked" : "✭",
+        \ "renamed"   : "➜",
+        \ "unmerged"  : "═",
+        \ "deleted"   : "✖",
+        \ "dirty"     : "✗",
+        \ "clean"     : "✔︎",
+        \ 'ignored'   : '☒',
+        \ "unknown"   : "?"
+        \ }
+
+
 "indent guides
 "let g:indentLine_setColors = 0
    let g:indentLine_char = '│'
@@ -411,10 +487,12 @@ let g:mapleader = " "
 
 "line nums
    set number
-   hi LineNr ctermfg=61
+   hi LineNr ctermfg=63
+   hi Folded ctermbg=64 
 
 "split stuff
-   hi VertSplit ctermfg=12 ctermbg=12
+   hi VertSplit ctermfg=0 ctermbg=0
+   hi Visual ctermbg=63
    set fillchars+=vert:\ 
 
 "hide end of buffer ~
@@ -448,17 +526,17 @@ let g:mapleader = " "
    let g:ale_linters = {'rust': ['rls']}
 
 "actually dunno but it fixes something(?)
-   augroup my-colors
-      autocmd!
-      autocmd ColorScheme * hi IndentGuidesEven ctermbg=2
-      autocmd ColorScheme * hi LineNr ctermfg=60
-      autocmd ColorScheme * hi VertSplit ctermfg=12 ctermbg=12
-      autocmd ColorScheme * hi EndOfBuffer ctermfg=0
-   augroup END 
+augroup my-colors
+   autocmd!
+   autocmd ColorScheme * hi IndentGuidesEven ctermbg=2
+   autocmd ColorScheme * hi LineNr ctermfg=60
+   autocmd ColorScheme * hi VertSplit ctermfg=12 ctermbg=12
+   autocmd ColorScheme * hi EndOfBuffer ctermfg=0
+augroup END 
 
 "LSP
-   hi Pmenu ctermbg=61 ctermfg=4
-   hi PmenuSel ctermbg=60 ctermfg=3
+   hi Pmenu ctermbg=63 ctermfg=62
+   hi PmenuSel ctermbg=62 ctermfg=3
    hi LspDiagnosticsDefaultError ctermbg=0 ctermfg=1 
    hi LspDiagnosticsDefaultWarning ctermbg=0 ctermfg=3
    hi DiagnosticInformation ctermbg=0 ctermfg=3
@@ -473,16 +551,41 @@ let g:mapleader = " "
 "powerline
    let g:airline#extensions#tabline#enabled = 1
    let g:airline#extensions#tabline#left_sep = ''
-   let g:airline#extensions#tabline#left_alt_sep = ' '
+   let g:airline#extensions#tabline#left_alt_sep = '  '
    let g:airline#extensions#tabline#formatter = 'unique_tail'
    let g:airline#extensions#tabline#show_tab_count = 0
    let g:airline#extensions#tabline#show_tab_type = 0
    let g:airline#extensions#tabline#show_close_button = 0
    let g:airline#extensions#tabline#tab_nr_type = 0 " # of splits (default)
+   let g:airline_theme='zoe'
 "}}}
+"
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  redir! >>/tmp/syns
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  redir END
+endfunc
+nnoremap <leader>ma :call timer_start(200, { tid -> execute('call SynStack()')})<CR>
 
-
-
+" Customize fzf colors to match your color scheme
+hi FzfBorder ctermbg=0 ctermfg=61
+let g:fzf_colors =
+\ { 'fg': ['fg', 'Normal'],
+\ 'bg': ['bg', 'Normal'],
+\ 'hl': ['fg', 'Comment'],
+\ 'fg+': ['fg', 'CursorLine', 'Pmenu', 'Normal'],
+\ 'bg+': ['bg', 'CursorLine', 'Pmenu'],
+\ 'hl+': ['fg', 'FoldColumn'],
+\ 'info': ['fg', 'FoldColumn'],
+\ 'border': ['fg', 'FzfBorder'],
+\ 'prompt': ['fg', 'MsgArea'],
+\ 'pointer': ['fg', 'FoldColumn'],
+\ 'marker': ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header': ['fg', 'Comment'] }
 
 
 call system("printf \"" . expand('%:p') . "\\n\" > /tmp/nvim_sessions/" . getpid())

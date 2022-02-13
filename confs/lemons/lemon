@@ -92,7 +92,7 @@ read lblue < /home/zoe/.config/ricer/ricertemplates/colors/base12
 read blue < /home/zoe/.config/ricer/ricertemplates/colors/base13
 read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
 read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
-read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base1
+read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base4
 font="Aerolite Bold:size=14:style=Medium"
 icons1="Font Awesome 5 Free Solid:size=9"
 icons2="Symbols Nerd Font:size=12"
@@ -113,7 +113,7 @@ sleep .1
 echo | lemonbar -d -B "#$background" -g 100x20+0+1030 -p &
 sleep .3
 echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1022 -F "#$background2" &
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 155x40+308+1040 -F "#$background2" &
+echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 155x40+307+1040 -F "#$background2" &
 echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 55x40+1784+1040 -F "#$background2" &
 sleep .3
 echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1031 -F "#$background" &

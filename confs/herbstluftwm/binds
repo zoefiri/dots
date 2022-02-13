@@ -124,9 +124,12 @@ hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # special workspaces
 hc add settings
+hc add vid
 hc rule --class=Pavucontrol --tag=settings --focus=off
 hc spawn pavucontrol
 hc keybind $Mod-a use settings
+hc keybind $Mod-v use vid
+hc keybind $Mod-Shift-v move vid
 
 
 #################
