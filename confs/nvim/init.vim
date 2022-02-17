@@ -60,6 +60,7 @@ call plug#begin()
       Plug 'vimwiki/vimwiki'                                          "#
       Plug 'ryanoasis/vim-devicons'                                   "#
       Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }             "#
+      Plug 'coreyja/fzf.devicon.vim'                                  "#
       Plug 'junegunn/fzf.vim'                                         "#
       Plug 'thaerkh/vim-workspace'                                    "#
       Plug 'Shougo/deol.nvim'                                         "#

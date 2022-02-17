@@ -50,7 +50,7 @@ hc() {
 	hc attr theme.normal.color "#$color04"
 	hc attr theme.active.inner_color "#$color07"
 	hc attr theme.active.outer_color "#$color01"
-	hc attr theme.padding_top "25"
+	hc attr theme.padding_top "0"
 	hc attr theme.urgent.color orange
 	hc attr theme.normal.inner_color "#$color00"
 	hc attr theme.normal.inner_width 0
@@ -60,3 +60,11 @@ hc() {
 	hc attr theme.floating.outer_width 0
 	hc attr theme.background_color "#$color00"
    #hc attr settings.window_radius 15
+
+#win titles
+hc attr theme.title_height 15
+hc attr theme.title_when always
+hc attr theme.title_font 'JetBrains Mono:style=bold:pixelsize=18'  # example using Xft
+hc attr theme.title_depth 25  # space below the title's baseline
+hc attr theme.title_color "#$color01"
+herbstclient attr settings.tabbed_max false
