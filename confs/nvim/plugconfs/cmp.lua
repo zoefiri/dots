@@ -1,6 +1,13 @@
 local M = {}
 M.methods = {}
 
+local function installed_servers()
+   local servers = {}
+   for k,v in pairs(require("nvim-lsp-installer").get_installed_servers()) do
+      table.insert(servers, v.name)
+   end
+end
+
 function M.setup()
    local lspkind = require('lspkind')
    vim.api.nvim_command("set completeopt=menu,menuone,noselect")
@@ -12,8 +19,8 @@ function M.setup()
          snippet = {
             -- REQUIRED - you must specify a snippet engine
             expand = function(args)
-               vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-               -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+               -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+               require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
                -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
             end,
@@ -79,12 +86,12 @@ function M.setup()
          })
       })
 
-      -- Setup lspconfig.
-      local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-      -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-      require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-         capabilities = capabilities
-      }
+      -- -- Setup lspconfig.
+      -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+      -- require('lspconfig')[require("nvim-lsp-installer").get_installed_servers()].setup {
+      --    capabilities = capabilities
+      -- }
       -- Use buffer source for `/`.
       cmp.setup.cmdline('/', {
          sources = {

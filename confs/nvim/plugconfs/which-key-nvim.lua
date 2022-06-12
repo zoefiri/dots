@@ -3,7 +3,7 @@ M.methods = {}
 
 
 function M.setup()
-   require("nvim-lsp-installer").setup {}
+   require("which-key").setup()
 end
 
 return M
