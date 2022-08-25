@@ -17,6 +17,7 @@ opts = {
 
 wk.register({
    name = "+buff nav",
+   i = {"<cmd>VimwikiGoBackLink<CR>", "vimwiki ←"},
    o = {"<cmd>tabprevious<CR>", "buff ←"},
    p = {"<cmd>tabnext<CR>", "buff →"},
    h = {"<C-w>h", "win ←"},

@@ -9,6 +9,7 @@ local options = {
    "set cpoptions-=C",
    "set nocompatible",
    "set noshowmode",
+   "set breakindent",
    "set ts=3",
    "set sw=3 et ",
    "filetype plugin on",
@@ -82,11 +83,12 @@ for k, v in pairs(lsp_installer.get_installed_servers()) do
 
    local opts = {}
    opts.border = border
+   --opts.filetypes = { "rust", "rs", "Rust" }
 
    serv:setup(opts)
    require'nvim-treesitter.configs'.setup {
       -- Install parsers synchronously (only applied to `ensure_installed`)
-      ensure_installed = {"c"},
+      ensure_installed = {"c", "rust"},
       sync_install = false,
 
       highlight = {
@@ -101,5 +103,9 @@ for k, v in pairs(lsp_installer.get_installed_servers()) do
       },
    }
 end
+
+require'lspconfig'.rust_analyzer.setup({})
+
+
 require("highlights.generic")
 require("binds")

@@ -1,43 +1,46 @@
+local bg = "NONE"
 local new_groups = {
-   {name="accentFg",      fg=60, bg=0}, -- ------ generic color names
-   {name="fgAlt",         fg=61, bg=0},
-   {name="accentVivid",   fg=62, bg=0},
-   {name="accentAltFg",   fg=65, bg=0},
-   {name="subtleFg",      fg=63, bg=0},
-   {name="subtleFgAlt",      fg=63, bg=0},
-   {name="fgRed",         fg=1,  bg=0},
-   {name="fgYellow",      fg=2,  bg=0},
-   {name="fgOrange",      fg=3,  bg=0},
-   {name="fgGreen",       fg=4,  bg=0},
-   {name="fgTeal",        fg=5,  bg=0},
-   {name="fgBlue",        fg=6,  bg=0},
+   {name="accentFg",      fg=60, bg=bg}, -- ------ generic color names
+   {name="fgAlt",         fg=61, bg=bg},
+   {name="accentVivid",   fg=62, bg=bg},
+   {name="accentAltFg",   fg=65, bg=bg},
+   {name="subtleFg",      fg=63, bg=bg},
+   {name="subtleFgAlt",      fg=63, bg=bg},
+   {name="fgRed",         fg=1,  bg=bg},
+   {name="fgYellow",      fg=2,  bg=bg},
+   {name="fgOrange",      fg=3,  bg=bg},
+   {name="fgGreen",       fg=4,  bg=bg},
+   {name="fgTeal",        fg=5,  bg=bg},
+   {name="fgBlue",        fg=6,  bg=bg},
 
-   {name="winBorder",      fg=64, bg=0}, -- ------ window/menu highlights
-   {name="winBorderBright",fg=65, bg=0},
-   {name="winBorderAlt",   fg=62, bg=0},
-   {name="menuBkg",        fg=61, bg=0},
-   {name="menuBkgAlt",     fg=4,  bg=0},
+   {name="winBorder",      fg=64, bg=bg}, -- ------ window/menu highlights
+   {name="winBorderBright",fg=65, bg=bg},
+   {name="winBorderAlt",   fg=62, bg=bg},
+   {name="menuBkg",        fg=61, bg=bg},
+   {name="menuBkgAlt",     fg=4,  bg=bg},
    {name="menuSel",        fg=61, bg=63},
-   {name="menuSelAlt",     fg=0,  bg=65},
+   {name="menuSelAlt",     fg=bg,  bg=65},
 
 
-   {name="hidden",         fg=0,  bg=0}, -- ------ meta stuff
+   {name="hidden",         fg=bg,  bg=bg}, -- ------ meta stuff
    {name="hiddenAltBkg",   fg=63, bg=63},
 
-   {name="c1",        fg=1,  bg=0},
-   {name="c2",        fg=2,  bg=0},
-   {name="c3",        fg=3,  bg=0},
-   {name="c4",        fg=4,  bg=0},
-   {name="c5",        fg=5,  bg=0},
-   {name="c6",        fg=6,  bg=0},
+   {name="c1",        fg=1,  bg=bg},
+   {name="c2",        fg=2,  bg=bg},
+   {name="c3",        fg=3,  bg=bg},
+   {name="c4",        fg=4,  bg=bg},
+   {name="c5",        fg=5,  bg=bg},
+   {name="c6",        fg=6,  bg=bg},
+   {name="c7",        fg=7,  bg=bg},
 
-   {name="c1Inv",        fg=0,  bg=1},
-   {name="c2Inv",        fg=0,  bg=2},
-   {name="c3Inv",        fg=0,  bg=3},
-   {name="c4Inv",        fg=0,  bg=4},
-   {name="c5Inv",        fg=0,  bg=5},
-   {name="c6Inv",        fg=0,  bg=6},
-   {name="bgAltInv",        fg=0,  bg=63},
+   {name="c1Inv",        fg=bg,  bg=1},
+   {name="c2Inv",        fg=bg,  bg=2},
+   {name="c3Inv",        fg=bg,  bg=3},
+   {name="c4Inv",        fg=bg,  bg=4},
+   {name="c5Inv",        fg=bg,  bg=5},
+   {name="c6Inv",        fg=bg,  bg=6},
+   {name="c7Inv",        fg=bg,  bg=7},
+   {name="bgAltInv",        fg=bg,  bg=63},
 }
 
 for _, higroup in ipairs(new_groups) do
@@ -51,15 +54,19 @@ local hiLinks = {
    {link="DashboardShortCut", to="hidden"},
    {link="DashboardFooter",   to="accentVivid"},
 
-   {link="CmpBorderedWindow_Normal",     to="menuBkg" },   -- cmp
+   {link="CmpBorderedWindow_Normal",     to="subtleFg" },   -- cmp
    {link="CmpBorderedWindow_CursorLine", to="menuSel" },
    {link="CmpBorderedWindow_FloatBorder",to="winBorder" },
+   {link="CmpItemKind",                  to="fgAlt" },
+   {link="CmpItemAbbr",                  to="c7" },
+   {link="CmpItemAbbrMatch",             to="winBorder" },
 
    {link="DiagnosticSignWarn",           to="fgYellow" },  -- LSP
    {link="DiagnosticSignHint",           to="fgBlue" },
    {link="DiagnosticSignInfo",           to="fgTeal" },
    {link="DiagnosticSignError",          to="fgRed" },
    {link="Pmenu",                        to="menuBkg" },
+   {link="PmenuSel",                     to="c5" },
    {link="FloatBorder",                  to="winBorder" },
 
    {link="NvimTreeFolderName",           to="accentFg" },  -- nvimtree
@@ -71,7 +78,7 @@ local hiLinks = {
    {link="VimwikiHeader4",               to="c4" },
    {link="VimwikiHeader5",               to="c5" },
    {link="VimwikiHeader5",               to="c5" },
-   {link="Vimwiki",               to="c5" },
+   {link="Vimwiki",                      to="c5" },
 
    {link="TabActiveFill",               to="bgAltInv" },  -- tabby
    {link="TabActiveEdge",               to="subtleFg" },

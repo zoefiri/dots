@@ -60,7 +60,6 @@ return {
       config = function()
          require("plugconfs.cmp").setup()
       end,
-      branch = "dev",
       requires = {
          "L3MON4D3/LuaSnip",
          "rafamadriz/friendly-snippets",
