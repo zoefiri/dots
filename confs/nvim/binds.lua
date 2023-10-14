@@ -65,7 +65,7 @@ wk.register({
       r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "rename"},
       c = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "code action"},
       R = {"<cmd>lua vim.lsp.buf.references()<CR>", "references"},
-      e = {"<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "line diagnostics"},
+      e = {"<cmd>lua vim.diagnostic.open_float()<CR>", "line diagnostics"},
       n = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "diagnostics ←"},
       N = {"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "diagnostics →"},
       q = {"<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "list diagnostics"},

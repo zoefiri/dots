@@ -9,20 +9,20 @@ local git_comps = require('windline.components.git')
 local hl_list = {
     Black = { 'black', 'test' },
     White = { 'test', 'white' },
-    Inactive = { 'InactiveFg', 'InactiveBg' },
-    Active = { 'ActiveFg', 'ActiveBg' },
+    Inactive = { 'sbg', 'sfg', 'bold' },
+    Active = { 'ActiveFg', 'ActiveBg', 'bold' },
 }
 local basic = {}
 
 local breakpoint_width = 90
 basic.divider = { b_components.divider, '' }
-basic.bg = { ' ', 'StatusLine' }
+basic.bg = { 'c0', 'StatusLine' }
 
 local colors_mode = {
-    Normal = { 'c10', 'test' },
-    Insert = { 'c8', 'test' },
-    Visual = { 'c9', 'test' },
-    Replace = { 'c7', 'test' },
+    Normal = { 'c1', 'test' },
+    Insert = { 'c9', 'test' },
+    Visual = { 'c4', 'test' },
+    Replace = { 'c2', 'test' },
     Command = { 'c12', 'test' },
 }
 
@@ -140,10 +140,10 @@ local quickfix = {
             { 'cyan', 'test' },
         },
         { ' Total : %L ', { 'cyan', 'test' } },
-        { helper.separators.slant_right, { 'test', 'InactiveBg' } },
-        { ' ', { 'InactiveFg', 'InactiveBg' } },
+        { helper.separators.slant_right, { 'test', 'sbg' } },
+        { ' ', { 'sbg', 'sbg' } },
         basic.divider,
-        { helper.separators.slant_right, { 'InactiveBg', 'test' } },
+        { helper.separators.slant_right, { 'sbg', 'test' } },
         { '🧛 ', { 'white', 'test' } },
     },
 
@@ -185,7 +185,7 @@ local default = {
    colors_name = function(colors)
       -- print(vim.inspect(colors))
       -- ADD MORE COLOR HERE ----
-      colors.test = 63
+      colors.test = 61
       colors.c2 = 61
       colors.c7 = 1
       colors.c8 = 2
@@ -193,6 +193,11 @@ local default = {
       colors.c10 = 4
       colors.c11 = 5
       colors.c12 = 6
+      colors.sbg = 3
+      colors.sfg = 62
+      colors.ibg = 6
+      colors.ifg = 3
+      colors.null = "NONE"
 
       return colors
     end,

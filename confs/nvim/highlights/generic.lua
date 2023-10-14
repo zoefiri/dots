@@ -1,11 +1,13 @@
+vim.cmd("colorscheme pabloc")
+
 local bg = "NONE"
 local new_groups = {
-   {name="accentFg",      fg=60, bg=bg}, -- ------ generic color names
-   {name="fgAlt",         fg=61, bg=bg},
-   {name="accentVivid",   fg=62, bg=bg},
-   {name="accentAltFg",   fg=65, bg=bg},
-   {name="subtleFg",      fg=63, bg=bg},
-   {name="subtleFgAlt",      fg=63, bg=bg},
+   {name="subtleBg",      fg=60, bg=bg}, -- ------ generic color names
+   {name="brightBg",      fg=61, bg=bg},
+   {name="highlightBg",   fg=62, bg=bg},
+   {name="accentBg",      fg=63, bg=bg},
+   {name="accentFg",      fg=64, bg=bg},
+   {name="colorfulFg",    fg=65, bg=bg},
    {name="fgRed",         fg=1,  bg=bg},
    {name="fgYellow",      fg=2,  bg=bg},
    {name="fgOrange",      fg=3,  bg=bg},
@@ -80,13 +82,22 @@ local hiLinks = {
    {link="VimwikiHeader5",               to="c5" },
    {link="Vimwiki",                      to="c5" },
 
-   {link="TabActiveFill",               to="bgAltInv" },  -- tabby
+   {link="TabActiveFill",               to="accentBg" },  -- tabby
    {link="TabActiveEdge",               to="subtleFg" },
-   {link="TabInactiveFill",               to="c2Inv" },
-   {link="TabInactiveEdge",               to="c2" },
+   {link="TabInactiveFill",               to="c3inv" },
+   {link="TabInactiveEdge",               to="c3inv" },
    {link="TabLineFill",                   to="hidden"   },
+
+   {link="EndOfBuffer",                   to="trans"}
 }
 
 for _, hiLink in ipairs(hiLinks) do
-   vim.cmd("highlight! link " .. hiLink.link .. " " .. hiLink.to)
+   vim.api.nvim_command("highlight! link " .. hiLink.link .. " " .. hiLink.to)
 end
+
+vim.api.nvim_command("highlight! trans ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE")
+vim.api.nvim_command("highlight! transBG ctermbg=NONE guibg=NONE")
+vim.api.nvim_command("highlight! transFG ctermfg=NONE guifg=NONE")
+
+vim.api.nvim_command("highlight! WLifg_ibg cterm=bold")
+vim.api.nvim_command("highlight! WLsfg_sbg cterm=bold")

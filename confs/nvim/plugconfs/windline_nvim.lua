@@ -3,11 +3,11 @@ M.methods = {}
 
 
 function M.setup()
-   local sel_bg = 'c2'
-   local sel_fg = 'c0'
-   local norm_bg = 'cs'
-   local norm_fg = 'c2'
-   local bg = 'c0'
+   local sel_bg = 'sbg'
+   local sel_fg = 'sfg'
+   local norm_bg = 'ibg'
+   local norm_fg = 'ifg'
+   local bg = 'null'
 
    local basic = {}
 
@@ -653,20 +653,20 @@ function M.setup()
             DevIconTsx_inactive                  = {'', {'DevIconTsx'                 , norm_bg}},
             normal        = {'GUH..'                             , {norm_fg, norm_bg}},
             normal_start  = {' '                           , {norm_bg, bg}},
-            normal_end    = {' ' .. ''                    , {bg, norm_bg}},
+            normal_end    = {'' .. ''                    , {norm_bg, bg}},
             -- normal_last display if tab is the last tab
-            normal_last   = {' '        , {bg , norm_bg}},
+            normal_last   = {' '        , {norm_bg , bg}},
 
 
             -- this only use a highlight color a text will replace by tab name
             select        = {'GWAA'                             , {sel_fg, sel_bg}},
             select_start  = {' '                           , {sel_bg, bg}},
-            select_end    = {' ' .. ''                    , {bg, sel_bg}},
+            select_end    = {' '                     , {sel_bg, bg}},
             -- select_last display if select tab is a last tab
-            select_last   = {' '        , {bg , sel_bg}},
+            select_last   = {' '        , {sel_bg , bg}},
 
             -- normal_select display if a next tab is select
-            normal_select = {' '        , {bg , norm_bg}},
+            normal_select = {' '        , {norm_bg , bg}},
          },
       }
    })

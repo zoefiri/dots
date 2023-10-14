@@ -1,7 +1,9 @@
 return {
    -- Packer can manage itself as an optional plugin
    { "wbthomason/packer.nvim" },
-   { "vimwiki/vimwiki" },
+   {
+      "vimwiki/vimwiki"
+   },
    { "mbbill/undotree" },
    { "metakirby5/codi.vim" },
    { "chrisbra/Colorizer" },
@@ -23,9 +25,21 @@ return {
    },
    { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
    {
-      "williamboman/nvim-lsp-installer",
+      "jose-elias-alvarez/null-ls.nvim",
       config = function()
-         require("plugconfs.lsp_installer").setup()
+         require("plugconfs.nulls").setup()
+      end,
+   },
+   {
+      "williamboman/mason-lspconfig.nvim" ,
+      config = function()
+         require("plugconfs.masonlspconf").setup()
+      end,
+   },
+   {
+      "williamboman/mason.nvim",
+      config = function()
+         require("plugconfs.mason").setup()
       end,
    },
    { "nvim-lua/popup.nvim" },
@@ -93,9 +107,6 @@ return {
    },
    {
       "Tastyep/structlog.nvim",
-      config = function()
-         require("plugconfs.lsp_installer").setup()
-      end,
    },
    {
       "rcarriga/nvim-notify",
