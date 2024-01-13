@@ -17,33 +17,36 @@ opts = {
 
 wk.register({
    name = "+buff nav",
-   i = {"<cmd>VimwikiGoBackLink<CR>", "vimwiki ←"},
-   o = {"<cmd>tabprevious<CR>", "buff ←"},
-   p = {"<cmd>tabnext<CR>", "buff →"},
-   h = {"<C-w>h", "win ←"},
-   j = {"<C-w>j", "win ↓"},
-   k = {"<C-w>k", "win ↑"},
-   l = {"<C-w>l", "win →"},
+   o = {"<cmd>tabprevious<CR>", "buff ←" },
+   p = {"<cmd>tabnext<CR>", "buff →" },
+   m = {"<C-I>", "nav ←" },
+   n = {"<C-O>", "nav →" },
+   h = {"<C-w>h", "win ←" },
+   j = {"<C-w>j", "win ↓" },
+   k = {"<C-w>k", "win ↑" },
+   l = {"<C-w>l", "win →" },
    a = {
       name = "+buff mng",
-      c = {"<cmd>tabnew<CR>", "buff "},
-      e = {"<cmd>tabclose<CR>", "buff "},
+      c = {"<cmd>tabnew<CR>", "buff " },
+      e = {"<cmd>tabclose<CR>", "buff " },
    },
+   w = { "<cmd>lua require'leap-ast'.leap()<CR>", "AST leap" },
 }, { prefix = "<leader>" })
 
 wk.register({
    name = "+open plugin",
-   u = {"<cmd>UndotreeToggle<CR>", "toggle undotree"},
-   t = {"<cmd>NvimTreeToggle<CR>", "toggle nvimtree"},
-   e = {"<cmd>ToggleTerm direction='float'<CR>", "toggle term"},
+   u = {"<cmd>UndotreeToggle<CR>", "toggle undotree" },
+   t = {"<cmd>NvimTreeToggle<CR>", "toggle nvimtree" },
+   e = {"<cmd>ToggleTerm direction='float'<CR>", "toggle term" },
    r = {
-      r = {"<cmd>lua require('rest-nvim').run()<CR>", "run REST request"},
+      r = {"<cmd>lua require('rest-nvim').run()<CR>", "run REST request" },
       p = {"<cmd>lua require('rest-nvim').run(true)<CR>", "preview REST request"}
    },
    f = {
       name = "+telescope",
-      f = {"<cmd>Telescope find_files<CR>", "find files"},
-      g = {"<cmd>Telescope live_grep<CR>", "livegrep"},
+      f = {"<cmd>Telescope find_files<CR>", "find files" },
+      g = {"<cmd>Telescope live_grep<CR>", "livegrep" },
+      t = {"<cmd>Telescope file_browser<CR>", "file browser" },
    },
 }, { prefix = "<leader>" })
 
@@ -52,30 +55,29 @@ wk.register({
       name = "+nvimlsp",
       w = {
          name = "+workspace",
-         a = {"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "new workspace folder"},
-         d = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspae folder"},
-         l = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "list workspace folders"},
+         a = {"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "new workspace folder" },
+         d = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspae folder" },
+         l = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "list workspace folders" },
       },
-      D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "view declaration"},
-      d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "view definition"},
-      l = {"<cmd>lua vim.lsp.buf.hover()<CR>", "lsp hover"},
-      i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "view implementation"},
-      k = {"<cmd>lua vim.lsp.buf.signature_help()<CR>", "signature help"},
-      t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "view type definition"},
-      r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "rename"},
-      c = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "code action"},
-      R = {"<cmd>lua vim.lsp.buf.references()<CR>", "references"},
-      e = {"<cmd>lua vim.diagnostic.open_float()<CR>", "line diagnostics"},
-      n = {"<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "diagnostics ←"},
-      N = {"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "diagnostics →"},
-      q = {"<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "list diagnostics"},
-      F = {"<cmd>lua vim.lsp.buf.formatting()<CR>", ""},
+      D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "view declaration" },
+      d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "view definition" },
+      l = {"<cmd>lua vim.lsp.buf.hover()<CR>", "lsp hover" },
+      i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "view implementation" },
+      k = {"<cmd>lua vim.lsp.buf.signature_help()<CR>", "signature help" },
+      t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "view type definition" },
+      r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
+      c = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
+      R = {"<cmd>lua vim.lsp.buf.references()<CR>", "references" },
+      e = {"<cmd>lua vim.diagnostic.open_float()<CR>", "diagnostics floatwin" },
+      n = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "diagnostics ←" },
+      N = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "diagnostics →" },
+      F = {"<cmd>lua vim.lsp.buf.format()<CR>", "" },
    },
 }, { prefix = "<leader>" })
 
 wk.register({
-   q = {"<plug>(Mac_Play)", "play macro"},
-   gq = {"<plug>(Mac_RecordNew)", "record macro"},
+   q = {"<plug>(Mac_Play)", "play macro" },
+   gq = {"<plug>(Mac_RecordNew)", "record macro" },
 })
 
 vim.cmd('silent! call repeat#set("\\<Plug>MyWonderfulMap", v:count)')
@@ -88,6 +90,7 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+vim.keymap.set({'n', 'x', 'o'}, '<some-key>', function()  end, {})
 
 -- function map(mode, lhs, rhs, opts)
 --     local options = { noremap = true }

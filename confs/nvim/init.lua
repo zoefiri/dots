@@ -96,3 +96,5 @@ vim.api.nvim_create_autocmd({"ColorScheme"}, {
       vim.api.nvim_command("highlight! WLsfg_sbg cterm=bold")
    end
 })
+
+require('leap').add_default_mappings() 

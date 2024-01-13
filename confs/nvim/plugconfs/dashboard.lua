@@ -5,12 +5,6 @@ M.methods = {}
 function M.setup()
    local db = require('dashboard')
    local home = os.getenv('HOME')
-   -- linux
-   db.preview_command = 'chafa -c 256 --fg-only --symbols braille'
-   --
-   db.preview_file_path = home .. '/.config/nvim/LAINHADN3.gif'
-   db.preview_file_height = 38
-   db.preview_file_width = 30
    db.custom_center = {
       {icon = '  ',
       desc = 'Recently latest session                  ',
@@ -37,6 +31,17 @@ function M.setup()
       action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
       shortcut = 'SPC f d'},
    }
+
+   db.setup({
+      -- config = {
+      -- },
+      preview = {
+         command = 'chafa -c 256 --fg-only --symbols braille',
+         file_path = home .. '/.config/nvim/LAINHADN3.gif',
+         file_height = 28,
+         file_width = 30,
+      }
+   })
 end
 
 return M

@@ -16,21 +16,37 @@ local basic = {}
 
 local breakpoint_width = 90
 basic.divider = { b_components.divider, '' }
-basic.bg = { 'c0', 'StatusLine' }
+basic.bg = { 'c1', 'StatusLine' }
 
 local colors_mode = {
-    Normal = { 'c1', 'test' },
-    Insert = { 'c9', 'test' },
-    Visual = { 'c4', 'test' },
-    Replace = { 'c2', 'test' },
-    Command = { 'c12', 'test' },
+    Normal = { 'c0', 'c0' },
+    Insert = { 'c9', 'c1' },
+    Visual = { 'c4', 'c1' },
+    Replace = { 'c2', 'c1' },
+    Command = { 'c12', 'c1' },
+
+    NormalIcon= { 'c7', 'c0' },
+    InsertIcon= { 'c9', 'c1' },
+    VisualIcon= { 'c4', 'c1' },
+    ReplaceIcon = { 'c2', 'c1' },
+    CommandIcon = { 'c12', 'c1' },
+
+    NormalSlantEnd= { 'c0', 'c1' },
+    InsertSlantEnd= { 'c9', 'c1' },
+    VisualSlantEnd= { 'c4', 'c1' },
+    ReplaceSlantEnd = { 'c2', 'c1' },
+    CommandSlantEnd = { 'c12', 'c1' },
 }
 
 basic.vi_mode = {
     name = 'vi_mode',
     hl_colors = colors_mode,
     text = function()
-        return { { ' ⚝ ', state.mode[2] } }
+        return { 
+           { ' ⚝  ', state.mode[2].."Icon" },
+           { ' ', state.mode[2], },
+           { '', state.mode[2].."SlantEnd" },
+        }
     end,
 }
 basic.square_mode = {
@@ -43,15 +59,16 @@ basic.square_mode = {
 basic.lsp_diagnos = {
     name = 'diagnostic',
     hl_colors = {
-        red = { 'c7', 'test' },
-        yellow = { 'c8', 'test' },
-        blue = { 'c10', 'test' },
-        fg = { 'c2', 'test' },
+        red = { 'c7', '' },
+        yellow = { 'c8', '' },
+        blue = { 'c10', '' },
+        fg = { 'c2', '' },
     },
     width = breakpoint_width,
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
+                { ' ', 'red' },
                 { lsp_comps.lsp_error({ format = '  %s', show_zero = true }), 'red' },
                 { lsp_comps.lsp_warning({ format = '  %s', show_zero = true }), 'yellow' },
                 { lsp_comps.lsp_hint({ format = '  %s', show_zero = true }), 'blue' },
@@ -63,30 +80,38 @@ basic.lsp_diagnos = {
 basic.file = {
     name = 'file',
     hl_colors = {
-        default = { 'c2', 'test' },
-        white = { 'white', 'test' },
-        magenta = { 'magenta', 'test' },
-        custom = { 'c11', 'test' },
-        custom2 = { 'c8', 'test' },
+        default = { 'c5', 'c1' },
+        white = { 'white', 'c1' },
+        magenta = { 'magenta', 'c1' },
+        custom = { 'c6', 'c1' },
+        custom2 = { 'c8', 'c1' },
+        slant_end = { 'c5', '' }
     },
     text = function(_, _, width)
         if width > breakpoint_width then
             return {
+                { ' ', '' },
                 { b_components.cache_file_size(), 'default' },
                 { ' ', '' },
-                { b_components.cache_file_name('[No Name]', 'unique'), 'custom' },
+                { b_components.cache_file_name('x ‿ x', 'unique'), 'custom' },
                 { b_components.line_col_lua, 'default' },
                 { b_components.progress_lua, 'default' },
                 { ' ', '' },
                 { b_components.file_modified(' '), 'custom2' },
+                { ' ', { 'c2', '' } },
+                { ' ', { 'c4', 'c3' } },
+                { '', 'slant_end' }
             }
         else
             return {
                 { b_components.cache_file_size(), 'default' },
                 { ' ', '' },
-                { b_components.cache_file_name('[No Name]', 'unique'), 'custom2' },
+                { b_components.cache_file_name('x ‿ x', 'unique'), 'custom2' },
                 { ' ', '' },
                 { b_components.file_modified(' '), 'custom' },
+                { ' ', { 'c2', '' } },
+                { ' ', { 'c4', 'c3' } },
+                { '', 'slant_end' }
             }
         end
     end,
@@ -167,16 +192,24 @@ basic.lsp_name = {
     width = breakpoint_width,
     name = 'lsp_name',
     hl_colors = {
-        magenta = { 'magenta', 'test' },
+        lsptitle = { 'c8', 'test' },
+        slant_end = { 'c5', '' },
+        slant_mid = { 'c4', '' },
     },
     text = function(bufnr)
         if lsp_comps.check_lsp(bufnr) then
             return {
-                { lsp_comps.lsp_name(), 'magenta' },
+               { ' ', 'slant_end' },
+               { '', 'slant_mid' },
+               { ' ', { 'c2', 'c3' } },
+               { lsp_comps.lsp_name(), 'lsptitle' },
             }
         end
         return {
-            { b_components.cache_file_type({icon = true}), 'magenta' },
+           { ' ', 'slant_end' },
+           { '', 'slant_mid' },
+           { ' ', { 'c2', 'c3' } },
+           { b_components.cache_file_type({icon = true}), 'lsptitle' },
         }
     end,
 }

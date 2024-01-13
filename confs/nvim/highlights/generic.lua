@@ -3,7 +3,7 @@ vim.cmd("colorscheme pabloc")
 local bg = "NONE"
 local new_groups = {
    {name="subtleBg",      fg=60, bg=bg}, -- ------ generic color names
-   {name="brightBg",      fg=61, bg=bg},
+   {name="brightBg",      fg=63, bg=bg},
    {name="highlightBg",   fg=62, bg=bg},
    {name="accentBg",      fg=63, bg=bg},
    {name="accentFg",      fg=64, bg=bg},
@@ -18,7 +18,7 @@ local new_groups = {
    {name="winBorder",      fg=64, bg=bg}, -- ------ window/menu highlights
    {name="winBorderBright",fg=65, bg=bg},
    {name="winBorderAlt",   fg=62, bg=bg},
-   {name="menuBkg",        fg=61, bg=bg},
+   {name="menuBkg",        fg=3,  bg=bg},
    {name="menuBkgAlt",     fg=4,  bg=bg},
    {name="menuSel",        fg=61, bg=63},
    {name="menuSelAlt",     fg=bg,  bg=65},
@@ -42,7 +42,9 @@ local new_groups = {
    {name="c5Inv",        fg=bg,  bg=5},
    {name="c6Inv",        fg=bg,  bg=6},
    {name="c7Inv",        fg=bg,  bg=7},
-   {name="bgAltInv",        fg=bg,  bg=63},
+   {name="bgAltInv",     fg=bg,  bg=63},
+
+   {name="LeapBackdrop", fg=63,  bg=bg},
 }
 
 for _, higroup in ipairs(new_groups) do
@@ -59,36 +61,41 @@ local hiLinks = {
    {link="CmpBorderedWindow_Normal",     to="subtleFg" },   -- cmp
    {link="CmpBorderedWindow_CursorLine", to="menuSel" },
    {link="CmpBorderedWindow_FloatBorder",to="winBorder" },
-   {link="CmpItemKind",                  to="fgAlt" },
-   {link="CmpItemAbbr",                  to="c7" },
-   {link="CmpItemAbbrMatch",             to="winBorder" },
+   {link="CmpItemKind",         to="fgAlt" },
+   {link="CmpItemAbbr",         to="c7" },
+   {link="CmpItemAbbrMatch",    to="winBorder" },
 
-   {link="DiagnosticSignWarn",           to="fgYellow" },  -- LSP
-   {link="DiagnosticSignHint",           to="fgBlue" },
-   {link="DiagnosticSignInfo",           to="fgTeal" },
-   {link="DiagnosticSignError",          to="fgRed" },
-   {link="Pmenu",                        to="menuBkg" },
-   {link="PmenuSel",                     to="c5" },
-   {link="FloatBorder",                  to="winBorder" },
+   {link="DiagnosticSignWarn",  to="fgYellow" },  -- LSP
+   {link="DiagnosticSignHint",  to="fgBlue" },
+   {link="DiagnosticSignInfo",  to="fgTeal" },
+   {link="DiagnosticSignError", to="fgRed" },
+   {link="Pmenu",               to="menuBkg" },
+   {link="PmenuSel",            to="c5" },
+   {link="FloatBorder",         to="winBorder" },
 
-   {link="NvimTreeFolderName",           to="accentFg" },  -- nvimtree
-   {link="NvimTreeRootFolder",           to="subtleFgAlt" },  -- nvimtree
+   {link="NvimTreeFolderName",  to="accentFg" },  -- nvimtree
+   {link="NvimTreeRootFolder",  to="subtleFgAlt" },  -- nvimtree
 
-   {link="VimwikiHeader1",               to="c1" },  -- vimwiki
-   {link="VimwikiHeader2",               to="c2" },
-   {link="VimwikiHeader3",               to="c3" },
-   {link="VimwikiHeader4",               to="c4" },
-   {link="VimwikiHeader5",               to="c5" },
-   {link="VimwikiHeader5",               to="c5" },
-   {link="Vimwiki",                      to="c5" },
+   {link="VimwikiHeader1",   to="c1" },  -- vimwiki
+   {link="VimwikiHeader2",   to="c2" },
+   {link="VimwikiHeader3",   to="c3" },
+   {link="VimwikiHeader4",   to="c4" },
+   {link="VimwikiHeader5",   to="c5" },
+   {link="VimwikiHeader5",   to="c5" },
+   {link="Vimwiki",          to="c5" },
 
-   {link="TabActiveFill",               to="accentBg" },  -- tabby
-   {link="TabActiveEdge",               to="subtleFg" },
-   {link="TabInactiveFill",               to="c3inv" },
-   {link="TabInactiveEdge",               to="c3inv" },
-   {link="TabLineFill",                   to="hidden"   },
+   {link="TabActiveFill",   to="accentBg" },  -- tabby
+   {link="TabActiveEdge",   to="subtleFg" },
+   {link="TabInactiveFill", to="c3inv" },
+   {link="TabInactiveEdge", to="c3inv" },
+   {link="TabLineFill",     to="hidden"   },
 
-   {link="EndOfBuffer",                   to="trans"}
+   {link="TelescopePromptBorder",   to="c1" },
+   {link="TelescopeResultsBorder",  to="c2" },
+   {link="TelescopePreviewBorder",  to="c3" },
+   {link="TelescopeTitle",          to="highlightBg" },
+
+   {link="EndOfBuffer",             to="trans"}
 }
 
 for _, hiLink in ipairs(hiLinks) do

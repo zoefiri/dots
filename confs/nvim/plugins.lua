@@ -1,5 +1,7 @@
 return {
    -- Packer can manage itself as an optional plugin
+   { "ggandor/leap.nvim" },
+   { "ggandor/leap-ast.nvim" },
    { "wbthomason/packer.nvim" },
    {
       "vimwiki/vimwiki"
@@ -7,6 +9,12 @@ return {
    { "mbbill/undotree" },
    { "metakirby5/codi.vim" },
    { "chrisbra/Colorizer" },
+   { 
+      "ggandor/leap-spooky.nvim",
+      config = function()
+         require("plugconfs.spookyleap").setup()
+      end,
+   },
    {
       "ethanholz/nvim-lastplace",
       config = function()
@@ -54,6 +62,12 @@ return {
    -- Telescope
    {
       "nvim-telescope/telescope.nvim",
+      config = function()
+         require("plugconfs.telescope").setup()
+      end,
+   },
+   {
+      "nvim-telescope/telescope-file-browser.nvim",
       config = function()
          require("plugconfs.telescope").setup()
       end,
