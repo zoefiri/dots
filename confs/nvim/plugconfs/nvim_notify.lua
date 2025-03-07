@@ -33,11 +33,11 @@ function M.setup()
 
       -- Icons for the different levels
       icons = {
-         ERROR = "",
-         WARN = "",
-         INFO = "",
-         DEBUG = "",
-         TRACE = "✎",
+         ERROR = "",
+         WARN = "",
+         INFO = "",
+         DEBUG = "󱖉",
+         TRACE = "󱏒",
       },
    }
 end

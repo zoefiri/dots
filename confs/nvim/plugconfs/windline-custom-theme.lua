@@ -44,7 +44,7 @@ basic.vi_mode = {
     text = function()
         return { 
            { ' ⚝  ', state.mode[2].."Icon" },
-           { ' ', state.mode[2], },
+           { '', state.mode[2], },
            { '', state.mode[2].."SlantEnd" },
         }
     end,

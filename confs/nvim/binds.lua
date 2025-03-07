@@ -1,4 +1,3 @@
-vim.cmd[[packadd which-key.nvim]]
 local opts
 local wk = require("which-key")
 
@@ -15,6 +14,7 @@ opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
+-- buffer nav
 wk.register({
    name = "+buff nav",
    o = {"<cmd>tabprevious<CR>", "buff ←" },
@@ -33,6 +33,7 @@ wk.register({
    w = { "<cmd>lua require'leap-ast'.leap()<CR>", "AST leap" },
 }, { prefix = "<leader>" })
 
+-- open plugin menus
 wk.register({
    name = "+open plugin",
    u = {"<cmd>UndotreeToggle<CR>", "toggle undotree" },
@@ -50,6 +51,13 @@ wk.register({
    },
 }, { prefix = "<leader>" })
 
+-- plugin actions
+wk.register({
+   name = "+plugin actions",
+   d = {"<cmd>lua require('notify').dismiss()<CR>", "dismiss notifs" },
+}, { prefix = "<leader>" })
+
+-- lsp stuff
 wk.register({
    z = {
       name = "+nvimlsp",

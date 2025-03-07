@@ -45,6 +45,18 @@ local new_groups = {
    {name="bgAltInv",     fg=bg,  bg=63},
 
    {name="LeapBackdrop", fg=63,  bg=bg},
+
+   -- uncooperative plugin hilight groups ;/
+
+   {name="NotifyINFOTitle",   fg=3, bg=bg },
+   {name="NotifyINFOIcon",    fg=2, bg=bg },
+   {name="NotifyINFOBorder",  fg=4, bg=bg },
+   {name="NotifyERRORTitle",  fg=2, bg=bg },
+   {name="NotifyERRORIcon",   fg=6, bg=bg },
+   {name="NotifyERRORBorder", fg=1, bg=bg },
+   {name="NotifyWARNTitle",   fg=2, bg=bg },
+   {name="NotifyWARNIcon",    fg=6, bg=bg },
+   {name="NotifyWARNBorder",  fg=3, bg=bg },
 }
 
 for _, higroup in ipairs(new_groups) do
@@ -108,3 +120,10 @@ vim.api.nvim_command("highlight! transFG ctermfg=NONE guifg=NONE")
 
 vim.api.nvim_command("highlight! WLifg_ibg cterm=bold")
 vim.api.nvim_command("highlight! WLsfg_sbg cterm=bold")
+
+vim.api.nvim_command("highlight! NotifyINFOTitle cterm=bold")
+vim.api.nvim_command("highlight! NotifyINFOIcon cterm=bold")
+vim.api.nvim_command("highlight! NotifyERRORTitle cterm=bold")
+vim.api.nvim_command("highlight! NotifyWARNIcon cterm=bold")
+vim.api.nvim_command("highlight! NotifyWARNTitle cterm=bold")
+vim.api.nvim_command("highlight! NotifyERRORIcon cterm=bold")

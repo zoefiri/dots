@@ -1,5 +1,31 @@
 #!/bin/bash
 
+################
+# bar settings #
+################
+read red < /home/zoe/.config/ricer/ricertemplates/colors/base7
+read orange < /home/zoe/.config/ricer/ricertemplates/colors/base9
+read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base8
+read green < /home/zoe/.config/ricer/ricertemplates/colors/base10
+read lblue < /home/zoe/.config/ricer/ricertemplates/colors/base11
+read blue < /home/zoe/.config/ricer/ricertemplates/colors/base12
+read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
+read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
+read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base4
+read c1 < /home/zoe/.config/ricer/ricertemplates/colors/base1
+read c2 < /home/zoe/.config/ricer/ricertemplates/colors/base2
+read c3 < /home/zoe/.config/ricer/ricertemplates/colors/base3
+read c4 < /home/zoe/.config/ricer/ricertemplates/colors/base4
+read c5 < /home/zoe/.config/ricer/ricertemplates/colors/base5
+read c6 < /home/zoe/.config/ricer/ricertemplates/colors/base6
+font="Aerolite Bold:size=14:style=Medium"
+icons1="Font Awesome 5 Free Solid:size=9"
+icons2="Symbols Nerd Font:size=12"
+icons3="Symbols Nerd Font:size=10"
+icons4="Font Awesome 5 Free:size=11"
+echo $background IS TEST COLOR
+trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
+
 memtotal=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 2)
 
 ##########
@@ -7,7 +33,7 @@ memtotal=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 2)
 ##########
 vol(){
    while true; do
-      cat /tmp/dacvol | xargs printf "%%{cT1}%d %%{T2}\n"
+      cat /tmp/dacvol | xargs printf "%%{F#$c2}%%{cT1}%d %%{T2}%%{F#$green}\n"
    done
 }
 
@@ -18,7 +44,7 @@ vol(){
 bat(){
    while true; do
       read bat < "/sys/class/power_supply/BAT0/capacity"
-      printf "%%{c}%d \n" $bat
+      printf "%%{F#$c2}%%{c}%d %%{F#$orange}\n" $bat
       sleep 2
    done
 }
@@ -29,7 +55,7 @@ bat(){
 ###############
 datetime(){
    while true; do
-      date +"%%{c}%H//%M   %m//%d " 
+      date +"%%{F#$c2}%%{c}%H//%M %%{F#$blue}  %%{F#$c2}%m//%d %%{F#$lblue}" 
       sleep 3
    done
 }
@@ -37,7 +63,7 @@ datetime(){
 mem(){
    while true; do
       memuse=$(free | tail -2 | head -1 | xargs | cut -d ' ' -f 3)
-      printf "%%{cT1}%.0f%%{T2} \n" $(bc -l <<< "$memuse*((100.0)/$memtotal)")
+      printf "%%{F#$c2}%%{cT1}%.0f%%{T2} %%{F#$yellow}\n" $(bc -l <<< "$memuse*((100.0)/$memtotal)")
       sleep 2
    done
 }
@@ -47,8 +73,8 @@ mem(){
 ##############
 herbspaces2(){
 WORKSPACES=7 # make this number the amount of workspaces you want to display
-read yellow < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base10
-read green < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base11
+read yellow < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base8
+read green < /home/zoe/.config/ricer/ricer/ricer/ricertemplates/colors/base10
 
 getinfo(){
     wspaces=$(wmctrl -d | head -$workspaces | grep -o "[0-9]  [-\*]" | rev | tr '\n' ' ' | cut -d '-' -f 1-7)
@@ -56,7 +82,7 @@ getinfo(){
 
 
 format(){
-    echo "$wspaces" | sed\
+    echo "%{c}$wspaces" | sed\
         -e 's/0//'\
         -e 's/1//'\
         -e 's/2//'\
@@ -64,8 +90,10 @@ format(){
         -e 's/4//'\
         -e 's/5//'\
         -e 's/6//'\
-        -e "s/\-/%\{F#$orange\}/g"\
-        -e "s/\*  /  %\{F#$green\}/g"
+        -e 's/7//'\
+        -e 's/8//'\
+        -e "s/\-/%\{F#$c2\}/g"\
+        -e "s/\*  /  %\{F#$c3\}/g"
     }
 
 change(){
@@ -81,59 +109,81 @@ do
 done
 }
 
-################
-# bar settings #
-################
-read red < /home/zoe/.config/ricer/ricertemplates/colors/base8
-read orange < /home/zoe/.config/ricer/ricertemplates/colors/base9
-read yellow < /home/zoe/.config/ricer/ricertemplates/colors/base10
-read green < /home/zoe/.config/ricer/ricertemplates/colors/base11
-read lblue < /home/zoe/.config/ricer/ricertemplates/colors/base12
-read blue < /home/zoe/.config/ricer/ricertemplates/colors/base13
-read brown < /home/zoe/.config/ricer/ricertemplates/colors/base14
-read background < /home/zoe/.config/ricer/ricertemplates/colors/base0
-read background2 < /home/zoe/.config/ricer/ricertemplates/colors/base4
-font="Aerolite Bold:size=14:style=Medium"
-icons1="Font Awesome 5 Free Solid:size=9"
-icons2="Symbols Nerd Font:size=12"
-icons3="Symbols Nerd Font:size=10"
-icons4="Font Awesome 5 Free:size=11"
-echo $background IS TEST COLOR
-trap "kill %1; kill %2; kill %3; kill %4; kill %5" SIGINT SIGTERM
-
 
 ################
 # DISPLAY BARS #
 ################
 #bkg
-echo | lemonbar -d -B "#$background2" -g 170x58+0+1022 -p &
-echo | lemonbar -d -B "#$background2" -g 308x38+0+1042 -p &
-echo | lemonbar -d -B "#$background2" -g 100x38+1820+1042 -p &
-sleep .1
-echo | lemonbar -d -B "#$background" -g 100x20+0+1030 -p &
-sleep .3
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1022 -F "#$background2" &
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 155x40+307+1040 -F "#$background2" &
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 55x40+1784+1040 -F "#$background2" &
-sleep .3
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1031 -F "#$background" &
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=18" -g 155x30+300+1050 -F "#$background" &
-echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=18" -g 55x30+1804+1050 -F "#$background" &
-sleep .1
-echo | lemonbar -d -B "#$background" -g 300x30+0+1050 -p &
+#echo | lemonbar -d -B "#$background2" -g 170x58+0+1022 -p &
+#echo | lemonbar -d -B "#$background2" -g 308x38+0+1042 -p &
+#echo | lemonbar -d -B "#$background2" -g 100x38+1820+1042 -p &
+#sleep .1
+#echo | lemonbar -d -B "#$background" -g 100x20+0+1030 -p &
+#sleep .3
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1022 -F "#$background2" &
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 155x40+307+1040 -F "#$background2" &
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=25" -g 55x40+1784+1040 -F "#$background2" &
+#sleep .3
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=20" -g 155x30+170+1031 -F "#$background" &
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=18" -g 155x30+300+1050 -F "#$background" &
+#echo  | lemonbar -d -p -f "Powerline Extra Symbols:size=18" -g 55x30+1804+1050 -F "#$background" &
+#sleep .1
+#echo | lemonbar -d -B "#$background" -g 300x30+0+1050 -p &
 
+meter_head() {
+      while true
+      do
+         blevel = "$(bat)"
+         if [[ "$blevel" > 10 && "$blevel" < 100 ]]
+         then
+            echo "%%{B#00000000}%%{F#$green}"
+            sleep .5
+            echo
+         else
+            echo
+         fi
+      done
+}
+meter_body() {
+      while true
+      do
+         echo "%%{B#00000000}%%{F#$green}"
+         sleep .5
+         echo
+      done
+}
+meter() {
+   # 1 = meter level, # 2 = meter  
+   echo hi
+   levels = 24
+
+   printf "%%{B#00000000}%%{F#$c4}%%{B#$c4}                        %%{B#00000000}" | \
+      lemonbar -p -d -o -0 -f "Powerline Extra Symbols:size=19" -f "$font" -g 410x29+495+995 -B"#$background00" &
+   sleep .2
+   printf "%%{B#00000000}%%{F#$yellow}%%{B#$yellow}                        %%{B#00000000}" | \
+      lemonbar -p -d -o -0 -f "Powerline Extra Symbols:size=13" -f "$font" -g 410x19+500+1000 -B"#$background00" &
+   sleep .2
+
+   printf "%%{B#00000000}%%{F#$green}" | lemonbar -p -d -o -0 -f "Powerline Extra Symbols:size=13" -f "$font" -g 410x19+509+1000 -B"#$background00" &
+}
+#meter
 
 #workspaces
-herbspaces2 | lemonbar -d -o 1 -f "$icons1" -o 2 -f "$icons3" -g 165x20+5+1030 -B"#$background" &
+echo | lemonbar -p -g 210x40+11+1036 -B"#$c4" &
+herbspaces2 | lemonbar -d -o 1 -f "$icons1" -o 2 -f "$icons3" -g 210x40+5+1030 -B"#$background" &
 
 #volume
-vol | lemonbar -d -o 0 -f "$font" -o 1 -f "$icons2" -g 46x20+15+1055 -B"#$background" -F"#$orange" &
+echo | lemonbar -p -g 60x40+276+1036 -B"#$c4" -F"#$orange" &
+vol | lemonbar -d -o 0 -f "$font" -o 1 -f "$icons2" -g 60x40+270+1030 -B"#$background" -F"#$orange" &
 
 #date
-datetime | lemonbar -d -o 0 -f "$font" -o 1 -f "$icons2" -g 150x20+140+1055 -B"#$background" -F"#$orange" &
+echo | lemonbar -p -g 170x40+480+1036 -B"#$c4" -F"#$yellow" &
+datetime | lemonbar -d -o 0 -f "$font" -o 1 -f "$icons2" -g 170x40+474+1030 -B"#$background" -F"#$lblue" &
 
 #battery
-bat | lemonbar -d -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x20+70+1055 -B"#$background" -F"#$orange" &
+echo | lemonbar -p -g 64x40+386+1036 -B"#$c4" -F"#$c3" &
+bat | lemonbar -d -p -o 0 -f "$font" -o 1 -f "$icons2" -g 64x40+380+1030 -B"#$background" -F"#$yellow" &
 
 #mem
-mem | lemonbar -d -p -o 0 -f "$font" -o -2 -f "$font" -f "$icons2" -g 90x30+1830+1050 -B"#$background" -F"#$orange" 
+mem | lemonbar -d -p -o 0 -f "$font" -o -2 -f "$font" -f "$icons2" -g 90x40+1810+1030 -B"#$background" -F"#$c2" 
+echo | lemonbar -p -g 90x40+1816+1036 -B"#$c4" -F"#$orange" 

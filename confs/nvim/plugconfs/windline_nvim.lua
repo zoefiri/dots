@@ -91,7 +91,7 @@ function M.setup()
          colors.DevIconYaml                =     66
          colors.DevIconCobol               =     25
          colors.DevIconCPlusPlus           =     204
-         colors.DevIconDefault             =     66
+         colors.DevIconDefault             =     62
          colors.DevIconGo                  =     67
          colors.DevIconGitLogo             =     202
          colors.DevIconJpeg                =     140
@@ -652,21 +652,21 @@ function M.setup()
             DevIconPyd_inactive                  = {'', {'DevIconPyd'                 , norm_bg}},
             DevIconTsx_inactive                  = {'', {'DevIconTsx'                 , norm_bg}},
             normal        = {'GUH..'                             , {norm_fg, norm_bg}},
-            normal_start  = {' '                           , {norm_bg, bg}},
+            normal_start  = {''                           , {norm_bg, bg}},
             normal_end    = {'' .. ''                    , {norm_bg, bg}},
             -- normal_last display if tab is the last tab
-            normal_last   = {' '        , {norm_bg , bg}},
+            normal_last   = {''        , {norm_bg , bg}},
 
 
             -- this only use a highlight color a text will replace by tab name
             select        = {'GWAA'                             , {sel_fg, sel_bg}},
-            select_start  = {' '                           , {sel_bg, bg}},
-            select_end    = {' '                     , {sel_bg, bg}},
+            select_start  = {''                           , {sel_bg, bg}},
+            select_end    = {''                     , {sel_bg, bg}},
             -- select_last display if select tab is a last tab
-            select_last   = {' '        , {sel_bg , bg}},
+            select_last   = {''        , {sel_bg , bg}},
 
             -- normal_select display if a next tab is select
-            normal_select = {' '        , {norm_bg , bg}},
+            normal_select = {''        , {norm_bg , bg}},
          },
       }
    })

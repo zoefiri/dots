@@ -45,8 +45,9 @@ export FPATH=$HOME/usr/share/zsh/5.7.1/functions:$FPATH
 export PATH=/bin:/home/zoe/.local/bin:/home/zoe/.gem/ruby/2.6.0/bin:~/bin:$PATH:/usr/bin:/usr/local/bin:/home/zoe/.local/lib/python3.7/site-packages:/usr/share/java:/home/zoe/go/bin:/home/zoe/.cargo/bin:/home/zoe/bin
 export GNUPGHOME=/home/zoe/.gnupg
 export WINEPREFIX=/home/zoe/.wine
-export WINEARCH=win32
+export WINEARCH=win64
 export CLASSPATH="$CLASSPATH:/usr/share/java/*"
+export FZF_DEFAULT_OPTS='--color fg:61,bg:0,bg+:63,info:2,query:61,prompt:61,pointer:2,prompt:3,hl:1'
 #export PULSE_SERVER=/home/zoe/pulse/native
 VISUAL=nvim; export VISUAL EDITOR=nvim; export EDITOR
 
@@ -72,6 +73,8 @@ then
    for i in {1..7}; do
       echo -ne "\033]4;$((59+i));#$(<~/.config/ricer/ricertemplates/colors/base$i)\007"
    done
+   i=15
+   echo -ne "\033]4;67;#$(<~/.config/ricer/ricertemplates/colors/base$i)\007"
    echo -ne "\033]4;242;#$(<~/.config/ricer/ricertemplates/colors/base2)\007"
    #cat ~/dots/confs/palout
 fi
@@ -88,8 +91,8 @@ zstyle ':completion:*' menu select
    alias aj='autojump'
    alias nd='nv /dev/null'
    alias psync='adb push ~/.password-store /storage/emulated/0/.pass'
-   alias perform='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && sudo echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
-   alias psave='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && sudo echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias perform='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
+   alias psave='printf "$(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor) -> " && echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor'
    alias cleanup='sync;sudo sysctl -w vm.drop_caches=3'
    alias xephdisp='Xephyr -br -ac -noreset -screen 1920x1080 :9'
    alias fze='nvim $(fzf)'
@@ -108,6 +111,7 @@ zstyle ':completion:*' menu select
    alias pee='yes pee'
    alias shitdown='shutdown'
 #shortcuts
+   alias ydir='pwd | tr -d "\n" | xsel -ib'
    alias e='fzf --color info:4,prompt:3,spinner:3,pointer:2,marker:1 | xargs -r $EDITOR'
    alias task='clear ; printf "\n\e[1ms\e[31mh\e[32mi\e[33mt \e[34mt\e[35mo \e[36md\e[33mo\e[0m ✖ · · · ✖ \e[35m \e[34m \e[33m" ; task'
    alias wic='wicd-curses'
@@ -118,7 +122,7 @@ zstyle ':completion:*' menu select
    alias /='cd /'
    alias reload='clear && source ~/.zshrc'
    alias slepp='locker && systemctl suspend'
-   alias ncm='[ -z "$TMUX" ] && tmux new-session "ncmpcpp 2>/dev/null" 1>/dev/null || ncmpcpp 2>/dev/null'
+   alias ncm='[ -z "$TMUX" ] && tmux new-session "~/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug 2>/dev/null" 1>/dev/null || ~/.ncmpcpp/ncmpcpp-ueberzug/ncmpcpp-ueberzug 2>/dev/null'
    alias ranger='[ -z "$TMUX" ] && tmux new-session "ranger 2>/dev/null" 1>/dev/null || ranger 2>/dev/null'
    alias gitgraph='git log --all --decorate --graph --oneline'
    alias gitlog='git log --all --decorate --graph'
@@ -172,6 +176,7 @@ setopt promptsubst
 # PS1=$'\n%{\e[32m%}%{\e[42m%}%{\e[30m%} %{\e[0;32m%}%{\e[0m%} '
 
 # angley
+#PS1=$'\n%{\e[31m%}%{\e[40m%}%{\e[1m%} %{\e[30m%}%{\e[41m%}$USER >> %{\e[40m%}%{\e[31m%} %{\e[32m%} %{\e[31m%}%{\e[40m%} %{\e[30m%}%{\e[41m%}   %{\e[40m%}%{\e[31m%}%{\e[0m%} '
 PS1=$'\n%{\e[31m%}%{\e[40m%}%{\e[1m%} %{\e[30m%}%{\e[41m%}$USER >> %{\e[40m%}%{\e[31m%} %{\e[32m%} %{\e[31m%}%{\e[40m%} %{\e[30m%}%{\e[41m%}   %{\e[40m%}%{\e[31m%}%{\e[0m%} '
 
 ##############################
@@ -188,10 +193,26 @@ source ~/.zsh/z/z.sh
 source ~/.zsh/fz/fz.plugin.zsh
 source ~/.zsh/zsh-sudo/sudo.plugin.zsh
 source ~/.zsh/file_icons
+source ~/.zsh/zsh-vi-mode/zsh-vi-mode.plug.zsh
+source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh 
 
 #  fff  #
 f(){ fff "$@"; cd "$(< ~/.fff_d)"; }
 export FFF_CD_FILE=~/.fff_d
+
+# rgtarget #
+rgt() {
+   file="$(rg --hidden -l $1 | sk --preview='bat {} --color=always')"
+   read program
+   [ -z "$program" ] && echo $file 
+   [ ! -z "$program" ] && "$program" "$file"
+}
+
+rj() {
+   file="$(fd $1 | sk --preview='exa --icons -la {}')"
+   [ -d "$file" ] && cd $file
+   [ ! -d "$file" ] && not dir && cd ${file%/*}
+}
 
 # cht.sh #
 ch(){
@@ -238,10 +259,6 @@ fetchy() {
 zle -N fetchy
 bindkey '^H' fetchy
 
-upn(){
-    curl -X POST https://upload.nixne.st/image -H "Upload-Key: da52089b4eb6093bca7de39c1e7d0866" -F "uploadFile=@$1"
-}
-
 #  deer  #
 zle -N deer
 bindkey '^N' deer
@@ -281,4 +298,6 @@ RCINITED=1
 #  start tmux  #
 ################
 #[ -z $TMUX ] && [ ! -z $DISPLAY ] && tmux
+unset zle_bracketed_paste
 
+[ -f "/home/zoe/.ghcup/env" ] && source "/home/zoe/.ghcup/env" # ghcup-env
