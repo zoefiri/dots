@@ -14,91 +14,83 @@ opts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
--- buffer nav
-wk.register({
-   name = "+buff nav",
-   o = {"<cmd>tabprevious<CR>", "buff ←" },
-   p = {"<cmd>tabnext<CR>", "buff →" },
-   m = {"<C-I>", "nav ←" },
-   n = {"<C-O>", "nav →" },
-   h = {"<C-w>h", "win ←" },
-   j = {"<C-w>j", "win ↓" },
-   k = {"<C-w>k", "win ↑" },
-   l = {"<C-w>l", "win →" },
-   a = {
-      name = "+buff mng",
-      c = {"<cmd>tabnew<CR>", "buff " },
-      e = {"<cmd>tabclose<CR>", "buff " },
-   },
-   w = { "<cmd>lua require'leap-ast'.leap()<CR>", "AST leap" },
-}, { prefix = "<leader>" })
+wk.add({
+   -- name = "+buff nav",
+   {"<leader>o", "<cmd>tabprevious<CR>", desc = "buff ←" },
+   {"<leader>p", "<cmd>tabnext<CR>", desc = "buff →" },
+   {"<leader>m", "<C-I>", desc = "nav ←" },
+   {"<leader>n", "<C-O>", desc = "nav →" },
+   {"<leader>h", "<C-w>h", desc = "win ←" },
+   {"<leader>j", "<C-w>j", desc = "win ↓" },
+   {"<leader>k", "<C-w>k", desc = "win ↑" },
+   {"<leader>l", "<C-w>l", desc = "win →" },
 
--- open plugin menus
-wk.register({
-   name = "+open plugin",
-   u = {"<cmd>UndotreeToggle<CR>", "toggle undotree" },
-   t = {"<cmd>NvimTreeToggle<CR>", "toggle nvimtree" },
-   e = {"<cmd>ToggleTerm direction='float'<CR>", "toggle term" },
-   r = {
-      r = {"<cmd>lua require('rest-nvim').run()<CR>", "run REST request" },
-      p = {"<cmd>lua require('rest-nvim').run(true)<CR>", "preview REST request"}
-   },
-   f = {
-      name = "+telescope",
-      f = {"<cmd>Telescope find_files<CR>", "find files" },
-      g = {"<cmd>Telescope live_grep<CR>", "livegrep" },
-      t = {"<cmd>Telescope file_browser<CR>", "file browser" },
-   },
-}, { prefix = "<leader>" })
+   -- buff management
+   {"<leader>ac", "<cmd>tabnew<CR>", desc = "buff " },
+   {"<leader>ae", "<cmd>tabclose<CR>", desc = "buff " },
 
--- plugin actions
-wk.register({
-   name = "+plugin actions",
-   d = {"<cmd>lua require('notify').dismiss()<CR>", "dismiss notifs" },
-}, { prefix = "<leader>" })
+   -- open plugins
+   {"<leader>u", "<cmd>UndotreeToggle<CR>", desc = "toggle undotree" },
+   {"<leader>t", "<cmd>NvimTreeToggle<CR>", desc = "toggle nvimtree" },
+   {"<leader>e", "<cmd>ToggleTerm direction='float'<CR>", desc = "toggle term" },
 
--- lsp stuff
-wk.register({
-   z = {
-      name = "+nvimlsp",
-      w = {
-         name = "+workspace",
-         a = {"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "new workspace folder" },
-         d = {"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "remove workspae folder" },
-         l = {"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "list workspace folders" },
-      },
-      D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "view declaration" },
-      d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "view definition" },
-      l = {"<cmd>lua vim.lsp.buf.hover()<CR>", "lsp hover" },
-      i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "view implementation" },
-      k = {"<cmd>lua vim.lsp.buf.signature_help()<CR>", "signature help" },
-      t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "view type definition" },
-      r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-      c = {"<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
-      R = {"<cmd>lua vim.lsp.buf.references()<CR>", "references" },
-      e = {"<cmd>lua vim.diagnostic.open_float()<CR>", "diagnostics floatwin" },
-      n = {"<cmd>lua vim.diagnostic.goto_prev()<CR>", "diagnostics ←" },
-      N = {"<cmd>lua vim.diagnostic.goto_next()<CR>", "diagnostics →" },
-      F = {"<cmd>lua vim.lsp.buf.format()<CR>", "" },
-   },
-}, { prefix = "<leader>" })
+   -- telescope 
+   {"<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },
+   {"<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "livegrep" },
+   {"<leader>ft", "<cmd>Telescope file_browser<CR>", desc = "file browser" },
 
-wk.register({
-   q = {"<plug>(Mac_Play)", "play macro" },
-   gq = {"<plug>(Mac_RecordNew)", "record macro" },
+   -- neocomposer
+   {"qp", "<cmd>lua require('NeoComposer.macro').play_macro()<CR>", desc = "play macro" },
+   {"qy", "<cmd>lua require('NeoComposer.macro').yank_macro()<CR>", desc = "yank macro" },
+   {"qs", "<cmd>lua require('NeoComposer.macro').stop_macro()<CR>", desc = "stop recording" },
+   {"qq", "<cmd>lua require('NeoComposer.macro').toggle_record()<CR>", desc = "toggle recording" },
+   {"qn", "<cmd>lua require('NeoComposer.macro').cycle_next()<CR>", desc = "cycle next" },
+   {"qN", "<cmd>lua require('NeoComposer.macro').cycle_prev()<CR>", desc = "cycle prev" },
+   {"qQ", "<cmd>lua require('NeoComposer.ui').toggle_macro_menu()<CR>", desc = "toggle menu" },
+
+   -- lsp
+   {"<leader>zD", "<cmd>Lspsaga goto_declaration()<CR>", desc = "view declaration" },
+   {"<leader>zd", "<cmd>Lspsaga goto_definition<CR>", desc = "view definition" },
+   {"<leader>zl", "<cmd>Lspsaga hover_doc<CR>", desc = "lsp hover" },
+   {"<leader>zo", "<cmd>Lspsaga outline<CR>", desc = "lsp hover" },
+   {"<leader>zf", "<cmd>Lspsaga finder<CR>", desc = "lsp hover" },
+   {"<leader>zr", "<cmd>Lspsaga rename<CR>", desc = "rename" },
+   {"<leader>ze", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "diagnostics floatwin" },
+   {"<leader>zn", "<cmd>Lspsaga diagnostic_jump_prev()<CR>", desc = "diagnostics ←" },
+   {"<leader>zN", "<cmd>Lspsaga diagnostic_jump_next()<CR>", desc = "diagnostics →" },
+   {"<leader>zz", "<cmd>Lspsaga incoming_calls<CR>", desc = "lsp hover" },
+   {"<leader>zx", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lsp hover" },
+   {"<leader>zF", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "format buffer" },
+
+   -- flash
+   {"<leader>s", "<cmd>require('flash').jump()<CR>", desc = "format buffer" },
+   {"<leader>d", "<cmd>require('flash').treesitter()<CR>", desc = "format buffer" },
+   {"<leader>r", "<cmd>require('flash').remote()<CR>", desc = "format buffer" },
+
+   -- mini.git
+   {"<leader>gg", "<cmd>Git ", desc = "format buffer" },
+   {"<leader>ga", "<cmd>Git commit<CR>", desc = "format buffer" },
+   {"<leader>gc", "<cmd>Git add %<CR>", desc = "format buffer" },
 })
 
-vim.cmd('silent! call repeat#set("\\<Plug>MyWonderfulMap", v:count)')
 
-function _G.set_terminal_keymaps()
-   local opts = {noremap = true}
-   vim.api.nvim_buf_set_keymap(0, 't', 'jj', [[<C-\><C-n>]], opts)
-end
 
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-
-vim.keymap.set({'n', 'x', 'o'}, '<some-key>', function()  end, {})
+-- wk.register({
+--    q = {"<plug>(Mac_Play)", "play macro" },
+--    gq = {"<plug>(Mac_RecordNew)", "record macro" },
+-- })
+--
+-- vim.cmd('silent! call repeat#set("\\<Plug>MyWonderfulMap", v:count)')
+--
+-- function _G.set_terminal_keymaps()
+--    local opts = {noremap = true}
+--    vim.api.nvim_buf_set_keymap(0, 't', 'jj', [[<C-\><C-n>]], opts)
+-- end
+--
+-- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+-- vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+--
+-- vim.keymap.set({'n', 'x', 'o'}, '<some-key>', function()  end, {})
 
 -- function map(mode, lhs, rhs, opts)
 --     local options = { noremap = true }
