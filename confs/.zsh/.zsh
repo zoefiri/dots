@@ -1,0 +1,1 @@
+/home/zoe/dots/confs/.zsh
