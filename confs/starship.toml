@@ -1,0 +1,29 @@
+format = '''
+(  [](fg:primary-ui_bg bg:c0)[](fg:acc_ui_bg)[](fg:c2 bg:alt_ui_bg)[[ ](bg:acc_ui_bg)](fg:acc_ui_bg)[ $git_status[ ](fg:c5 bg:alt_ui_bg)$git_branch](bg:alt_ui_bg fg:c0 bold)[](alt_ui_bg)[](fg:63)[](fg:63 bg:c4)[](fg:c4 bg:c5)[](fg:c5)
+)[](primary-ui_bg)[ zoe ❯❯ ](bg:primary-ui_bg fg:c0 bold)[](bold primary-ui_bg)[   ](bg:primary-ui_bg fg:c0 bold)[](primary-ui_bg) 
+'''
+
+palette = 'zozo'
+
+[palettes.zozo]
+# Overwrite existing color
+c0 = '59'
+c2 = '2'
+c3 = '3'
+c4 = '4'
+c5 = '5'
+c6 = '6'
+
+primary-ui_bg = '1'
+alt_ui_bg = '60'
+acc_ui_bg = '61'
+
+alt_ui_fg = '67'
+
+[git_status]
+style = 'bg:alt_ui_bg fg:alt_ui_fg'
+
+[git_branch]
+style = 'bg:alt_ui_bg fg:alt_ui_fg'
+format =	'  [[$symbol](bold fg:c4 bg:alt_ui_bg) $branch(:$remote_branch)]($style) '
+symbol = ''
