@@ -74,6 +74,7 @@ require("binds")
 
 vim.api.nvim_command('colorscheme mothdust')
 
+vim.api.nvim_command('TSEnable highlight incremental_selection indent')
 
 -- local config = vim.api.nvim_win_get_config(win)
 -- -- Border can be none, single, double, rounded, solid, shadow.
