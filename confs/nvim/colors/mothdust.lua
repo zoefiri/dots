@@ -11,11 +11,11 @@ local b16_colors = {
    c6 = { gui = '#FFFDED', cterm = 65 },
    c7 = { gui = '#FFF3CF', cterm = 66 },
    c8 = { gui = '#FB2C0B', cterm = 1 },
-   c9 = { gui = '#F97B2E', cterm = 2 },
+   c9 = { gui = '#F97C39', cterm = 2 },
    cA = { gui = '#F0B41B', cterm = 3 },
    cB = { gui = '#70BC5F', cterm = 4 },
    cC = { gui = '#9DDAB6', cterm = 5 },
-   cD = { gui = '#FF536A', cterm = 6 },
+   cD = { gui = '#FF5900', cterm = 6 },
    cE = { gui = '#FBE200', cterm = 7 },
    cF = { gui = '#FB0D3C', cterm = 8 },
 }
@@ -50,11 +50,11 @@ require('mini.base16').setup({
       base06 = '#FFFDED',
       base07 = '#FFF3CF',
       base08 = '#FB2C0B',
-      base09 = '#F97B2E',
+      base09 = '#F97C39',
       base0A = '#F0B41B',
       base0B = '#70BC5F',
       base0C = '#9DDAB6',
-      base0D = '#FF536A',
+      base0D = '#FF5900',
       base0E = '#FBE200',
       base0F = '#FB0D3C',
    },
@@ -122,14 +122,15 @@ vim.api.nvim_set_hl(0, 'TabbyEndInactive', b16({fg = "c4", bg = "no"}))
 vim.api.nvim_set_hl(0, 'CursorLine', b16({bg = "c1"}))
 vim.api.nvim_set_hl(0, 'CursorColumn', b16({bg = "c1"}))
 
-vim.api.nvim_set_hl(0, 'LineNr', b16({fg = "c3"}))
+vim.api.nvim_set_hl(0, 'LineNr', b16({fg = "cF"}))
 vim.api.nvim_set_hl(0, 'CursorLineNr', b16({fg = "cE", bg = "no"}))
 vim.api.nvim_set_hl(0, 'SignColumn', b16({fg = "c9", bg = "no"}))
 vim.api.nvim_set_hl(0, 'EndOfBuffer', b16({bg = "no", fg = "no" }))
 
 vim.api.nvim_set_hl(0, 'Structure', b16({fg = "cC" }))
 vim.api.nvim_set_hl(0, 'Type', b16({fg = "c9" }))
-vim.api.nvim_set_hl(0, 'Function', b16({fg = "cF" }))
+vim.api.nvim_set_hl(0, 'Function', b16({fg = "cD" }))
+
 vim.api.nvim_set_hl(0, 'Search', b16({bg = "c4", fg = "c0" }))
 vim.api.nvim_set_hl(0, 'IncSearch', b16({bg = "cA" }))
 

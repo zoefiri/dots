@@ -184,6 +184,7 @@ source $HOME/.zsh/set_exa.zsh
 source $HOME/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 source $HOME/.zsh/zle-fzf/zle-fzf.plugin.zsh
 source $HOME/.config/envman/alias.env
+source $HOME/.zsh/skim.zsh/skim.plugin.zsh
 
 #########
 ##xxxxx##

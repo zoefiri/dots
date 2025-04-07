@@ -12,12 +12,12 @@ return {
    'nvimdev/lspsaga.nvim',
    config = function()
       require('lspsaga').setup({
-         finder = {
-            max_height = 0.6,
-            left_width = 0.3,
-            default='ref+imp',
-            layout='normal',
-         },
+         -- finder = {
+         --    max_height = 0.6,
+         --    left_width = 0.3,
+         --    default='ref+imp',
+         --    layout='normal',
+         -- },
          ui = {
             border = "single",
          },

@@ -63,9 +63,13 @@ wk.add({
    {"<leader>zF", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "format buffer" },
 
    -- flash
-   {"<leader>s", "<cmd>require('flash').jump()<CR>", desc = "format buffer" },
-   {"<leader>d", "<cmd>require('flash').treesitter()<CR>", desc = "format buffer" },
-   {"<leader>r", "<cmd>require('flash').remote()<CR>", desc = "format buffer" },
+   {"<leader>s", "<cmd>lua require('flash').jump()<CR>", desc = "format buffer" },
+   {"<leader>d", "<cmd>lua require('flash').treesitter()<CR>", desc = "format buffer" },
+   {"<leader>b", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "format buffer" },
+   {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "format buffer" },
+
+   -- obsidian.nvim
+   -- {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "format buffer" },
 
    -- mini.git
    {"<leader>gg", "<cmd>Git ", desc = "format buffer" },

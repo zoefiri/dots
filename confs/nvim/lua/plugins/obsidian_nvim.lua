@@ -1,18 +1,7 @@
--- No example configuration was found for this plugin.
---
--- For detailed information on configuring this plugin, please refer to its
--- official documentation:
---
---   https://github.com/epwalsh/obsidian.nvim
---
--- If you wish to use this plugin, you can optionally modify and then uncomment
--- the configuration below.
-
 return {
   "epwalsh/obsidian.nvim",
-  enabled=false,
   version = "*",  -- recommended, use latest release instead of latest commit
-  lazy = true,
+  lazy = false,
   ft = "markdown",
   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
   -- event = {
@@ -30,8 +19,12 @@ return {
   },
   opts = {
     workspaces = {
+       {
+          name = 'mothjar',
+          path = '~/mothjar',
+       }
     },
 
     -- see below for full list of options 👇
-  },
+ },
 }
