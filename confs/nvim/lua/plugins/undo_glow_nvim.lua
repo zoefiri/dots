@@ -1,7 +1,7 @@
 local mothdust = require("colors/mothdust")
 
 return {
-   "y3owk1n/undo-glow.nvim",
+   "zoefiri/undo-glow.nvim",
    event = { "VeryLazy" },
    ---@type UndoGlow.Config
    opts = {

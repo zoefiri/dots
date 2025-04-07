@@ -9,7 +9,7 @@
 -- the configuration below.
 
 return {
-   'nvimdev/lspsaga.nvim',
+   'zoefiri/lspsaga.nvim',
    config = function()
       require('lspsaga').setup({
          -- finder = {
