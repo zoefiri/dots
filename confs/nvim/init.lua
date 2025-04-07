@@ -1,7 +1,7 @@
 -- vim options
 vim.g.mapleader = " "
-package.path = package.path .. ";/home/zoe/.config/nvim/?.lua"
-package.path = package.path .. ";/home/zoe/.luarocks/share/lua/5.4/?.lua"
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.config/nvim/?.lua"
+package.path = package.path .. ";" .. os.getenv("HOME") .. "/.luarocks/share/lua/5.4/?.lua"
 -- package.path = package.path .. ";/home/zoe/.config/nvim/highlights/?.lua"
 -- package.path = package.path .. ";/home/zoe/.config/nvim/plugconfs/?.lua"
 local options = {
