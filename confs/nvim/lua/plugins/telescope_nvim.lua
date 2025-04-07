@@ -10,7 +10,10 @@
 
 return {
    'nvim-telescope/telescope.nvim',
-   dependencies = { 'nvim-lua/plenary.nvim' },
+   dependencies = {
+      'nvim-lua/plenary.nvim',
+      "Myzel394/jsonfly.nvim",
+   },
    config = function()
       require('telescope').setup{
          defaults = {
@@ -29,19 +32,25 @@ return {
          pickers = {
             -- Default configuration for builtin pickers goes here:
             -- picker_name = {
-               --   picker_config_key = value,
-               --   ...
-               -- }
-               -- Now the picker_config_key will be applied every time you call this
-               -- builtin picker
-            },
-            extensions = {
-               -- Your extension configuration goes here:
-               -- extension_name = {
-                  --   extension_config_key = value,
-                  -- }
-                  -- please take a look at the readme of the extension you want to configure
+            --   picker_config_key = value,
+            --   ...
+            -- }
+            -- Now the picker_config_key will be applied every time you call this
+            -- builtin picker
+         },
+         extensions = {
+            jsonfly = {
+               layout_strategy = "horizontal",
+               prompt_position = "top",
+               layout_config = {
+                  mirror = false,
+                  prompt_position = "top",
+                  preview_width = 0.45
                }
             }
-         end
+         }
       }
+
+      require("telescope").load_extension("jsonfly")
+   end
+}

@@ -21,8 +21,14 @@
 
 zstyle :compinstall filename "$HOME/.zshrc"
 echo ur cute
+
+fpath=( /Users/zoechamlee/.zsh/comps $fpath )
+echo $fpath
+
 autoload -Uz compinit
 compinit
+alias compinit="echo no more compinit!"
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -53,7 +59,7 @@ export GROFF_NO_SGR=1 # manpage coloration
 
 #x# setup #x#
 ### PATH
-PATH=$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/building/flutter/flutter/bin:$HOME/go/bin
+PATH=$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/building/flutter/flutter/bin:$HOME/go/bin:/opt/homebrew/bin
 ### 
 ### 
 ### 
@@ -179,9 +185,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=4
 #x# plugins #x#
 ###
 ###
-source $HOME/.zsh/z/z.sh
+source $HOME/.zsh/z/zsh-z.plugin.zsh
 source $HOME/.zsh/set_exa.zsh
+
 source $HOME/.zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+
 source $HOME/.zsh/zle-fzf/zle-fzf.plugin.zsh
 source $HOME/.config/envman/alias.env
 
@@ -278,6 +286,7 @@ cmd_completion_pws() {
   _arguments \
     '*: :(( ${arguments[@]} ))' 
 }
+
 compdef cmd_completion_pws pw
 
 #x# man coloration #x#
@@ -302,3 +311,4 @@ typeset -a preexec_functions
 
 preexec_functions+=(set_tmux_icon)
 precmd_functions+=(unset_tmux_icon)
+

@@ -38,6 +38,7 @@ wk.add({
    {"<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },
    {"<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "livegrep" },
    {"<leader>ft", "<cmd>Telescope file_browser<CR>", desc = "file browser" },
+   {"<leader>fj", "<cmd>Telescope jsonfly<CR>", desc = "jsonfly" },
 
    -- neocomposer
    {"qp", "<cmd>lua require('NeoComposer.macro').play_macro()<CR>", desc = "play macro" },
@@ -51,21 +52,22 @@ wk.add({
    -- lsp
    {"<leader>zD", "<cmd>Lspsaga goto_declaration()<CR>", desc = "view declaration" },
    {"<leader>zd", "<cmd>Lspsaga goto_definition<CR>", desc = "view definition" },
-   {"<leader>zl", "<cmd>Lspsaga hover_doc<CR>", desc = "lsp hover" },
-   {"<leader>zo", "<cmd>Lspsaga outline<CR>", desc = "lsp hover" },
-   {"<leader>zf", "<cmd>Lspsaga finder<CR>", desc = "lsp hover" },
+   {"<leader>zl", "<cmd>Lspsaga hover_doc<CR>", desc = "hover" },
+   {"<leader>zc", "<cmd>Lspsaga code_action<CR>", desc = "code action" },
+   {"<leader>zo", "<cmd>Lspsaga outline<CR>", desc = "outliner" },
+   {"<leader>zf", "<cmd>Lspsaga finder<CR>", desc = "finder" },
    {"<leader>zr", "<cmd>Lspsaga rename<CR>", desc = "rename" },
    {"<leader>ze", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "diagnostics floatwin" },
    {"<leader>zn", "<cmd>Lspsaga diagnostic_jump_prev()<CR>", desc = "diagnostics ←" },
    {"<leader>zN", "<cmd>Lspsaga diagnostic_jump_next()<CR>", desc = "diagnostics →" },
-   {"<leader>zz", "<cmd>Lspsaga incoming_calls<CR>", desc = "lsp hover" },
-   {"<leader>zx", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lsp hover" },
+   {"<leader>zz", "<cmd>Lspsaga incoming_calls<CR>", desc = "incoming calls" },
+   {"<leader>zx", "<cmd>Lspsaga outgoing_calls<CR>", desc = "outgoing calls" },
    {"<leader>zF", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "format buffer" },
 
    -- flash
-   {"<leader>s", "<cmd>require('flash').jump()<CR>", desc = "format buffer" },
-   {"<leader>d", "<cmd>require('flash').treesitter()<CR>", desc = "format buffer" },
-   {"<leader>r", "<cmd>require('flash').remote()<CR>", desc = "format buffer" },
+   {"<leader>s", "<cmd>lua require('flash').jump()<CR>", desc = "flashjump" },
+   {"<leader>d", "<cmd>lua require('flash').treesitter()<CR>", desc = "flashsitter" },
+   {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "flashremote" },
 
    -- mini.git
    {"<leader>gg", "<cmd>Git ", desc = "format buffer" },

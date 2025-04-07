@@ -1,4 +1,4 @@
-local inspect = require('inspect')
+-- local inspect = require('inspect')
 
 local b16_colors = {
    no = { gui = 'None', cterm = 'None' },

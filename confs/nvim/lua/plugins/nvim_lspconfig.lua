@@ -19,6 +19,13 @@ return {
          },
       }
 
+      require'lspconfig'.gopls.setup{}
+      require'lspconfig'.jsonls.setup{}
+
+      require'lspconfig'.sqls.setup{
+         cmd = {"/Users/zoechamlee/.local/share/nvim/mason/bin/sqls", "-config", "~/.config/sqls/config.yaml"};
+      }
+
       vim.diagnostic.config({
          signs = {
             text = {

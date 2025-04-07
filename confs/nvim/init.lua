@@ -1,7 +1,5 @@
 -- vim options
 vim.g.mapleader = " "
-package.path = package.path .. ";/home/zoe/.config/nvim/?.lua"
-package.path = package.path .. ";/home/zoe/.luarocks/share/lua/5.4/?.lua"
 -- package.path = package.path .. ";/home/zoe/.config/nvim/highlights/?.lua"
 -- package.path = package.path .. ";/home/zoe/.config/nvim/plugconfs/?.lua"
 local options = {
@@ -62,6 +60,9 @@ require("config.lazy")
 --
 -- require("highlights.generic")
 require("binds")
+vim.cmd('TSEnable highlight')
+vim.cmd('TSEnable indent')
+vim.cmd('TSEnable incremental_selection')
 --
 -- vim.api.nvim_create_autocmd({"ColorScheme"}, {
 --    callback = function(ev)
@@ -71,9 +72,6 @@ require("binds")
 -- })
 --
 --
-
-vim.api.nvim_command('colorscheme mothdust')
-
 
 -- local config = vim.api.nvim_win_get_config(win)
 -- -- Border can be none, single, double, rounded, solid, shadow.

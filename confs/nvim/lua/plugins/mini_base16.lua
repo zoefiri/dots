@@ -61,5 +61,7 @@ return {
         -- Also can be set per plugin (see |MiniBase16.config|).
         plugins = { default = true },
      })
+
+     vim.api.nvim_command('colorscheme mothdust')
   end
 }
