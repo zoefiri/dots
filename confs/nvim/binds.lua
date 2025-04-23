@@ -49,24 +49,25 @@ wk.add({
    {"qQ", "<cmd>lua require('NeoComposer.ui').toggle_macro_menu()<CR>", desc = "toggle menu" },
 
    -- lsp
-   {"<leader>zD", "<cmd>Lspsaga goto_declaration()<CR>", desc = "view declaration" },
-   {"<leader>zd", "<cmd>Lspsaga goto_definition<CR>", desc = "view definition" },
+   {"<leader>zD", "<cmd>Lspsaga goto_declaration()<CR>", desc = "lsp view declaration" },
+   {"<leader>zd", "<cmd>Lspsaga goto_definition<CR>", desc = "lsp view definition" },
    {"<leader>zl", "<cmd>Lspsaga hover_doc<CR>", desc = "lsp hover" },
-   {"<leader>zo", "<cmd>Lspsaga outline<CR>", desc = "lsp hover" },
-   {"<leader>zf", "<cmd>Lspsaga finder<CR>", desc = "lsp hover" },
-   {"<leader>zr", "<cmd>Lspsaga rename<CR>", desc = "rename" },
+   {"<leader>zo", "<cmd>Lspsaga outline<CR>", desc = "lsp outline" },
+   {"<leader>zf", "<cmd>Lspsaga finder<CR>", desc = "lsp finder" },
+   {"<leader>zr", "<cmd>Lspsaga rename<CR>", desc = "lsp rename" },
    {"<leader>ze", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "diagnostics floatwin" },
-   {"<leader>zn", "<cmd>Lspsaga diagnostic_jump_prev()<CR>", desc = "diagnostics ←" },
-   {"<leader>zN", "<cmd>Lspsaga diagnostic_jump_next()<CR>", desc = "diagnostics →" },
-   {"<leader>zz", "<cmd>Lspsaga incoming_calls<CR>", desc = "lsp hover" },
-   {"<leader>zx", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lsp hover" },
-   {"<leader>zF", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "format buffer" },
+   {"<leader>zn", "<cmd>Lspsaga diagnostic_jump_prev()<CR>", desc = "lsp diagnostics ←" },
+   {"<leader>zN", "<cmd>Lspsaga diagnostic_jump_next()<CR>", desc = "lsp diagnostics →" },
+   {"<leader>zz", "<cmd>Lspsaga incoming_calls<CR>", desc = "lsp incoming calls" },
+   {"<leader>zx", "<cmd>Lspsaga outgoing_calls<CR>", desc = "lsp outgoing calls" },
+   {"<leader>zF", "<cmd>lua vim.lsp.buf.format()<CR>", desc = "lsp format buffer" },
+   {"<leader>zi", "<cmd>lua vim.lsp.buf.implementation()<CR>", desc = "lsp view implementations" },
 
    -- flash
-   {"<leader>s", "<cmd>lua require('flash').jump()<CR>", desc = "format buffer" },
-   {"<leader>d", "<cmd>lua require('flash').treesitter()<CR>", desc = "format buffer" },
-   {"<leader>b", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "format buffer" },
-   {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "format buffer" },
+   {"<leader>s", "<cmd>lua require('flash').jump()<CR>", desc = "flash jump" },
+   {"<leader>d", "<cmd>lua require('flash').treesitter()<CR>", desc = "flash treestiter" },
+   {"<leader>b", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "flash treesitter search" },
+   {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "flash remote" },
 
    -- obsidian.nvim
    -- {"<leader>r", "<cmd>lua require('flash').remote()<CR>", desc = "format buffer" },
@@ -75,6 +76,21 @@ wk.add({
    {"<leader>gg", "<cmd>Git ", desc = "format buffer" },
    {"<leader>ga", "<cmd>Git commit<CR>", desc = "format buffer" },
    {"<leader>gc", "<cmd>Git add %<CR>", desc = "format buffer" },
+
+   -- treewalker binds
+   {"<A-h>", "<cmd>Treewalker Left<CR>", desc = "Treewalker nav left" },
+   {"<A-j>", "<cmd>Treewalker Down<CR>", desc = "Treewalker nav down" },
+   {"<A-k>", "<cmd>Treewalker Up<CR>", desc = "Treewalker nav up" },
+   {"<A-l>", "<cmd>Treewalker Right<CR>", desc = "Treewalker nav right" },
+   -- osx 
+   {"˙", "<cmd>Treewalker Left<CR>", desc = "Treewalker nav left" },
+   {"∆", "<cmd>Treewalker Down<CR>", desc = "Treewalker nav down" },
+   {"˚", "<cmd>Treewalker Up<CR>", desc = "Treewalker nav up" },
+   {"¬", "<cmd>Treewalker Right<CR>", desc = "Treewalker nav right" },
+
+   -- ez arg navigation
+   {"H", "2F,w", desc = "Treewalker nav up" },
+   {"L", "f,w", desc = "Treewalker nav right" },
 })
 
 
