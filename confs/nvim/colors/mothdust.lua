@@ -118,6 +118,8 @@ vim.api.nvim_set_hl(0, 'TabbyHeadInactive', b16({fg = "c2", bg = "no"}))
 vim.api.nvim_set_hl(0, 'TabbyEndSecInactive', b16({fg = "c4", bg = "c2"}))
 vim.api.nvim_set_hl(0, 'TabbyEndInactive', b16({fg = "c4", bg = "no"}))
 
+vim.api.nvim_set_hl(0, 'StatusLine', b16({bg = "no"}))
+
 vim.api.nvim_set_hl(0, 'CursorLine', b16({bg = "c1"}))
 vim.api.nvim_set_hl(0, 'CursorColumn', b16({bg = "c1"}))
 
@@ -129,6 +131,7 @@ vim.api.nvim_set_hl(0, 'EndOfBuffer', b16({bg = "no", fg = "no" }))
 vim.api.nvim_set_hl(0, 'Structure', b16({fg = "cC" }))
 vim.api.nvim_set_hl(0, 'Type', b16({fg = "c9" }))
 vim.api.nvim_set_hl(0, 'Function', b16({fg = "cD" }))
+vim.api.nvim_set_hl(0, 'Comment', b16({fg = "c4" }))
 
 vim.api.nvim_set_hl(0, 'Search', b16({bg = "c4", fg = "c0" }))
 vim.api.nvim_set_hl(0, 'IncSearch', b16({bg = "cA" }))

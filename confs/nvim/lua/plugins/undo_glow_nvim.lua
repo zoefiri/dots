@@ -1,7 +1,7 @@
 local mothdust = require("colors/mothdust")
 
 return {
-   "zoefiri/undo-glow.nvim",
+   "y3owk1n/undo-glow.nvim",
    event = { "VeryLazy" },
    ---@type UndoGlow.Config
    opts = {
@@ -171,7 +171,7 @@ return {
                animation = {
                   animation_type = "slide",
                },
-            })
+            }, nil, 3)
          end,
       })
 
@@ -182,7 +182,7 @@ return {
                animation = {
                   animation_type = "slide",
                },
-            })
+            }, nil, 3)
          end,
       })
 

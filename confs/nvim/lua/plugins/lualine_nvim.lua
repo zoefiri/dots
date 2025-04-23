@@ -35,7 +35,7 @@ return {
           normal = {
              a = { fg = c0, bg = cE },
              b = { fg = c4, bg = c3 },
-             c = { fg = c0, bg = c0 },
+             c = { fg = c0, bg = "None" },
              z = { fg = c7, bg = c9 },
           },
           insert = { a = { fg = c0, bg = cB } },
@@ -92,7 +92,7 @@ return {
        end
 
        local function mothicon()
-          return ' '
+          return '󰫢' --
        end
 
        require('lualine').setup {
@@ -150,14 +150,14 @@ return {
              lualine_c = {
                 {
                    require('NeoComposer.ui').status_recording,
-                   color = { bg = c4, fg = c2 },
+                   color = { bg = "None", fg = c2 },
                 },
              },
              lualine_x = {},
              lualine_y = { 
                 {
                    search_result,
-                   color = { bg = c4, fg = c2 },
+                   color = { bg = "None", fg = c2 },
                 },
                 'filetype' ,
              },

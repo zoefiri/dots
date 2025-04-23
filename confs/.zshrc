@@ -165,7 +165,8 @@ then
    echo -ne "\033]4;65;#FFFDED\007"
    echo -ne "\033]4;66;#FFF3CF\007"
 
-   echo -ne "\033]4;7;#FBE200\007"
+   # echo -ne "\033]4;7;#FBE200\007"
+   echo -ne "\033]4;7;#FFF3CF\007"
    echo -ne "\033]4;8;#FB0D3C\007"
 fi
 
@@ -303,3 +304,20 @@ typeset -a preexec_functions
 
 preexec_functions+=(set_tmux_icon)
 precmd_functions+=(unset_tmux_icon)
+
+setcolors() {
+   if [ -z "$TMUX" ]
+   then
+      echo -ne "\033]4;59;#101413\007"
+      echo -ne "\033]4;60;#1A2624\007"
+      echo -ne "\033]4;61;#20392D\007"
+      echo -ne "\033]4;62;#214D36\007"
+      echo -ne "\033]4;63;#eff69c\007"
+      echo -ne "\033]4;64;#FFF3CF\007"
+      echo -ne "\033]4;65;#FFFDED\007"
+      echo -ne "\033]4;66;#FFF3CF\007"
+
+      # echo -ne "\033]4;7;#FBE200\007"
+      # echo -ne "\033]4;8;#FB0D3C\007"
+   fi
+}
