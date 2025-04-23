@@ -36,17 +36,17 @@ style = { shape = "Block", blinking = "Always" }  # Default: shape = "Block", bl
 thickness = 1.0
 unfocused_hollow = false
 
-# Set to false to disable completely
-smooth_motion = true
-# 0.0 = cursor is not moving, 1.0 = cursor moves instantly
-smooth_motion_factor = 0.9
-# 0.0 = broken, 1.0 = cursor shape is unaffected by movement
-smooth_motion_spring = 0.65
-# Limits how the cursor size may change
-smooth_motion_max_stretch_x = 10.0
-smooth_motion_max_stretch_y = 0.9
-# Override "block" cursor if you don't like how it looks in this fork
-block_replace_shape = "block"
+# # Set to false to disable completely
+# smooth_motion = true
+# # 0.0 = cursor is not moving, 1.0 = cursor moves instantly
+# smooth_motion_factor = 0.9
+# # 0.0 = broken, 1.0 = cursor shape is unaffected by movement
+# smooth_motion_spring = 0.65
+# # Limits how the cursor size may change
+# smooth_motion_max_stretch_x = 10.0
+# smooth_motion_max_stretch_y = 0.9
+# # Override "block" cursor if you don't like how it looks in this fork
+# block_replace_shape = "block"
 
 
 [debug]
@@ -56,18 +56,18 @@ print_events = false
 render_timer = false
 
 [font]
-size = 8.5
+size = 11
 
 [font.normal]
-family = "monozoe"
+family = "MonaSpiceNe Nerd Font"
 style = "Medium"
 
 [font.bold]
-family = "monozoe"
+family = "MonaSpiceNe Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "monozoe"
+family = "MonaSpiceNe Nerd Font"
 style = "Bold Italic"
 
 [font.glyph_offset]

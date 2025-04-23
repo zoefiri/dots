@@ -12,9 +12,16 @@ return {
          end,
          -- Next, you can provide a dedicated handler for specific servers.
          -- For example, a handler override for the `rust_analyzer`:
-         -- ["rust_analyzer"] = function ()
-         --    require("rust-tools").setup {}
-         -- end
+         ["sqls"] = function ()
+            require("lspconfig").sqls.setup {
+               on_new_config  = function(new_config, new_root_dir) 
+                  new_config.cmd = { "/Users/zoechamlee/.local/share/nvim/mason/packages/sqls/sqls", "-config", "/Users/zoechamlee/.config/sqls/config.yaml" }
+               end,
+               on_attach = function(client,bufnr) 
+                  require('sqls').on_attach(client,bufnr)
+               end
+            }
+         end
       }
    end,
    dependencies = {
