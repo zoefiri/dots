@@ -23,7 +23,6 @@ zstyle :compinstall filename "$HOME/.zshrc"
 echo ur cute
 
 fpath=( /Users/zoechamlee/.zsh/comps $fpath )
-echo $fpath
 
 autoload -Uz compinit
 compinit
