@@ -302,6 +302,11 @@ man() {
             man "$@"
 }
 
+
+dot() {
+   $(cat config/egds_qa.env | xargs printf -- 'export %s\n')
+}
+
 #x# tmux window icons #x#
 function set_tmux_icon() { tmux rename-window "$(get_prog_icon.sh $1)" }
 function unset_tmux_icon() { tmux rename-window "" }
