@@ -24,6 +24,9 @@ return {
         filters = {
            dotfiles = true,
         },
+        update_focused_file = {
+           update_root = true,
+        },
      })
   end
 }

@@ -12,8 +12,9 @@ confirm-close-surface = false
 
 # theming
 theme = mothdust
-background-opacity = 0.7
+background-opacity = 0.77
+background-blur = true
 custom-shader = /home/zoe/.config/ghostty/smear.glsl
 alpha-blending = linear-corrected
 bold-is-bright = false
-
+cursor-style = block

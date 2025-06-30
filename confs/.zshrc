@@ -109,6 +109,7 @@ alias ncm='[ -z "$TMUX" ] && tmux new-session "$HOME/.ncmpcpp/ncmpcpp-ueberzug/n
 alias lf='\lfrun'
 alias cd='jb'
 alias qrcp='qrcp -i wlp1s0'
+# alias tmux='tmux-wll'
 ###
 ### git
 alias glog="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
@@ -262,8 +263,11 @@ cat ~/.zsh/art
 #x# auto-tmux #x#
 ###
 ###
-[ -z "$TMUX" ] && [ ! -z "$DISPLAY" ] && echo $PPID > /tmp/termPID && tmux
-[ ! -z "$TMUX" ] && [ ! -z "$DISPLAY" ] && auto_tmux
+# [ -z "$TMUX" ] && [ ! -z "$DISPLAY" ] && echo $PPID > /tmp/termPID && tmux
+# [ ! -z "$TMUX" ] && [ ! -z "$DISPLAY" ] && auto_tmux
+[ -z "$TMUX" ] && [ ! -z "$DISPLAY" ] && auto_tmux
+[ -z "$TMUX" ] && [ ! -z "$WAYLAND_DISPLAY" ] && auto_tmux
+# [ ! -z "$TMUX" ] && [ -z "$WAYLAND_DISPLAY" ] && tmux setenv WAYLAND_DISPLAY "$(cat /tmp/wldisp.tmp)"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -333,3 +337,5 @@ setcolors() {
       # echo -ne "\033]4;8;#FB0D3C\007"
    fi
 }
+
+[ -z "$TMUX" ] && tmux
