@@ -60,17 +60,16 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-const vec4 TRAIL_COLOR = vec4(1., 0.349, 0., 1.0);
-const float OPACITY = 0.67;
-const float DURATION = 0.2; //IN SECONDS
-const float OPACITY_THRESHOLD = 0.01;
+const vec4 TRAIL_COLOR = vec4(pow(vec3(.93725490196078431372, .96470588235294117647, .61176470588235294117), vec3(2.2)), 1.0);
+const vec4 TRAIL_COLOR_FADE = vec4(pow(vec3(.12941176470588235294, .30196078431372549019, .21176470588235294117), vec3(2.2)), 1.0);
+//const vec4 TRAIL_COLOR_FADE = vec4(pow(vec3(.12549019607843137254, .22352941176470588235, .17647058823529411764), vec3(2.2)), 1.0);
+
+const float DURATION = 0.68; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-
     #if !defined(WEB)
-    vec4 termColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
-    fragColor.rgb = termColor.rgb;
+    fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
     #endif
     // Normalization for fragCoord to a space of -1 to 1;
     vec2 vu = normalize(fragCoord, 1.);
@@ -103,27 +102,18 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float lineLength = distance(centerCC, centerCP);
 
     vec4 newColor = vec4(fragColor);
-    // Draw trail
-    newColor = mix(newColor, TRAIL_COLOR, antialising(sdfTrail));
+    // Compute fade factor based on distance along the trail
+    float fadeFactor = (1.0 - smoothstep(lineLength, sdfCurrentCursor, easedProgress * lineLength)) * 1.2;
+
+    // Apply fading effect to trail color
+    vec4 fadedTrailColor = mix(TRAIL_COLOR_FADE, TRAIL_COLOR, fadeFactor);
+
+    // Blend trail with fade effect
+    newColor = mix(newColor, fadedTrailColor, antialising(sdfTrail));
     // Draw current cursor
     newColor = mix(newColor, TRAIL_COLOR, antialising(sdfCurrentCursor));
     newColor = mix(newColor, fragColor, step(sdfCurrentCursor, 0.));
-    //newColor = mix(fragColor, newColor, OPACITY);
     fragColor = mix(fragColor, newColor, step(sdfCurrentCursor, easedProgress * lineLength));
-    
-
-    // vec3 bgColor = vec3(float(0x10), float(0x14), float(0x13)) / 255.0;
-    // vec3 colorDiff = clamp(abs(termColor.rgb - bgColor)*2.0, vec3(0.0), vec3(1.0));
-    // fragColor.a = mix(OPACITY, 1.0, ((colorDiff.r+colorDiff.g+colorDiff.b)/3.0));
-    //if (colorDiff.r < OPACITY_THRESHOLD && colorDiff.g < OPACITY_THRESHOLD && colorDiff.b < OPACITY_THRESHOLD) {
-          //fragColor.a = mix(OPACITY, 1.0, ((colorDiff.r+colorDiff.g+colorDiff.b)/3.0));
-    //} else {
-          //fragColor.a = 1.0;
-    //}
-    //fragColor.rgb = colorDiff;
-    // fragColor.a = 1.0 - ((colorDiff.r + colorDiff.g + colorDiff.b) / 3.0);
-
-    // fragColor.a = 0.8;
 
 
 
@@ -152,7 +142,7 @@ vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(
            (fragCoord.x < X_OFFSET+float(IMAGE_WIDTH*SCALE) && fragCoord.x > X_OFFSET) &&
            // y is above maximum y coord minus height of scaled image & single padding pixel
            (fragCoord.y > iResolution.y-(float(IMAGE_HEIGHT)*SCALE - 1.0))
-        ) {
+     ) {
         vec4 pixart_pixel = pixart[
            (
             // offset the fragCoord backwards by X_OFFSET since that's where we "start" drawing, divide that by scale and mod IMAGE_WIDTH
@@ -160,8 +150,8 @@ vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(
             // get y coord from top of screen by resY - coordY, divide it by scale and multiply by IMAGE_WIDTH for arr Y offset
             + int(int(iResolution.y - fragCoord.y)/SCALE)*IMAGE_WIDTH
            )
-              // frame offset. Each IMAGE_WIDTH*IMAGE_HEIGHT pixels in the vec4 arr is a different frame
-              + (int(iTime*ANIM_SPEED)%FRAME_COUNT * (IMAGE_WIDTH*IMAGE_HEIGHT))
+           // frame offset. Each IMAGE_WIDTH*IMAGE_HEIGHT pixels in the vec4 arr is a different frame
+           + (int(iTime*ANIM_SPEED)%FRAME_COUNT * (IMAGE_WIDTH*IMAGE_HEIGHT))
         ];
         // only draw for solid pixels (a more accurate fp value could worsten performance? No idea tbh. This works.)
         if (pixart_pixel.w > 0.5) {
@@ -170,6 +160,4 @@ vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(
      }
 
      // reset alpha 
-     fragColor.a = termColor.a;
-
 }

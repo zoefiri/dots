@@ -17,4 +17,4 @@ background-blur = true
 custom-shader = /home/zoe/.config/ghostty/smear.glsl
 alpha-blending = linear-corrected
 bold-is-bright = false
-
+cursor-style = block
