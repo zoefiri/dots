@@ -31,8 +31,9 @@ wk.add({
 
    -- open plugins
    {"<leader>u", "<cmd>UndotreeToggle<CR>", desc = "toggle undotree" },
-   {"<leader>t", "<cmd>NvimTreeToggle<CR>", desc = "toggle nvimtree" },
+   {"<leader>t", "<cmd>NvimTreeFindFileToggle<CR>", desc = "toggle nvimtree" },
    {"<leader>e", "<cmd>ToggleTerm direction='float'<CR>", desc = "toggle term" },
+   {"<leader>os", "<cmd>ObsidianSearch<CR>", desc = "Obsidian search" },
 
    -- telescope 
    {"<leader>ff", "<cmd>Telescope find_files<CR>", desc = "find files" },

@@ -25,6 +25,28 @@ return {
        }
     },
 
-    -- see below for full list of options 👇
+    wiki_link_func = "use_path_only",
+
+    -- -- see below for full list of options 👇
+    -- -- Optional, customize how note file names are generated given the ID, target directory, and title.
+    -- ---@param spec { id: string, dir: obsidian.Path, title: string|? }
+    -- ---@return string|obsidian.Path The full path to the new note.
+    -- note_path_func = function(spec)
+    --    local o = require('obsidian')
+    --
+    --    local vault = o.get_client().dir
+    --
+    --    -- This is equivalent to the default behavior.
+    --
+    --    local new_path = o.Path.buf_dir(0):joinpath(spec.dir:relative_to(vault)) / tostring(spec.id)
+    --
+    --    while true do 
+    --
+    --       break
+    --    end
+    --    -- print(new_path:with_suffix(".md"))
+    --
+    --    return new_path:with_suffix(".md")
+    -- end,
  },
 }

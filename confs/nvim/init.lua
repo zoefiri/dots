@@ -10,8 +10,8 @@ local options = {
    "set nocompatible",
    "set noshowmode",
    "set breakindent",
-   "set cursorline",
-   "set cursorcolumn",
+   -- "set cursorline",
+   -- "set cursorcolumn",
    "set number",
    "set showtabline=2",
    "set winborder=single",
@@ -23,7 +23,7 @@ local options = {
    -- "set fillchars=fold: ,vert:│,eob: ,msgsep:‾"
 }
 
-for _, option in ipairs(options) do 
+for _, option in ipairs(options) do
    vim.api.nvim_command(option)
 end
 
@@ -35,7 +35,7 @@ vim.api.nvim_command('colorscheme mothdust')
 
 vim.api.nvim_command('TSEnable highlight incremental_selection indent')
 
-vim.cmd[[
+vim.cmd [[
 augroup PrintEvents
     autocmd!
     autocmd FocusGained * nested call system('echo FocusGained  '. &filetype .' >> ~/vimevents.log')
