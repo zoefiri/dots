@@ -4,6 +4,7 @@ font-size = 16
 font-variation = "wght=600"
 font-variation-bold = "wght=1200"
 font-feature = -calt, -liga, -dlig
+# adjust-cell-width = -25%
 
 # window appearance
 window-padding-x = 2
@@ -18,3 +19,4 @@ custom-shader = /home/zoe/.config/ghostty/smear.glsl
 alpha-blending = linear-corrected
 bold-is-bright = false
 cursor-style = block
+cursor-opacity = 0.1
