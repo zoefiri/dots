@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="200mm"
+   height="200mm"
+   viewBox="0 0 200 200"
+   version="1.1"
+   id="svg5"
+   sodipodi0:docname="accel_b.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
+   sodipodi:docname="accel_fc.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:sodipodi0="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0dtd">
+  <sodipodi:namedview
+     id="namedview491"
+     pagecolor="#ffffff"
+     bordercolor="#FFFFFF"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.34536445"
+     inkscape:cx="-781.78284"
+     inkscape:cy="1301.5237"
+     inkscape:window-width="2256"
+     inkscape:window-height="1504"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <sodipodi0:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#FFFFFF"
+     borderopacity="0.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.0"
+     inkscape:cx="45.046991"
+     inkscape:cy="495.5169"
+     inkscape:window-width="1887"
+     inkscape:window-height="1478"
+     inkscape:window-x="351"
+     inkscape:window-y="8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path219"
+       style="fill:#FFFFFF;stroke-width:0"
+       d="M 200.0002,0.00103176 100.00011,5.15e-4 5e-6,100.00061 l -5.2e-4,5.2e-4 h 0.00103 0.00414 l -0.00207,99.99648 99.997525,5.1e-4 v 0.003 L 200.0002,100.00113 Z" />
+  </g>
+</svg>

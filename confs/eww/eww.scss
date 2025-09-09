@@ -1,0 +1,236 @@
+.example {
+   font-family: "Germania One Downskew";
+   font-size: 55px;
+   font-weight: 900;
+   background-color: #1A2624;
+   color: #FF0000;
+}
+
+.bb1 {
+   background-color: rgba(133, 40, 52, 0.95);
+}
+
+.mhead {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.batwin {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.batbox {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.battext {
+   font-family: "Germania One Downskew";
+   font-size: 50px;
+   color: #ffebd0;
+}
+
+.battextfill {
+   font-family: "Germania One Downskew";
+   font-size: 30px;
+   color: #182f41;
+}
+
+.battext-container {
+}
+
+.baticon {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+
+.bottri {
+   color: #1A2624;
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.toptri {
+   color: rgb(33, 40, 52);
+   background-color: rgba(133, 40, 52, 0.95);
+}
+
+.spaces {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.paraspaces {
+   background-color: rgba(255, 40, 52, 0.0);
+}
+
+.fill {
+   /* #0D100F */
+   background-color: rgba(13, 16, 15, 0.6);
+}
+
+.b1 {
+}
+
+.b2 {
+   margin-top:7px;
+}
+
+.b3 {
+   margin-top:9px;
+}
+
+
+
+.w1 {
+   margin-top: -4px;
+}
+
+.w7 {
+   margin-left: -2px;
+   margin-bottom: -30px;
+}
+
+
+
+.w2 {
+   margin-bottom: -30px;
+   margin-left: -12px;
+}
+
+.w5 {
+   margin-left: -14px;
+   margin-bottom: -45px;
+}
+
+.w8 {
+   margin-bottom: -65px;
+   margin-left: -12px;
+}
+
+
+
+.w3 {
+   margin-bottom: -65px;
+   margin-left: -22px;
+}
+
+.w4 {
+   margin-bottom: -78px;
+   margin-left: -25px;
+}
+
+.w6 {
+   margin-right: -00px;
+   margin-bottom: -10px;
+}
+
+.w9 {
+   margin-bottom: -99px;
+   margin-left: -22px;
+}
+
+.datehour {
+   background-color: rgba(133, 40, 52, 0.0);
+}
+
+.hour {
+   color: #ffebd0;
+   font-family: "Germania One Upskew";
+   font-size: 29px;
+} 
+
+.minute {
+   color: #ffebd0;
+   font-family: "Germania One Upskew";
+   font-size: 29px;
+   margin-top: -6px;
+   margin-left: -8px;
+}
+
+.day { 
+   color: #ffebd0;
+   font-family: "Germania One Upskew";
+   font-size: 26px;
+   margin-left: -8px;
+}
+
+.month {
+   font-family: "Germania One Upskew";
+   font-size: 26px;
+   color: #ffebd0;
+}
+
+.datesep {
+   font-family: "Germania One Upskew";
+   font-size: 18px;
+   font-weight: 900;
+   color: #70BC5F;
+   margin-top: -4px;
+   margin-left: -3px;
+}
+
+.timesep {
+   font-family: "Germania One Upskew";
+   font-size: 31px;
+   font-weight: 900;
+   color: #69FFBF;
+   margin-top: -10px;
+   margin-left: -4px;
+}
+
+.dateicon {
+   font-family: "Germania One Upskew";
+   font-size: 30px;
+   color: #70BC5F;
+   margin-bottom: -130px;
+   margin-left: -3px;
+}
+
+.timeicon {
+   font-family: "Germania One Upskew";
+   font-size: 30px;
+   font-weight: 900;
+   color: #9DDAB6;
+   margin-bottom: -106px;
+   margin-right: -1px;
+}
+
+.vol {
+   background-color: transparent;
+}
+
+scale {
+   background-color: #ff0ff0;
+}
+
+.meter-top {
+   margin-top: -10px;
+}
+
+.meter-progress-top {
+   margin-top: 353px;
+   color: #00ff00;
+}
+
+.mete {
+   margin-top: 100px;
+}
+
+progressbar > trough {
+   background-color: #1A2624;
+   border: 0px;
+   min-width: 15px;
+}
+
+progressbar > trough > progress {
+   background-color: #ff691f;
+   border: 0px;
+   min-width: 15px;
+}
+
+.volicon_box {
+   margin-top: 0px;
+}
+
+.volicon {
+   margin-top: 0px;
+   color: #70BC5F;
+   font-size: 45px;
+}
