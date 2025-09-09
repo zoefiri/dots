@@ -6,20 +6,21 @@ hc() {
 #cleanup
 hc keyunbind --all
 hc spawn pkill lemon
-hc spawn pkill plugitinfucker
+hc spawn pkill plugit
 hc spawn pkill keebdisable
 hc spawn pkill greenclip
 hc spawn pkill keynav
-hc spawn pkill compton
+hc spawn pkill picom
 hc spawn pkill flashfocus
 hc spawn pkill chargeindicator
 hc spawn pkill wallserver
+hc spawn pkill wired
+hc spawn pkill wll
 
 
 #autostart
 hc spawn xset b off
-hc spawn walc r
-hc spawn /home/zoe/bin/plugitinfucker
+hc spawn /home/zoe/bin/plugit
 hc spawn /home/zoe/bin/chargeindicator
 #hc spawn /home/zoe/bin/keebdisable
 hc spawn /home/zoe/.config/lemons/lemon
@@ -27,6 +28,10 @@ hc spawn xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Disable While Ty
 hc spawn xrandr --auto --output eDP1 --mode 1920x1080 --right-of HDMI1  
 hc spawn greenclip daemon
 hc spawn keynav
-hc spawn compton
+hc spawn picom
 hc spawn flashfocus -o 0.75
 hc spawn wallserver
+hc spawn ewwstart
+hc spawn mpd
+hc spawn wired
+hc spawn wll ~/wallp/shuffle 528

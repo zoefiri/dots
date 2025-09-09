@@ -48,6 +48,12 @@ hc spawn /home/zoe/.config/herbstluftwm/binds
 hc spawn /home/zoe/.config/herbstluftwm/theme
 hc spawn /home/zoe/.config/herbstluftwm/start
 
+################
+# xinput props #
+################
+# sets disable mouse while typing to false
+xinput set-prop 10 305 0
+
 #########
 # rules #
 #########
@@ -59,11 +65,12 @@ hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 hc set tree_style '╾│ ├└╼─┐'
 ## panes 
 
+/home/zoe/.config/herbstluftwm/guistart
+
 #################
 # monitor stuff #
 #################
 hc unlock
 hc detect_monitors
-
-sleep 3
-hc pad 0 15 15 75 15
+sleep 1
+hc pad 0 5 5 5 95
