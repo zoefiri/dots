@@ -68,9 +68,9 @@ const float DURATION = 0.68; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-    #if !defined(WEB)
-    fragColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
-    #endif
+    vec4 termColor = texture(iChannel0, fragCoord.xy / iResolution.xy);
+    fragColor = termColor;
+
     // Normalization for fragCoord to a space of -1 to 1;
     vec2 vu = normalize(fragCoord, 1.);
     vec2 offsetFactor = vec2(-.5, 0.5);
@@ -141,14 +141,14 @@ vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(
            // x is between width of scaled image summed with the offset, and the offset 
            (fragCoord.x < X_OFFSET+float(IMAGE_WIDTH*SCALE) && fragCoord.x > X_OFFSET) &&
            // y is above maximum y coord minus height of scaled image & single padding pixel
-           (fragCoord.y > iResolution.y-(float(IMAGE_HEIGHT)*SCALE - 1.0))
+           (fragCoord.y < float(IMAGE_HEIGHT*SCALE) + 1.0)
      ) {
         vec4 pixart_pixel = pixart[
            (
             // offset the fragCoord backwards by X_OFFSET since that's where we "start" drawing, divide that by scale and mod IMAGE_WIDTH
             ((int(fragCoord.x) - int(X_OFFSET))/SCALE)%IMAGE_WIDTH
             // get y coord from top of screen by resY - coordY, divide it by scale and multiply by IMAGE_WIDTH for arr Y offset
-            + int(int(iResolution.y - fragCoord.y)/SCALE)*IMAGE_WIDTH
+            + int((int(fragCoord.y - 1.0)%(IMAGE_HEIGHT*SCALE))/SCALE)*IMAGE_WIDTH
            )
            // frame offset. Each IMAGE_WIDTH*IMAGE_HEIGHT pixels in the vec4 arr is a different frame
            + (int(iTime*ANIM_SPEED)%FRAME_COUNT * (IMAGE_WIDTH*IMAGE_HEIGHT))
@@ -160,4 +160,5 @@ vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(0.0, 0.0, 0.0, 0.0),vec4(
      }
 
      // reset alpha 
+     fragColor.a = termColor.a;
 }

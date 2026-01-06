@@ -149,7 +149,7 @@ return {
              },
              lualine_c = {
                 {
-                   require('NeoComposer.ui').status_recording,
+                   search_result,
                    color = { bg = "None", fg = c2 },
                 },
              },

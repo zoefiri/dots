@@ -1,5 +1,5 @@
 format = '''
-(  [](fg:primary-ui_bg bg:c0)[](fg:acc_ui_bg)[](fg:c2 bg:alt_ui_bg)[[ ](bg:acc_ui_bg)](fg:acc_ui_bg)[ $git_status[ ](fg:c5 bg:alt_ui_bg)$git_branch](bg:alt_ui_bg fg:c0 bold)[](alt_ui_bg)[](fg:63)[](fg:63 bg:c4)[](fg:c4 bg:c5)[](fg:c5)
+(  [](primary-ui_bg)[](fg:acc_ui_bg)[](fg:c3 bg:none)[[ ](bg:acc_ui_bg)](fg:acc_ui_bg)[ $git_status[ ](fg:c5 bg:alt_ui_bg)$git_branch](bg:alt_ui_bg fg:c0 bold)[](alt_ui_bg)[](fg:63)[](fg:63 bg:c4)[](fg:c4 bg:c5)[](fg:c5)
 )[](primary-ui_bg)[ zoe ❯❯ ](bg:primary-ui_bg fg:c0 bold)[](bold primary-ui_bg)[   ](bg:primary-ui_bg fg:c0 bold)[](primary-ui_bg) 
 '''
 

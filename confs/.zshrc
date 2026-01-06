@@ -308,7 +308,7 @@ man() {
 
 
 dot() {
-   $(cat config/egds_qa.env | xargs printf -- 'export %s\n')
+   $(cat "$1" | sed -e 's/^#.*$//g' | xargs printf -- 'export %s\n')
 }
 
 #x# tmux window icons #x#

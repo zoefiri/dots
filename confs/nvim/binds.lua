@@ -41,13 +41,13 @@ wk.add({
    {"<leader>ft", "<cmd>Telescope file_browser<CR>", desc = "file browser" },
 
    -- neocomposer
-   {"qp", "<cmd>lua require('NeoComposer.macro').play_macro()<CR>", desc = "play macro" },
-   {"qy", "<cmd>lua require('NeoComposer.macro').yank_macro()<CR>", desc = "yank macro" },
-   {"qs", "<cmd>lua require('NeoComposer.macro').stop_macro()<CR>", desc = "stop recording" },
-   {"qq", "<cmd>lua require('NeoComposer.macro').toggle_record()<CR>", desc = "toggle recording" },
-   {"qn", "<cmd>lua require('NeoComposer.macro').cycle_next()<CR>", desc = "cycle next" },
-   {"qN", "<cmd>lua require('NeoComposer.macro').cycle_prev()<CR>", desc = "cycle prev" },
-   {"qQ", "<cmd>lua require('NeoComposer.ui').toggle_macro_menu()<CR>", desc = "toggle menu" },
+   -- {"qp", "<cmd>lua require('NeoComposer.macro').play_macro()<CR>", desc = "play macro" },
+   -- {"qy", "<cmd>lua require('NeoComposer.macro').yank_macro()<CR>", desc = "yank macro" },
+   -- {"qs", "<cmd>lua require('NeoComposer.macro').stop_macro()<CR>", desc = "stop recording" },
+   -- {"qq", "<cmd>lua require('NeoComposer.macro').toggle_record()<CR>", desc = "toggle recording" },
+   -- {"qn", "<cmd>lua require('NeoComposer.macro').cycle_next()<CR>", desc = "cycle next" },
+   -- {"qN", "<cmd>lua require('NeoComposer.macro').cycle_prev()<CR>", desc = "cycle prev" },
+   -- {"qQ", "<cmd>lua require('NeoComposer.ui').toggle_macro_menu()<CR>", desc = "toggle menu" },
 
    -- lsp
    {"<leader>zD", "<cmd>Lspsaga goto_declaration()<CR>", desc = "lsp view declaration" },

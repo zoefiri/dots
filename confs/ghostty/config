@@ -1,20 +1,27 @@
 # font
 font-family = Monaspace Neon Var
-font-size = 16
-font-variation = "wght=600"
-font-variation-bold = "wght=1200"
+font-size = 12
+font-variation = wght=600
+font-variation = wdth=105
+font-variation-bold = wght=1200
+font-variation-bold = wdth=105
 font-feature = -calt, -liga, -dlig
 
 # window appearance
 window-padding-x = 2
-window-decoration = none
-confirm-close-surface = false
+# window-decoration = none
+# confirm-close-surface = false
 
 # theming
 theme = mothdust
 background-opacity = 0.77
 background-blur = true
-custom-shader = /home/zoe/.config/ghostty/smear.glsl
+background-image = /Users/zoechamlee/Downloads/noo.gif
+background-image-opacity = 0.0
+background-image-fit = none 
+background-image-position = bottom-right
+custom-shader = ~/.config/ghostty/smear.glsl
 alpha-blending = linear-corrected
 bold-is-bright = false
 cursor-style = block
+macos-icon = retro
